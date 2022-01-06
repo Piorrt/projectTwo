@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pl.sages.javadevpro.projecttwo.BaseIT;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceIT extends BaseIT {
@@ -20,7 +21,8 @@ public class UserServiceIT extends BaseIT {
                 "newUser@example.com",
                 "User Name",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         service.saveUser(user);
 
@@ -41,19 +43,22 @@ public class UserServiceIT extends BaseIT {
                 "newUser1@example.com",
                 "User Name 1",
                 "pass1",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         User user2 = new User(
                 "newUser2@example.com",
                 "User Name 2",
                 "pass2",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         User user3 = new User(
                 "newUser3@example.com",
                 "User Name 3",
                 "pass3",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         service.saveUser(user1);
         service.saveUser(user2);

@@ -17,7 +17,8 @@ public class TaskServiceIT extends BaseIT {
         Task task = new Task(
                 "1",
                 "Task Name 1",
-                "Task Description 1"
+                "Task Description 1",
+                "https://github.com/some-reporitory-1"
         );
         service.saveTask(task);
 
@@ -28,6 +29,7 @@ public class TaskServiceIT extends BaseIT {
         Assertions.assertEquals(task.getId(), readTask.getId());
         Assertions.assertEquals(task.getName(), readTask.getName());
         Assertions.assertEquals(task.getDescription(), readTask.getDescription());
+        Assertions.assertEquals(task.getRepositoryPath(), readTask.getRepositoryPath());
         Assertions.assertNotEquals(task, readTask);
     }
 
@@ -37,17 +39,20 @@ public class TaskServiceIT extends BaseIT {
         Task task1 = new Task(
                 "2",
                 "Task Name 2",
-                "Task Description 2"
+                "Task Description 2",
+                "https://github.com/some-reporitory-2"
         );
         Task task2 = new Task(
                 "3",
                 "Task Name 3",
-                "Task Description 3"
+                "Task Description 3",
+                "https://github.com/some-reporitory-3"
         );
         Task task3 = new Task(
                 "4",
                 "Task Name 4",
-                "Task Description 4"
+                "Task Description 4",
+                "https://github.com/some-reporitory-4"
         );
         service.saveTask(task1);
         service.saveTask(task2);
@@ -60,6 +65,7 @@ public class TaskServiceIT extends BaseIT {
         Assertions.assertEquals(task2.getId(), readTask.getId());
         Assertions.assertEquals(task2.getName(), readTask.getName());
         Assertions.assertEquals(task2.getDescription(), readTask.getDescription());
+        Assertions.assertEquals(task2.getRepositoryPath(), readTask.getRepositoryPath());
         Assertions.assertNotEquals(task2, readTask);
     }
 

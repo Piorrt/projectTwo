@@ -15,5 +15,6 @@ public class TaskEntity {
     private String id;
     private String name;
     private String description;
+    private String repositoryPath;
 
 }

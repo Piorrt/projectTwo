@@ -38,6 +38,8 @@ out/
 
 ## Project
 /files/
+/userTasks/
+/testRepo/
 *.txt
 *.png
 *.svg

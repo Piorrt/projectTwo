@@ -6,6 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -20,7 +21,8 @@ public class ProjectTwoApplication {
 				"jan@example.com",
 				"Jan Kowalski",
 				"MyPassword",
-				List.of("ADMIN", "STUDENT")
+					List.of("ADMIN", "STUDENT"),
+					new ArrayList<>()
 			)
 		);
 		userRepository.save(
@@ -28,7 +30,8 @@ public class ProjectTwoApplication {
 				"stefan@example.com",
 				"Stefan Burczymucha",
 				"password",
-				List.of("STUDENT")
+				List.of("STUDENT"),
+				new ArrayList<>()
 			)
 		);
 	}

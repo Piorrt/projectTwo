@@ -19,6 +19,7 @@ import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AutoConfigureDataMongo
@@ -52,7 +53,8 @@ public class BaseIT {
             "admin@example.pl",
             "Stefan Burczymucha",
             "password",
-            List.of("ADMIN")
+            List.of("ADMIN"),
+            new ArrayList<>()
         );
 
     protected String localUrl(String endpoint) {

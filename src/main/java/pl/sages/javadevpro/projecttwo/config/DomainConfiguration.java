@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import pl.sages.javadevpro.projecttwo.api.task.TaskDtoMapper;
 import pl.sages.javadevpro.projecttwo.api.user.UserDtoMapper;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import pl.sages.javadevpro.projecttwo.api.usertask.UserTaskDtoMapper;
 import pl.sages.javadevpro.projecttwo.domain.TaskService;
 import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskRepository;
@@ -37,33 +38,18 @@ public class DomainConfiguration {
 
 
     @Bean
-    public UserService userService(
-        UserRepository userRepository
-    )  {
-        return new UserService(
-            userRepository
-        );
+    public UserService userService(UserRepository userRepository)  {
+        return new UserService(userRepository);
     }
 
     @Bean
-    public TaskRepository taskRepository(
-            MongoTaskRepository taskRepository,
-            TaskEntityMapper mapper
-    ) {
-        return new TaskStorageAdapter(
-                taskRepository,
-                mapper
-        );
+    public TaskRepository taskRepository(MongoTaskRepository taskRepository, TaskEntityMapper mapper) {
+        return new TaskStorageAdapter(taskRepository, mapper);
     }
 
-
     @Bean
-    public TaskService taskService(
-            TaskRepository taskRepository
-    )  {
-        return new TaskService(
-                taskRepository
-        );
+    public TaskService taskService(TaskRepository taskRepository)  {
+        return new TaskService(taskRepository);
     }
 
     @Bean
@@ -84,5 +70,10 @@ public class DomainConfiguration {
     @Bean
     public TaskEntityMapper taskEntityMapper() {
         return Mappers.getMapper(TaskEntityMapper.class);
+    }
+
+    @Bean
+    public UserTaskDtoMapper userTaskDtoMapper() {
+        return Mappers.getMapper(UserTaskDtoMapper.class);
     }
 }

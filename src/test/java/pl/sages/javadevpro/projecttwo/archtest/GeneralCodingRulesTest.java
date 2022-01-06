@@ -21,10 +21,6 @@ public class GeneralCodingRulesTest {
     public static final ArchRule beans_should_not_be_injected_by_field =
             GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
 
-//    @ArchTest
-//    public static final ArchRule standard_streams_should_not_be_used =
-//            GeneralCodingRules.NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS;
-
     @ArchTest
     public static final ArchRule deprecated_classes_should_not_be_used = noClasses().that()
             .areAnnotatedWith(Deprecated.class).should()

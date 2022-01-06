@@ -13,12 +13,15 @@ public class Task {
     private String id;
     private String name;
     private String description;
+    private String repositoryPath;
+
 
     public Task updateTask(Task task){
         return new Task(
                 this.id,
                 task.name,
-                task.description
+                task.description,
+                task.repositoryPath
                 );
     }
 }

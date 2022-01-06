@@ -1,5 +1,6 @@
 package pl.sages.javadevpro.projecttwo.api;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -12,6 +13,7 @@ import pl.sages.javadevpro.projecttwo.api.user.UserDto;
 import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +30,8 @@ class UserEndpointIT extends BaseIT {
             "newUser1@example.com",
             "User Name",
             "pass",
-            List.of("STUDENT")
+            List.of("STUDENT"),
+            new ArrayList<>()
         );
         service.saveUser(user);
         String token = getTokenForAdmin();
@@ -64,13 +67,15 @@ class UserEndpointIT extends BaseIT {
                 "newUser4@example.com",
                 "User Name",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         User user2 = new User(
                 "oldUser5@example.com",
                 "Old User Name",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         service.saveUser(user1);
         service.saveUser(user2);
@@ -90,7 +95,8 @@ class UserEndpointIT extends BaseIT {
             "newUser1@example.com",
             "User Name",
             "pass",
-            List.of("STUDENT")
+            List.of("STUDENT"),
+            new ArrayList<>()
         );
         service.saveUser(user);
         String adminToken = getTokenForAdmin();
@@ -109,7 +115,8 @@ class UserEndpointIT extends BaseIT {
             "newUser2@example.com",
             "User Name",
             "pass",
-            List.of("STUDENT")
+            List.of("STUDENT"),
+            new ArrayList<>()
         );
         String adminAccessToken = getTokenForAdmin();
 
@@ -133,7 +140,8 @@ class UserEndpointIT extends BaseIT {
                 "newUser3@example.com",
                 "User Name",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         service.saveUser(user);
         String accessToken = getAccessTokenForUser(user.getEmail(), user.getPassword());
@@ -202,7 +210,8 @@ class UserEndpointIT extends BaseIT {
                 "newUser@example.com",
                 "Person",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         userService.saveUser(user);
 
@@ -228,7 +237,8 @@ class UserEndpointIT extends BaseIT {
                 "newUser@email.com",
                 "Person",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         String adminAccessToken = getTokenForAdmin();
         userService.saveUser(user);
