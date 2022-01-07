@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.usertask.DirectoryHandler;
+import pl.sages.javadevpro.projecttwo.domain.usertask.DirectoryService;
 import pl.sages.javadevpro.projecttwo.domain.usertask.GitService;
 import pl.sages.javadevpro.projecttwo.domain.usertask.TaskStatus;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
@@ -26,7 +26,7 @@ class UserTaskServiceTest {
     private final static String TEST_DIRECTORY = "src/test/usertasktest";
 
     @Mock private GitService gitService;
-    @Mock private DirectoryHandler directoryHandler;
+    @Mock private DirectoryService directoryService;
     @Mock private UserService userService;
 
     @InjectMocks
@@ -38,10 +38,10 @@ class UserTaskServiceTest {
         User fakeUser = new User();
         fakeUser.setTasks(new ArrayList<>());
 
-        when(directoryHandler.createDirectoryForUserTask(Mockito.any(Task.class),Mockito.anyString()))
+        when(directoryService.createDirectoryForUserTask(Mockito.any(Task.class),Mockito.anyString()))
                 .thenReturn(TEST_DIRECTORY);
-        when(userService.getUser(null)).thenReturn(fakeUser);
-        when(userService.saveUser(Mockito.any(User.class))).thenReturn(fakeUser);
+        when(userService.getUser(Mockito.anyString())).thenReturn(fakeUser);
+        when(userService.updateUser(Mockito.any(User.class))).thenReturn(fakeUser);
     }
 
 
@@ -61,6 +61,7 @@ class UserTaskServiceTest {
         Assertions.assertEquals(sampleTask.getId(),userTask.getId());
         Assertions.assertEquals(sampleTask.getName(),userTask.getName());
         Assertions.assertEquals(sampleTask.getDescription(),userTask.getDescription());
+        Assertions.assertEquals("user@email.com", userTask.getUserEmail());
         Assertions.assertEquals(TEST_DIRECTORY,userTask.getUserTaskFolder());
         Assertions.assertEquals(TaskStatus.NOT_STARTED,userTask.getTaskStatus());
     }

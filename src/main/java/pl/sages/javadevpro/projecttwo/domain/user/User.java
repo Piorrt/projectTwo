@@ -1,13 +1,11 @@
 package pl.sages.javadevpro.projecttwo.domain.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
 
 import java.util.List;
 
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

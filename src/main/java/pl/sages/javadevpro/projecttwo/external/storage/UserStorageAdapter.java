@@ -63,6 +63,12 @@ public class UserStorageAdapter implements UserRepository {
             throw new RecordNotFoundException("User not found");
         }
         log.info("Found entity " + entity.map(Object::toString).orElse("none"));
-        return entity.map(mapper::toDomain);
+        if (entity.isPresent()) {
+            return entity
+                .map(mapper::toDomain);
+        }
+
+        return Optional.empty();
     }
+
 }

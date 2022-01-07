@@ -165,7 +165,8 @@ class UserEndpointIT extends BaseIT {
                 "email@email.com",
                 "Person",
                 "password",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         userService.saveUser(user);
 
@@ -173,7 +174,8 @@ class UserEndpointIT extends BaseIT {
                 "email@email.com",
                 "newPerson",
                 "newpassword",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         String adminAccessToken = getTokenForAdmin();
 
@@ -219,7 +221,8 @@ class UserEndpointIT extends BaseIT {
                 "otherUser@email.com",
                 "Person",
                 "password",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         String token = getAccessTokenForUser(user.getEmail(), user.getPassword());
 
@@ -257,7 +260,8 @@ class UserEndpointIT extends BaseIT {
                 "otherUser@email.com",
                 "Person",
                 "password",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         String token = getTokenForAdmin();
 
@@ -275,13 +279,15 @@ class UserEndpointIT extends BaseIT {
                 "newUser@example.com",
                 "Person",
                 "pass",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         User otherUser = new User(
                 "otherUser@email.com",
                 "Person",
                 "password",
-                List.of("STUDENT")
+                List.of("STUDENT"),
+                new ArrayList<>()
         );
         userService.saveUser(user);
         String token = getAccessTokenForUser(user.getEmail(), user.getPassword());

@@ -13,9 +13,9 @@ import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import java.io.File;
 
 @ExtendWith(MockitoExtension.class)
-class LocalDirectoryHandlerTest {
+class LocalDirectoryServiceTest {
 
-    private final LocalDirectoryHandler localDirectoryHandler = new LocalDirectoryHandler();
+    private final LocalDirectoryService localDirectoryHandler = new LocalDirectoryService();
     private final static String TEST_DIRECTORY = "userTasks/sampleemailcom/1";
     private final static String USER_EMAIL = "sample@email.com";
 

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class LocalDirectoryHandler implements DirectoryHandler {
+public class LocalDirectoryService implements DirectoryService {
 
     @Override
     public String createDirectoryForUserTask(Task task, String userEmail) {

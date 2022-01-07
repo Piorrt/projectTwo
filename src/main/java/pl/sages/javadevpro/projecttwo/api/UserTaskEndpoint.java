@@ -13,7 +13,7 @@ import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
 
 @RequiredArgsConstructor
-//@RestController
+@RestController
 @RequestMapping(path = "/users")
 public class UserTaskEndpoint {
 
@@ -29,7 +29,7 @@ public class UserTaskEndpoint {
     @Secured("ROLE_ADMIN")
     public ResponseEntity<UserTaskDto> assignTaskToUser(@PathVariable(name = "email")String userEmail, @RequestBody TaskDto taskDto) {
         Task task = taskDtoMapper.toDomain(taskDto);
-        UserTask userTask = userTaskService.createFromTask(task, userEmail);
+        UserTask userTask = userTaskService.assignTask(task, userEmail);
         return ResponseEntity
                 .ok(userTaskDtoMapper.toDto(userTask));
     }
