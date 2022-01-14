@@ -55,4 +55,9 @@ public class UserTaskService {
         return destinationFolderPath;
     }
 
+    public String exec(UserTask userTask) {
+
+        return userTaskExecutor.exec(userTask);
+    }
+
 }

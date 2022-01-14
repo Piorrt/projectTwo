@@ -11,7 +11,7 @@ Content-Type: application/json
 Authorization: {{auth_token}}
 
 {
-  "email": "zdenek@gmail.com",
+  "email": "1zdenek@gmail.com",
   "name": "Zdenek Smietana",
   "password": "userPass",
   "roles": ["STUDENT"]
