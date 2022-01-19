@@ -1,4 +1,4 @@
-package pl.sages.javadevpro.projecttwo.external.executor.kafka;
+package pl.sages.javadevpro.projecttwo.external.env.kafka;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

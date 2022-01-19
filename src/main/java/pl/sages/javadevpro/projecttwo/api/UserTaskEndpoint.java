@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.sages.javadevpro.projecttwo.api.usertask.UserTaskDto;
+import pl.sages.javadevpro.projecttwo.api.usertask.UserTaskDtoMapper;
 import pl.sages.javadevpro.projecttwo.domain.UserTaskService;
-import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
 
 
 
@@ -22,6 +23,7 @@ import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
 public class UserTaskEndpoint {
 
     private final UserTaskService userTaskService;
+    private final UserTaskDtoMapper dtoMapper;
 
     @PostMapping(
             produces = "application/json",
@@ -36,9 +38,11 @@ public class UserTaskEndpoint {
     @GetMapping("/sendtask/{taskId}")
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<String> post(@PathVariable("taskId") final String taskId) {
-
+       
+        UserTaskDto userTaskDto = new UserTaskDto(taskId, "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked");
+       
         String taskStatus = userTaskService
-                .exec(new UserTask(taskId, "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked"));
+                .exec(dtoMapper.toDomain(userTaskDto));
         return ResponseEntity.ok(taskStatus);
     }
     

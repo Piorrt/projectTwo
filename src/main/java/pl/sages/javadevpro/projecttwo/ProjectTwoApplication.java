@@ -3,13 +3,8 @@ package pl.sages.javadevpro.projecttwo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
-import pl.sages.javadevpro.projecttwo.domain.task.Task;
-import pl.sages.javadevpro.projecttwo.domain.user.UserRepository;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
-import pl.sages.javadevpro.projecttwo.domain.usertask.UserTaskExecutor;
-import pl.sages.javadevpro.projecttwo.external.executor.UserTaskExecutorAdapter;
 
 @SpringBootApplication
 public class ProjectTwoApplication {

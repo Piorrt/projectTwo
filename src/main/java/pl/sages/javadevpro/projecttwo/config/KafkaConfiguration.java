@@ -12,8 +12,8 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
-import pl.sages.javadevpro.projecttwo.external.executor.kafka.KafkaUserTaskExecutor;
+import pl.sages.javadevpro.projecttwo.external.env.kafka.KafkaUserTaskEnv;
+import pl.sages.javadevpro.projecttwo.external.env.usertask.UserTaskEnv;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class KafkaConfiguration {
 
     @Bean
-    public ProducerFactory<String, UserTask> taskProducerFactory() {
+    public ProducerFactory<String, UserTaskEnv> taskProducerFactory() {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -35,12 +35,12 @@ public class KafkaConfiguration {
 
 
     @Bean
-    public KafkaTemplate<String, UserTask> taskKafkaTemplate() {
+    public KafkaTemplate<String, UserTaskEnv> taskKafkaTemplate() {
         return new KafkaTemplate<>(taskProducerFactory());
     }
 
     @Bean
-    public ConsumerFactory<String, UserTask> taskConsumerFactory() {
+    public ConsumerFactory<String, UserTaskEnv> taskConsumerFactory() {
         Map<String, Object> config = new HashMap<>();
 
 
@@ -52,18 +52,18 @@ public class KafkaConfiguration {
 
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
-                new JsonDeserializer<>(UserTask.class));
+                new JsonDeserializer<>(UserTaskEnv.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, UserTask> taskKafkaListenerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, UserTask> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, UserTaskEnv> taskKafkaListenerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserTaskEnv> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(taskConsumerFactory());
         return factory;
     }
 
     @Bean
-    public KafkaUserTaskExecutor kafkaUserTaskExecutor(KafkaTemplate<String, UserTask> kafkaTemplate){
-        return new KafkaUserTaskExecutor(kafkaTemplate);
+    public KafkaUserTaskEnv kafkaUserTaskExecutor(KafkaTemplate<String, UserTaskEnv> kafkaTemplate){
+        return new KafkaUserTaskEnv(kafkaTemplate);
     }
 }

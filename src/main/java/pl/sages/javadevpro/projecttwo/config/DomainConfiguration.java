@@ -13,10 +13,10 @@ import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.UserTaskService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskRepository;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRepository;
-import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTaskExecutor;
-import pl.sages.javadevpro.projecttwo.external.executor.UserTaskExecutorAdapter;
-import pl.sages.javadevpro.projecttwo.external.executor.kafka.KafkaUserTaskExecutor;
+import pl.sages.javadevpro.projecttwo.external.env.UserTaskEnvAdapter;
+import pl.sages.javadevpro.projecttwo.external.env.kafka.KafkaUserTaskEnv;
+import pl.sages.javadevpro.projecttwo.external.env.usertask.UserTaskEnvMapper;
 import pl.sages.javadevpro.projecttwo.domain.usertask.DirectoryService;
 import pl.sages.javadevpro.projecttwo.domain.usertask.GitService;
 import pl.sages.javadevpro.projecttwo.external.directory.LocalDirectoryService;
@@ -56,11 +56,11 @@ public class DomainConfiguration {
     }
 
     @Bean
-    public UserTaskExecutor userTaskExecutor(KafkaUserTaskExecutor userTaskExecutor){
-        return new UserTaskExecutorAdapter(userTaskExecutor);}
+    public UserTaskExecutor userTaskExecutor(KafkaUserTaskEnv userTaskExecutor, UserTaskEnvMapper userTaskExecMapper){
+        return new UserTaskEnvAdapter(userTaskExecutor, userTaskExecMapper);}
 
     @Bean
-    public UserTaskService userTaskService(UserTaskExecutor userTaskExecutor){
+    public UserTaskService userTaskService(UserTaskExecutor userTaskExecutor, UserTaskDtoMapper userTaskDtoMapper){
         return new UserTaskService(userTaskExecutor);
     }
 
@@ -117,4 +117,8 @@ public class DomainConfiguration {
     public DirectoryService directoryService(){
         return new LocalDirectoryService();
     }
+
+    @Bean
+    UserTaskEnvMapper userTaskExecMapper() { return Mappers.getMapper(UserTaskEnvMapper.class); }
+
 }
