@@ -11,14 +11,14 @@ Content-Type: application/json
 Authorization: {{auth_token}}
 
 {
-  "email": "1zdenek@gmail.com",
+  "email": "2zdenek@gmail.com",
   "name": "Zdenek Smietana",
   "password": "userPass",
   "roles": ["STUDENT"]
 }
 
 ### get user by email
-GET http://localhost:8080/users/zdenek@gmail.com
+GET http://localhost:8080/users/2zdenek@gmail.com
 Accept: application/json
 Content-Type: application/json
 Authorization: {{auth_token}}

@@ -5,10 +5,7 @@ import org.eclipse.jgit.api.errors.JGitInternalException;
 import pl.sages.javadevpro.projecttwo.domain.exception.DuplicateRecordException;
 import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.usertask.DirectoryService;
-import pl.sages.javadevpro.projecttwo.domain.usertask.GitService;
-import pl.sages.javadevpro.projecttwo.domain.usertask.TaskStatus;
-import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
+import pl.sages.javadevpro.projecttwo.domain.usertask.*;
 
 @RequiredArgsConstructor
 public class UserTaskService {
@@ -17,6 +14,12 @@ public class UserTaskService {
     private final DirectoryService directoryService;
     private final UserService userService;
     private final TaskService taskService;
+    private final UserTaskExecutor userTaskExecutor;
+
+
+    public String exec(UserTask userTask) {
+        return userTaskExecutor.exec(userTask);
+    }
 
     public UserTask assignTask(String userEmail, String taskId) {
         User user = userService.getUser(userEmail);
@@ -53,11 +56,6 @@ public class UserTaskService {
         String destinationFolderPath = directoryService.createDirectoryForUserTask(task, userEmail);
         gitService.cloneTask(task.getRepositoryPath(), destinationFolderPath);
         return destinationFolderPath;
-    }
-
-    public String exec(UserTask userTask) {
-
-        return userTaskExecutor.exec(userTask);
     }
 
 }

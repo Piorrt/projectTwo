@@ -1,12 +1,11 @@
 package pl.sages.javadevpro.projecttwo.domain.usertask;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserTask {
 
     private String id;

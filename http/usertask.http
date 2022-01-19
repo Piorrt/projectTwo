@@ -1,4 +1,12 @@
-GET http://localhost:8080/kafka/sendtask/Task2
+GET http://localhost:8080/usertask/assign/sendtask/Task1
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+
+
+### test
+GET http://localhost:8080/kafka/sendtask/1
 Accept: application/json
 Content-Type: application/json
 Authorization: {{auth_token}}

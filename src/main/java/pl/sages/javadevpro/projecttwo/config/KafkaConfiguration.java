@@ -63,7 +63,7 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public KafkaUserTaskEnv kafkaUserTaskExecutor(KafkaTemplate<String, UserTaskEnv> kafkaTemplate){
+    public KafkaUserTaskEnv kafkaUserTaskEnv(KafkaTemplate<String, UserTaskEnv> kafkaTemplate){
         return new KafkaUserTaskEnv(kafkaTemplate);
     }
 }

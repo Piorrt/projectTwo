@@ -4,7 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.kafka.core.KafkaTemplate;
+import pl.sages.javadevpro.projecttwo.domain.usertask.TaskStatus;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
+import pl.sages.javadevpro.projecttwo.external.env.usertask.UserTaskEnv;
+import pl.sages.javadevpro.projecttwo.external.env.usertask.UserTaskStatusEnv;
 
 @SpringBootApplication
 public class ProjectTwoApplication {
@@ -14,19 +17,32 @@ public class ProjectTwoApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ProjectTwoApplication.class, args);
 
-		UserTask userTask = new UserTask("Task1", "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked");
-		UserTask userTask2 = new UserTask("Task2", "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked");
-		UserTask userTask3 = new UserTask("Task3", "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked");
-		UserTask userTask4 = new UserTask("Task4", "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked");
-		UserTask userTask5 = new UserTask("Task5", "example@gmail.com", "/home/raggy2k4/Dokumenty/task1", "locked");
+
+		UserTaskEnv userTaskEnv = new UserTaskEnv(
+				"12",
+				"Task2",
+				"super fajny task",
+				"folder tasku",
+				UserTaskStatusEnv.STARTED,
+				"marcin@gmail.com"
+		);
 
 
-		final KafkaTemplate<String, UserTask> kafkaTemplate = context.getBean(KafkaTemplate.class);
-		kafkaTemplate.send("Kafka_Task_json", userTask);
+		final KafkaTemplate<String, UserTaskEnv> kafkaTemplate = context.getBean(KafkaTemplate.class);
+		kafkaTemplate.send("Kafka_Task_json", userTaskEnv);
+		kafkaTemplate.send("Kafka_Task_json", userTaskEnv);
+		kafkaTemplate.send("Kafka_Task_json", userTaskEnv);
+		kafkaTemplate.send("Kafka_Task_json", userTaskEnv);
+		kafkaTemplate.send("Kafka_Task_json", userTaskEnv);
+		kafkaTemplate.send("Kafka_Task_json", userTaskEnv);
+
 
 //		final UserTaskExecutorAdapter userTaskExecutorAdapter = context.getBean(UserTaskExecutorAdapter.class);
 //		userTaskExecutorAdapter.exec(userTask2);
 
+
+
+// FIXME  add admin to app
 
 //		final UserRepository userRepository =
 //				context.getBean(UserRepository.class);

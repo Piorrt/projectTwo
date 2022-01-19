@@ -56,15 +56,6 @@ public class DomainConfiguration {
     }
 
     @Bean
-    public UserTaskExecutor userTaskExecutor(KafkaUserTaskEnv userTaskExecutor, UserTaskEnvMapper userTaskExecMapper){
-        return new UserTaskEnvAdapter(userTaskExecutor, userTaskExecMapper);}
-
-    @Bean
-    public UserTaskService userTaskService(UserTaskExecutor userTaskExecutor, UserTaskDtoMapper userTaskDtoMapper){
-        return new UserTaskService(userTaskExecutor);
-    }
-
-    @Bean
     public UserDtoMapper userDtoMapper() {
         return Mappers.getMapper(UserDtoMapper.class);
     }
@@ -99,14 +90,23 @@ public class DomainConfiguration {
             GitService gitService,
             DirectoryService directoryService,
             UserService userService,
-            TaskService taskService
+            TaskService taskService,
+            UserTaskExecutor userTaskExecutor
     ) {
         return new UserTaskService(
                 gitService,
                 directoryService,
                 userService,
-                taskService);
+                taskService,
+                userTaskExecutor);
     }
+
+    @Bean
+    public UserTaskExecutor userTaskExecutor(KafkaUserTaskEnv userTaskExecutor, UserTaskEnvMapper userTaskExecMapper){
+        return new UserTaskEnvAdapter(userTaskExecutor, userTaskExecMapper);}
+
+    @Bean
+    UserTaskEnvMapper userTaskEnvMapper() { return Mappers.getMapper(UserTaskEnvMapper.class); }
 
     @Bean
     public GitService gitService() {
@@ -117,8 +117,5 @@ public class DomainConfiguration {
     public DirectoryService directoryService(){
         return new LocalDirectoryService();
     }
-
-    @Bean
-    UserTaskEnvMapper userTaskExecMapper() { return Mappers.getMapper(UserTaskEnvMapper.class); }
 
 }

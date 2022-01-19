@@ -171,6 +171,7 @@ public class TaskEndpointIT extends BaseIT {
 
     @Test
     void admin_should_be_able_to_delete_task() {
+       // fixme
         //given
         Task task6 = new Task(
                 "6",
