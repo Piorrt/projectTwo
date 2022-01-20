@@ -4,23 +4,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import pl.sages.javadevpro.projecttwo.api.usertask.AssignTaskRequest;
-import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
-import pl.sages.javadevpro.projecttwo.api.usertask.UserTaskDto;
-import pl.sages.javadevpro.projecttwo.api.usertask.UserTaskDtoMapper;
+import pl.sages.javadevpro.projecttwo.api.usertask.*;
 import pl.sages.javadevpro.projecttwo.domain.UserTaskService;
 import pl.sages.javadevpro.projecttwo.domain.usertask.TaskStatus;
 
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/usertask/assign")
+@RequestMapping(path = "/usertask")
 public class UserTaskEndpoint {
 
     private final UserTaskService userTaskService;
     private final UserTaskDtoMapper dtoMapper;
 
     @PostMapping(
+            path = "/assign",
             produces = "application/json",
             consumes = "application/json"
     )
@@ -30,22 +28,12 @@ public class UserTaskEndpoint {
         return ResponseEntity.ok(new MessageResponse("OK", "Task assigned to user"));
     }
 
-    @GetMapping("/sendtask/{taskId}")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    public ResponseEntity<String> post(@PathVariable("taskId") final String taskId) {
-
-
-        UserTaskDto userTaskDto = new UserTaskDto(
-                "12",
-                "Task2",
-                "super fajny task",
-                TaskStatus.STARTED
-        );
+    @PostMapping("/run")
+    @Secured("ROLE_STUDENT")
+    public ResponseEntity<String> post(@RequestBody RunSolutionRequest runSolutionRequest) {
 
         String taskStatus = userTaskService
-                .exec(dtoMapper.toDomain(userTaskDto));
+                .exec(runSolutionRequest.getUserEmail(), runSolutionRequest.getTaskId());
         return ResponseEntity.ok(taskStatus);
     }
-    
-
 }

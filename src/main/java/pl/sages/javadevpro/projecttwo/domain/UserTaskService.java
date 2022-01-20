@@ -3,9 +3,12 @@ package pl.sages.javadevpro.projecttwo.domain;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import pl.sages.javadevpro.projecttwo.domain.exception.DuplicateRecordException;
+import pl.sages.javadevpro.projecttwo.domain.exception.RecordNotFoundException;
 import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.usertask.*;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class UserTaskService {
@@ -17,7 +20,13 @@ public class UserTaskService {
     private final UserTaskExecutor userTaskExecutor;
 
 
-    public String exec(UserTask userTask) {
+    public String exec(String email, String id) {
+        User user = userService.getUser(email);
+        UserTask userTask = user.getTasks().stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RecordNotFoundException("Task is not assigned to user"));
+
         return userTaskExecutor.exec(userTask);
     }
 

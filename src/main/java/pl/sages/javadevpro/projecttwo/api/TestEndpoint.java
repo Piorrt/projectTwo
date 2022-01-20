@@ -2,6 +2,7 @@ package pl.sages.javadevpro.projecttwo.api;
 
 import lombok.AllArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class TestEndpoint {
     private static final String TOPIC = "Kafka_Task_json";
 
     @GetMapping("/sendtask/{taskId}")
+    @Secured("ROLE_STUDENT")
     public String post(@PathVariable("taskId") final String taskId) {
 
 

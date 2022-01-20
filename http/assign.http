@@ -1,0 +1,37 @@
+
+### Wyslij task do sprawdzenia
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+{
+  "userEmail": "email@gmail.com",
+  "taskId": "123456789"
+}
+
+### Zapisz task do bazy
+POST http://localhost:8080/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+{
+  "id": "12345",
+  "name": "test task",
+  "description": "Opis",
+  "repositoryPath": "https://github.com/rafal-nowak/task1"
+}
+
+<> 2022-01-20T203200.200.json
+
+### przypisz task do usera
+POST http://localhost:8080/usertask/assign
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "12345"
+}
