@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import pl.sages.javadevpro.projecttwo.external.storage.usertask.UserTaskEntity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,6 +21,6 @@ public class UserEntity {
     private String name;
     private String password;
     private List<String> roles;
-    private List<UserTaskEntity> tasks;
+    private List<UserTaskEntity> tasks = new ArrayList<>();
 
 }

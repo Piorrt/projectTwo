@@ -1,4 +1,4 @@
-### login user
+### login as student
 POST http://localhost:8080/login
 Accept: application/json
 Content-Type: application/json
@@ -11,7 +11,7 @@ Content-Type: application/json
 > {% client.global.set("auth_token", response.headers.valueOf("Authorization")); %}
 
 
-### login admin
+### login as admin
 POST http://localhost:8080/login
 Accept: application/json
 Content-Type: application/json

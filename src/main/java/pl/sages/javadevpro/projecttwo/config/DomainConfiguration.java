@@ -62,7 +62,7 @@ public class DomainConfiguration {
 
     @Bean
     public UserEntityMapper userEntityMapper() {
-        return Mappers.getMapper(UserEntityMapper.class);
+        return new UserEntityMapper();
     }
 
     @Bean

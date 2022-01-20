@@ -189,6 +189,7 @@ public class TaskEndpointIT extends BaseIT {
         //then
         Assertions.assertEquals("Task already exists",exception.getMessage());
     }
+
     @Test
     void student_should_not_be_able_to_delete_task() {
         //given

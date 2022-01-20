@@ -31,9 +31,9 @@ public class UserTaskEndpoint {
     @PostMapping("/run")
     @Secured("ROLE_STUDENT")
     public ResponseEntity<String> post(@RequestBody RunSolutionRequest runSolutionRequest) {
-
         String taskStatus = userTaskService
                 .exec(runSolutionRequest.getUserEmail(), runSolutionRequest.getTaskId());
+
         return ResponseEntity.ok(taskStatus);
     }
 }

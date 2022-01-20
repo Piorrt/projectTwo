@@ -3,6 +3,7 @@ package pl.sages.javadevpro.projecttwo.domain.user;
 import lombok.*;
 import pl.sages.javadevpro.projecttwo.domain.usertask.UserTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ToString
@@ -15,6 +16,6 @@ public class User {
     private String name;
     private String password;
     private List<String> roles;
-    private List<UserTask> tasks;
+    private List<UserTask> tasks = new ArrayList<>();
 
 }

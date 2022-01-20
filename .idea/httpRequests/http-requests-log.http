@@ -1,3 +1,141 @@
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzEzMTEwLCJyb2wiOlsiU1RVREVOVCJdfQ.rqj1ErGGJZrG1n2rj_sDEn_vpUmnRIzXjskMqKARL-49067SMeUoDEoUxj3whSqeQS3wtz7Ty0RC1bqU8SBTVQ
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "12345"
+}
+
+<> 2022-01-20T215642.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzEzMTEwLCJyb2wiOlsiU1RVREVOVCJdfQ.rqj1ErGGJZrG1n2rj_sDEn_vpUmnRIzXjskMqKARL-49067SMeUoDEoUxj3whSqeQS3wtz7Ty0RC1bqU8SBTVQ
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "12345"
+}
+
+<> 2022-01-20T214156.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExNTU3LCJyb2wiOlsiU1RVREVOVCJdfQ.2hDe-kLEmAPuFMUetpu2g280IoP37acDg-Z37KpNixi6g4CqmdeAkXr4kBWuBPtAxS5nHeyun19WwatCzBwGZQ
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "12345"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMzUyLCJyb2wiOlsiU1RVREVOVCJdfQ.ZhXXs_QuOMaG_peNiGLYO_DXNjhHi4AQDbHiE9fFrsZYuosQScuBc7adt-TpvugYyNYYJLOVZtnxseSKCFNZDA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "12345"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMzUyLCJyb2wiOlsiU1RVREVOVCJdfQ.ZhXXs_QuOMaG_peNiGLYO_DXNjhHi4AQDbHiE9fFrsZYuosQScuBc7adt-TpvugYyNYYJLOVZtnxseSKCFNZDA
+
+{
+  "userEmail": "email@gmail.com",
+  "taskId": "123456789"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/assign
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMjc2LCJyb2wiOlsiQURNSU4iXX0.K3HlioxGXPkhGZcZIyHCsYNAm0GNRDFt5CftoEMKaFz89bpbACf1cJN8K-IU2ouHQCT4tJaagVPp-GoIcoCIPw
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "12345"
+}
+
+<> 2022-01-20T211145.200.json
+
+###
+
+POST http://localhost:8080/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMjc2LCJyb2wiOlsiQURNSU4iXX0.K3HlioxGXPkhGZcZIyHCsYNAm0GNRDFt5CftoEMKaFz89bpbACf1cJN8K-IU2ouHQCT4tJaagVPp-GoIcoCIPw
+
+{
+  "id": "12345",
+  "name": "test task",
+  "description": "Opis",
+  "repositoryPath": "https://github.com/rafal-nowak/task1"
+}
+
+<> 2022-01-20T211130.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+###
+
 GET http://localhost:8080/kafka/sendtask/task1
 
 <> 2022-01-20T205655.401.txt
@@ -390,101 +528,6 @@ Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
 
 <> 2022-01-20T000302.200.json
-
-###
-
-GET http://localhost:8080/kafka/sendtask/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-<> 2022-01-20T000255.200.json
-
-###
-
-GET http://localhost:8080/usertask/assign/sendtask/Task1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-<> 2022-01-20T000242.200.json
-
-###
-
-GET http://localhost:8080/kafka/sendtask/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-<> 2022-01-20T000239.200.json
-
-###
-
-GET http://localhost:8080/kafka/sendtask/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-<> 2022-01-19T235445.200.json
-
-###
-
-GET http://localhost:8080/kafka/sendtask/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-<> 2022-01-19T235434.200.json
-
-###
-
-GET http://localhost:8080/kafka/sendtask
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-###
-
-GET http://localhost:8080/kafka/sendta
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-###
-
-GET http://localhost:8080/kafka/sendtak/Task1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNjM0NjQyLCJyb2wiOlsiQURNSU4iLCJTVFVERU5UIl19.lSfx4qRqjfucHb8BmQNe8clc6_OR2MXQbE3Iokw6qBKHXSx26AiPnOnuqvoQVoIITSjcIu_xkNgQomXZQkl46A
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-GET http://localhost:8080/kafka/sendtak/Task1
-Accept: application/json
-Content-Type: application/json
-Authorization: {{auth_token}}
-
-<> 2022-01-19T235359.401.txt
-
-###
-
-GET http://localhost:8080/kafka/sendtak/Task1
-Accept: application/json
-Content-Type: application/json
-Authorization: {{auth_token}}
-
-<> 2022-01-19T235356.401.txt
 
 ###
 

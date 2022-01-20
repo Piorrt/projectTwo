@@ -8,6 +8,8 @@ import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.usertask.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -19,15 +21,24 @@ public class UserTaskService {
     private final TaskService taskService;
     private final UserTaskExecutor userTaskExecutor;
 
-
     public String exec(String email, String id) {
         User user = userService.getUser(email);
-        UserTask userTask = user.getTasks().stream()
-                .filter(task -> task.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RecordNotFoundException("Task is not assigned to user"));
+        List<UserTask> tasks = user.getTasks();
+        if (tasks == null) {
+            throw new RecordNotFoundException("Task is not assigned to user");
+        }
+        UserTask taskToSend = tasks.stream()
+            .filter(task -> task.getId().equals(id))
+            .findFirst()
+            .orElseThrow(() -> new RecordNotFoundException("Task is not assigned to user"));
 
-        return userTaskExecutor.exec(userTask);
+/// todo 1. wysylamy prawidlowy folder sciezka bezwzgledna
+/// todo 2. zmiana statusu taska na czas wykonania zadania - status - STARTED
+/// todo 3. zapis resultatow
+    // - commit wyniku   save statusu zadania
+    // - FAIlED/COMPLETE
+
+        return userTaskExecutor.exec(taskToSend);
     }
 
     public UserTask assignTask(String userEmail, String taskId) {
@@ -57,6 +68,9 @@ public class UserTaskService {
     }
 
     private void addUserTaskToDB(UserTask userTask, User user) {
+        if (user.getTasks() == null) {
+            user.setTasks(new ArrayList<>());
+        }
         user.getTasks().add(userTask);
         userService.updateUser(user);
     }
