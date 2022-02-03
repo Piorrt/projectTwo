@@ -6,6 +6,7 @@ import pl.sages.javadevpro.projecttwo.domain.usertask.DirectoryService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class LocalDirectoryService implements DirectoryService {
 
@@ -15,6 +16,7 @@ public class LocalDirectoryService implements DirectoryService {
         String path = "userTasks/" + convertedEmail + "/" + task.getId();
 
         Path folderPath = Path.of(path);
+        Path absolutePath = folderPath.toAbsolutePath();
         if (!Files.isDirectory(folderPath)) {
             try {
                 Files.createDirectories(folderPath);
@@ -22,7 +24,8 @@ public class LocalDirectoryService implements DirectoryService {
                 e.printStackTrace();
             }
         }
-        return path;
+
+        return absolutePath.toString();
     }
 
     private String removeSymbolsFromEmail(String email) {

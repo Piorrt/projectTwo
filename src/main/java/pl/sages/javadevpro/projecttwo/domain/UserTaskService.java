@@ -10,7 +10,7 @@ import pl.sages.javadevpro.projecttwo.domain.usertask.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @RequiredArgsConstructor
 public class UserTaskService {
@@ -21,17 +21,17 @@ public class UserTaskService {
     private final TaskService taskService;
     private final UserTaskExecutor userTaskExecutor;
 
-    public String exec(String email, String id) {
-        User user = userService.getUser(email);
+    public String exec(String userEmail, String taskId) {
+        User user = userService.getUser(userEmail);
         List<UserTask> tasks = user.getTasks();
         if (tasks == null) {
             throw new RecordNotFoundException("Task is not assigned to user");
         }
         UserTask taskToSend = tasks.stream()
-            .filter(task -> task.getId().equals(id))
+            .filter(task -> task.getId().equals(taskId))
             .findFirst()
             .orElseThrow(() -> new RecordNotFoundException("Task is not assigned to user"));
-
+            taskToSend.setTaskStatus(TaskStatus.STARTED);
 /// todo 1. wysylamy prawidlowy folder sciezka bezwzgledna
 /// todo 2. zmiana statusu taska na czas wykonania zadania - status - STARTED
 /// todo 3. zapis resultatow

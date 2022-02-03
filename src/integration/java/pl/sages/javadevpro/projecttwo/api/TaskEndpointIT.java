@@ -171,7 +171,6 @@ public class TaskEndpointIT extends BaseIT {
 
     @Test
     void admin_should_be_able_to_delete_task() {
-       // fixme
         //given
         Task task6 = new Task(
                 "6",
@@ -181,13 +180,14 @@ public class TaskEndpointIT extends BaseIT {
         );
         String adminAccessToken = getTokenForAdmin();
         taskService.saveTask(task6);
-        callDeleteTask(task6, adminAccessToken);
         //when
+        callDeleteTask(task6, adminAccessToken);
+        //then
         Exception exception = assertThrows(RecordNotFoundException.class, () -> {
             taskService.getTask(task6.getId());
         });
-        //then
-        Assertions.assertEquals("Task already exists",exception.getMessage());
+        // fixme
+        Assertions.assertEquals("Task not found",exception.getMessage());
     }
 
     @Test

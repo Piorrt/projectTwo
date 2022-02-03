@@ -7,7 +7,7 @@ Authorization: {{auth_token}}
 
 {
   "userEmail": "stefan@example.com",
-  "taskId": "12345"
+  "taskId": "1234"
 }
 
 ### Zapisz task do bazy
@@ -17,9 +17,9 @@ Content-Type: application/json
 Authorization: {{auth_token}}
 
 {
-  "id": "12345",
-  "name": "test task",
-  "description": "Opis",
+  "id": "1234",
+  "name": "test 123",
+  "description": "Opis zrob cos tam cos tam",
   "repositoryPath": "https://github.com/rafal-nowak/task1"
 }
 
@@ -33,5 +33,5 @@ Authorization: {{auth_token}}
 
 {
   "userEmail": "stefan@example.com",
-  "taskId": "12345"
+  "taskId": "1234"
 }
