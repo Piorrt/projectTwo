@@ -12,12 +12,14 @@ import pl.sages.javadevpro.projecttwo.domain.task.Task;
 import pl.sages.javadevpro.projecttwo.external.directory.LocalDirectoryService;
 
 import java.io.File;
+import java.nio.file.Path;
 
 @ExtendWith(MockitoExtension.class)
 class LocalDirectoryServiceTest {
 
     private final LocalDirectoryService localDirectoryHandler = new LocalDirectoryService();
-    private final static String TEST_DIRECTORY = "userTasks/sampleemailcom/1";
+    private final static String TEST_DIRECTORY = Path.of("userTasks/sampleemailcom/1").toAbsolutePath().toString();
+
     private final static String USER_EMAIL = "sample@email.com";
 
     @Mock
