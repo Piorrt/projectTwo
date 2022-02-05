@@ -1,6 +1,517 @@
 POST http://localhost:8080/usertask/run
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY5MDY0LCJyb2wiOlsiU1RVREVOVCJdfQ.gy0H2tFNpLIQ5OHCIQDlplHfAJlS89TXKazjTClh28bJQtvyqdQejdAvTZJyHE2rT2Z806qiw_d8VwSTtxxRGA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "2"
+}
+
+<> 2022-02-05T142128.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/assign
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY4OTk4LCJyb2wiOlsiQURNSU4iXX0.ZyzeX7R8sQoQf3NFbIQzBPmnmoYXHK8IsBZ8_ol9j_pPlvR6mewp7rSTK0CVBEpIUA1-mNemmLPbBfKpJgx7qQ
+
+{
+"userEmail": "stefan@example.com",
+"taskId": "2"
+}
+
+<> 2022-02-05T142049.200.json
+
+###
+
+POST http://localhost:8080/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY4OTk4LCJyb2wiOlsiQURNSU4iXX0.ZyzeX7R8sQoQf3NFbIQzBPmnmoYXHK8IsBZ8_ol9j_pPlvR6mewp7rSTK0CVBEpIUA1-mNemmLPbBfKpJgx7qQ
+
+{
+"id": "2",
+"name": "test 2",
+"description": "Opis zrob cos tam cos tam",
+"repositoryPath": "https://github.com/rafal-nowak/task2"
+}
+
+<> 2022-02-05T142033.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY4NjE3LCJyb2wiOlsiU1RVREVOVCJdfQ.QU5BAAowGaBO1yxziUEJgt85mmuuVsccTnRrLro8FsyKDcLsdNOB9oP1tz90MdSit8ubHYGyCDNSjUlVCWnXUA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T141340.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY0NTYxLCJyb2wiOlsiU1RVREVOVCJdfQ.VmUPpazvvlZTY4GrHXgrnzNuNVfjrHMKgpBRr6S8_8EVzrklM0P-qwosFIr5nNPtTzCxJBUHuLrQHoRsU5CjkA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T141329.401.txt
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY0NTYxLCJyb2wiOlsiU1RVREVOVCJdfQ.VmUPpazvvlZTY4GrHXgrnzNuNVfjrHMKgpBRr6S8_8EVzrklM0P-qwosFIr5nNPtTzCxJBUHuLrQHoRsU5CjkA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T130731.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY0NTYxLCJyb2wiOlsiU1RVREVOVCJdfQ.VmUPpazvvlZTY4GrHXgrnzNuNVfjrHMKgpBRr6S8_8EVzrklM0P-qwosFIr5nNPtTzCxJBUHuLrQHoRsU5CjkA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T130652.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDY0NTYxLCJyb2wiOlsiU1RVREVOVCJdfQ.VmUPpazvvlZTY4GrHXgrnzNuNVfjrHMKgpBRr6S8_8EVzrklM0P-qwosFIr5nNPtTzCxJBUHuLrQHoRsU5CjkA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T130643.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T130539.401.txt
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T125621.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T124258.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123744.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123703.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123535.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123515.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyNjYxLCJyb2wiOlsiU1RVREVOVCJdfQ.3-oi9wAK7i7QVZVWKuhbkVp25fdfMjFBI_mXwX4mTpObN610DKXcMnYAs4R1IfcE97vuCBcmYsYup-vMu8iWeA
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123427.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyMzM3LCJyb2wiOlsiU1RVREVOVCJdfQ.F1oOCPsp9L1Xa2EFlJrvo-cuuhwexztpENjzXnucL5Vrwrv3JGuSC2UG6G51eECOm1JXrdm9-yK8HnkjiDYLVg
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123148.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyMzM3LCJyb2wiOlsiU1RVREVOVCJdfQ.F1oOCPsp9L1Xa2EFlJrvo-cuuhwexztpENjzXnucL5Vrwrv3JGuSC2UG6G51eECOm1JXrdm9-yK8HnkjiDYLVg
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1"
+}
+
+<> 2022-02-05T123053.200.json
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDYyMzM3LCJyb2wiOlsiU1RVREVOVCJdfQ.F1oOCPsp9L1Xa2EFlJrvo-cuuhwexztpENjzXnucL5Vrwrv3JGuSC2UG6G51eECOm1JXrdm9-yK8HnkjiDYLVg
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1234"
+}
+
+<> 2022-02-05T122904.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQ0MDU3NDkyLCJyb2wiOlsiU1RVREVOVCJdfQ.6dg6hS3jlSa-i-tCQZuNRefXLUnPzduoR_yAjz0emO0zum5SbR2-MkaLOyYc-jsjulq9WwzQW0D9fK_F3HhoJg
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1234"
+}
+
+<> 2022-02-05T110831.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/usertask/assign
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUzMzI3LCJyb2wiOlsiQURNSU4iXX0.uR1RVDYfsw-mfyqoRYmkqK2xTMPkdqNEI7RYjTMjsmXhWRacsMJdf0DHoM0ZIsgdDzvCg1lrGfg6sohCxCc1HA
+
+{
+"userEmail": "zdenek@gmail.com",
+"taskId": "1"
+}
+
+<> 2022-02-03T023412.200.json
+
+###
+
+POST http://localhost:8080/users
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUzMzI3LCJyb2wiOlsiQURNSU4iXX0.uR1RVDYfsw-mfyqoRYmkqK2xTMPkdqNEI7RYjTMjsmXhWRacsMJdf0DHoM0ZIsgdDzvCg1lrGfg6sohCxCc1HA
+
+{
+  "email": "zdenek@gmail.com",
+  "name": "Zdenek Smietana",
+  "password": "userPass",
+  "roles": ["STUDENT"]
+}
+
+<> 2022-02-03T023348.200.json
+
+###
+
+POST http://localhost:8080/usertask/assign
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUzMzI3LCJyb2wiOlsiQURNSU4iXX0.uR1RVDYfsw-mfyqoRYmkqK2xTMPkdqNEI7RYjTMjsmXhWRacsMJdf0DHoM0ZIsgdDzvCg1lrGfg6sohCxCc1HA
+
+{
+"userEmail": "stefan@example.com",
+"taskId": "1"
+}
+
+<> 2022-02-03T023206.200.json
+
+###
+
+POST http://localhost:8080/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUzMzI3LCJyb2wiOlsiQURNSU4iXX0.uR1RVDYfsw-mfyqoRYmkqK2xTMPkdqNEI7RYjTMjsmXhWRacsMJdf0DHoM0ZIsgdDzvCg1lrGfg6sohCxCc1HA
+
+{
+"id": "1",
+"name": "test 1",
+"description": "Opis zrob cos tam cos tam",
+"repositoryPath": "https://github.com/rafal-nowak/task1"
+}
+
+<> 2022-02-03T022549.200.json
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "stefan@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+###
+
+POST http://localhost:8080/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUzMTg3LCJyb2wiOlsiQURNSU4iXX0.0dKVdhRwOF01PvSIM_rraCfHz0gx7RnCM9wVmo8GR51sTfwDvPPskZLhQWs0fA32fqewSH3seBK98xzpG9KDyg
+
+{
+"id": "12345",
+"name": "test 12345",
+"description": "Opis zrob cos tam cos tam",
+"repositoryPath": "https://github.com/rafal-nowak/task1"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUzMDcwLCJyb2wiOlsiQURNSU4iXX0.zvL3QkZvwupn6M5JlnHJQSkAYv7K34DI15y2nlK18u3h5Jl0qdS5S4vS_xFFNiiWdYMT7lWRxCLTDjBilguihQ
+
+{
+  "userEmail": "stefan@example.com",
+  "taskId": "1234"
+}
+
+###
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+###
+
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODUxMTg2LCJyb2wiOlsiU1RVREVOVCJdfQ.BftK-mKhhRuFtUZbB7iyxKXyD32-Rw5-MQOUDlDH7r1zIyjyhDfSo-UmaL7fVLfh-32eGk2o6vIq_c_1oJm1PQ
 
 {
@@ -141,476 +652,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkL
 }
 
 <> 2022-02-03T011759.200.json
-
-###
-
-POST http://localhost:8080/usertask/assign
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODQ4OTI2LCJyb2wiOlsiQURNSU4iXX0.KzyCH8vMq_3P9-YR5uhzATu6PYKAJ_GUsdLBQLL967EB2swPfgmOmu80C4jP2vrrQ4rHrJ5EYf36P9jaHOjlTg
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-###
-
-POST http://localhost:8080/usertask/assign
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODQ4OTI2LCJyb2wiOlsiQURNSU4iXX0.KzyCH8vMq_3P9-YR5uhzATu6PYKAJ_GUsdLBQLL967EB2swPfgmOmu80C4jP2vrrQ4rHrJ5EYf36P9jaHOjlTg
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-03T011228.200.json
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODQ4MTU1LCJyb2wiOlsiU1RVREVOVCJdfQ.hAIGBUmxFng2_rzv6M2Q4reQh3zBg3W8BhFr_KnlAiA45XKHXm31Sf3U5hz6wIRt9JWpbXyyxYX4nJtGhSf6UA
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-03T010734.200.json
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODQ4MTU1LCJyb2wiOlsiU1RVREVOVCJdfQ.hAIGBUmxFng2_rzv6M2Q4reQh3zBg3W8BhFr_KnlAiA45XKHXm31Sf3U5hz6wIRt9JWpbXyyxYX4nJtGhSf6UA
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-03T010627.200.json
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODQ4MTU1LCJyb2wiOlsiU1RVREVOVCJdfQ.hAIGBUmxFng2_rzv6M2Q4reQh3zBg3W8BhFr_KnlAiA45XKHXm31Sf3U5hz6wIRt9JWpbXyyxYX4nJtGhSf6UA
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODM3MjI3LCJyb2wiOlsiU1RVREVOVCJdfQ.1i5M43P2TnK652XghDneEHd4gISPwEBaiHhiPvf-XdSEzalPOcy0uF7coifGOsS8Ty-dst6IWuNOKzlFP1n1Hg
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-02T215717.200.json
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/usertask/assign
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODM3MTg4LCJyb2wiOlsiQURNSU4iXX0.9Am9nRzYV_4jEt2lB_x09Cq65h7JUZ7AT1uAX2P3PQ0gDrSRObbGelc4Mhommj542wdXQ9uo5rXjnKN7_Jm_yw
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-02T215655.200.json
-
-###
-
-POST http://localhost:8080/tasks
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQzODM3MTg4LCJyb2wiOlsiQURNSU4iXX0.9Am9nRzYV_4jEt2lB_x09Cq65h7JUZ7AT1uAX2P3PQ0gDrSRObbGelc4Mhommj542wdXQ9uo5rXjnKN7_Jm_yw
-
-{
-  "id": "12345",
-  "name": "test task",
-  "description": "Opis",
-  "repositoryPath": "https://github.com/rafal-nowak/task1"
-}
-
-<> 2022-02-02T215651.200.json
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-GET http://localhost:8080/usertask/assign/sendtask/Task1
-Accept: application/json
-Content-Type: application/json
-Authorization: null
-
-<> 2022-02-02T212708.401.txt
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: null
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-02T212315.401.txt
-
-###
-
-POST http://localhost:8080/tasks
-Accept: application/json
-Content-Type: application/json
-Authorization: null
-
-{
-  "id": "12345",
-  "name": "test task",
-  "description": "Opis",
-  "repositoryPath": "https://github.com/rafal-nowak/task1"
-}
-
-<> 2022-02-02T212250.401.txt
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: null
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-02-02T212247.401.txt
-
-###
-
-GET http://localhost:8080/users/jan@example.com
-Accept: application/json
-Content-Type: application/json
-Authorization: null
-
-<> 2022-02-02T212235.401.txt
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzEzMTEwLCJyb2wiOlsiU1RVREVOVCJdfQ.rqj1ErGGJZrG1n2rj_sDEn_vpUmnRIzXjskMqKARL-49067SMeUoDEoUxj3whSqeQS3wtz7Ty0RC1bqU8SBTVQ
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-01-20T215642.200.json
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzEzMTEwLCJyb2wiOlsiU1RVREVOVCJdfQ.rqj1ErGGJZrG1n2rj_sDEn_vpUmnRIzXjskMqKARL-49067SMeUoDEoUxj3whSqeQS3wtz7Ty0RC1bqU8SBTVQ
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-01-20T214156.200.json
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExNTU3LCJyb2wiOlsiU1RVREVOVCJdfQ.2hDe-kLEmAPuFMUetpu2g280IoP37acDg-Z37KpNixi6g4CqmdeAkXr4kBWuBPtAxS5nHeyun19WwatCzBwGZQ
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMzUyLCJyb2wiOlsiU1RVREVOVCJdfQ.ZhXXs_QuOMaG_peNiGLYO_DXNjhHi4AQDbHiE9fFrsZYuosQScuBc7adt-TpvugYyNYYJLOVZtnxseSKCFNZDA
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-###
-
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoic3RlZmFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMzUyLCJyb2wiOlsiU1RVREVOVCJdfQ.ZhXXs_QuOMaG_peNiGLYO_DXNjhHi4AQDbHiE9fFrsZYuosQScuBc7adt-TpvugYyNYYJLOVZtnxseSKCFNZDA
-
-{
-  "userEmail": "email@gmail.com",
-  "taskId": "123456789"
-}
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "stefan@example.com",
-  "password": "password"
-}
-
-###
-
-POST http://localhost:8080/usertask/assign
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMjc2LCJyb2wiOlsiQURNSU4iXX0.K3HlioxGXPkhGZcZIyHCsYNAm0GNRDFt5CftoEMKaFz89bpbACf1cJN8K-IU2ouHQCT4tJaagVPp-GoIcoCIPw
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "12345"
-}
-
-<> 2022-01-20T211145.200.json
-
-###
-
-POST http://localhost:8080/tasks
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmVkLWFwaSIsImF1ZCI6InNlY3VyZWQtYXBwIiwic3ViIjoiamFuQGV4YW1wbGUuY29tIiwiZXhwIjoxNjQyNzExMjc2LCJyb2wiOlsiQURNSU4iXX0.K3HlioxGXPkhGZcZIyHCsYNAm0GNRDFt5CftoEMKaFz89bpbACf1cJN8K-IU2ouHQCT4tJaagVPp-GoIcoCIPw
-
-{
-  "id": "12345",
-  "name": "test task",
-  "description": "Opis",
-  "repositoryPath": "https://github.com/rafal-nowak/task1"
-}
-
-<> 2022-01-20T211130.200.json
-
-###
-
-POST http://localhost:8080/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "email": "jan@example.com",
-  "password": "MyPassword"
-}
-
-###
-
-GET http://localhost:8080/kafka/sendtask/task1
-
-<> 2022-01-20T205655.401.txt
 
 ###
 

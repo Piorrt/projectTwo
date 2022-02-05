@@ -1,14 +1,4 @@
 
-### Wyslij task do sprawdzenia
-POST http://localhost:8080/usertask/run
-Accept: application/json
-Content-Type: application/json
-Authorization: {{auth_token}}
-
-{
-  "userEmail": "stefan@example.com",
-  "taskId": "1234"
-}
 
 ### Zapisz task do bazy
 POST http://localhost:8080/tasks
@@ -17,10 +7,10 @@ Content-Type: application/json
 Authorization: {{auth_token}}
 
 {
-  "id": "1234",
-  "name": "test 123",
-  "description": "Opis zrob cos tam cos tam",
-  "repositoryPath": "https://github.com/rafal-nowak/task1"
+"id": "2",
+"name": "test 2",
+"description": "Opis zrob cos tam cos tam",
+"repositoryPath": "https://github.com/rafal-nowak/task2"
 }
 
 <> 2022-01-20T203200.200.json
@@ -32,6 +22,16 @@ Content-Type: application/json
 Authorization: {{auth_token}}
 
 {
+"userEmail": "stefan@example.com",
+"taskId": "2"
+}
+### Wyslij task do sprawdzenia
+POST http://localhost:8080/usertask/run
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+{
   "userEmail": "stefan@example.com",
-  "taskId": "1234"
+  "taskId": "2"
 }

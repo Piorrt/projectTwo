@@ -159,6 +159,7 @@ class UserTaskEndpointIT extends BaseIT {
         );
     }
 
+//fixme cleanDirectory should not delete files from business app
     @SneakyThrows
     @AfterAll
     private static void cleanUpFolders(){
