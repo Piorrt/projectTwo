@@ -178,7 +178,7 @@ class UserEndpointIT extends BaseIT {
         userService.saveUser(user);
 
         User userToUpdate = new User(
-                13L,
+                12L,
                 "email@email.com",
                 "newPerson",
                 "newpassword",
