@@ -26,6 +26,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_get_information_about_any_user() {
         //given
         User user = new User(
+            6L,
             "newUser1@example.com",
             "User Name",
             "pass",
@@ -63,6 +64,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_not_get_information_about_other_student() {
         //given
         User user1 = new User(
+                7L,
                 "newUser4@example.com",
                 "User Name",
                 "pass",
@@ -70,6 +72,7 @@ class UserEndpointIT extends BaseIT {
                 new ArrayList<>()
         );
         User user2 = new User(
+                8L,
                 "oldUser5@example.com",
                 "Old User Name",
                 "pass",
@@ -91,6 +94,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_get_response_code_conflict_when_user_is_in_db() {
         //given
         User user = new User(
+            9L,
             "newUser1@example.com",
             "User Name",
             "pass",
@@ -112,6 +116,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_be_able_to_save_new_user() {
         //given
         User user = new User(
+            10L,
             "newUser2@example.com",
             "User Name",
             "pass",
@@ -137,6 +142,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_get_information_about_himself() {
         //given
         User user = new User(
+                11L,
                 "newUser3@example.com",
                 "User Name",
                 "pass",
@@ -162,6 +168,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_be_able_to_update_user() {
         //given
         User user = new User(
+                12L,
                 "email@email.com",
                 "Person",
                 "password",
@@ -171,6 +178,7 @@ class UserEndpointIT extends BaseIT {
         userService.saveUser(user);
 
         User userToUpdate = new User(
+                13L,
                 "email@email.com",
                 "newPerson",
                 "newpassword",
@@ -209,6 +217,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_be_not_able_to_update_user() {
         //given
         User user = new User(
+                14L,
                 "newUser@example.com",
                 "Person",
                 "pass",
@@ -218,6 +227,7 @@ class UserEndpointIT extends BaseIT {
         userService.saveUser(user);
 
         User userToUpdate = new User(
+                15L,
                 "otherUser@email.com",
                 "Person",
                 "password",
@@ -237,6 +247,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_be_able_to_delete_user() {
         //given
         User user = new User(
+                16L,
                 "newUser@email.com",
                 "Person",
                 "pass",
@@ -257,6 +268,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_get_response_code_204_when_user_not_exits() {
         //given
         User user = new User(
+                17L,
                 "otherUser@email.com",
                 "Person",
                 "password",
@@ -276,6 +288,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_not_be_able_to_delete_user() {
         //given
         User user = new User(
+                18L,
                 "newUser@example.com",
                 "Person",
                 "pass",
@@ -283,6 +296,7 @@ class UserEndpointIT extends BaseIT {
                 new ArrayList<>()
         );
         User otherUser = new User(
+                19L,
                 "otherUser@email.com",
                 "Person",
                 "password",

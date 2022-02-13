@@ -33,6 +33,7 @@ public class TaskEndpointIT extends BaseIT {
     void should_get_information_about_task() {
         //given
         User user = new User(
+                30L,
                 "newUser@example.com",
                 "User Name",
                 "pass",
@@ -64,6 +65,7 @@ public class TaskEndpointIT extends BaseIT {
     void should_get_information_about_correct_task() {
         //given
         User user = new User(
+                31L,
                 "newUser1@example.com",
                 "User Name1",
                 "pass1",
@@ -132,6 +134,7 @@ public class TaskEndpointIT extends BaseIT {
     void student_should_not_be_able_to_save_new_task() {
         //given
         User user = new User(
+                32L,
                 "newUser1@example.com",
                 "User Name1",
                 "pass1",
@@ -194,6 +197,7 @@ public class TaskEndpointIT extends BaseIT {
     void student_should_not_be_able_to_delete_task() {
         //given
         User user = new User(
+                33L,
                 "newUser@example.com",
                 "User Name",
                 "pass",
@@ -249,6 +253,7 @@ public class TaskEndpointIT extends BaseIT {
     void should_get_response_code_204_when_task_not_exits() {
         //given
         User user = new User(
+                34L,
                 "newUser1@example.com",
                 "User Name1",
                 "pass1",

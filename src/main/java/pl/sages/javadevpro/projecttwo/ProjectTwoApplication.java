@@ -17,25 +17,27 @@ public class ProjectTwoApplication {
 		final UserRepository userRepository =
 				context.getBean(UserRepository.class);
 
-//		userRepository.save(
-//			new User(
-//				"jan@example.com",
-//				"Jan Kowalski",
-//				"MyPassword",
-//				List.of("ADMIN"),
-//				null
-//			)
-//		);
-//
-//		userRepository.save(
-//			new User(
-//				"stefan@example.com",
-//				"Stefan Burczymucha",
-//				"password",
-//				List.of("STUDENT"),
-//				null
-//			)
-//		);
+		userRepository.save(
+			new User(
+				98L,
+				"jan@example.com",
+				"Jan Kowalski",
+				"MyPassword",
+				List.of("ADMIN"),
+				null
+			)
+		);
+
+		userRepository.save(
+			new User(
+				99L,
+				"stefan@example.com",
+				"Stefan Burczymucha",
+				"password",
+				List.of("STUDENT"),
+				null
+			)
+		);
 	}
 
 }

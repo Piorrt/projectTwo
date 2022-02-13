@@ -18,6 +18,7 @@ public class UserServiceIT extends BaseIT {
     public void add_user_test() {
         //given
         User user = new User(
+                2L,
                 "newUser@example.com",
                 "User Name",
                 "pass",
@@ -40,6 +41,7 @@ public class UserServiceIT extends BaseIT {
     public void get_email_should_return_correct_user() {
         //given
         User user1 = new User(
+                3L,
                 "newUser1@example.com",
                 "User Name 1",
                 "pass1",
@@ -47,6 +49,7 @@ public class UserServiceIT extends BaseIT {
                 new ArrayList<>()
         );
         User user2 = new User(
+                4L,
                 "newUser2@example.com",
                 "User Name 2",
                 "pass2",
@@ -54,6 +57,7 @@ public class UserServiceIT extends BaseIT {
                 new ArrayList<>()
         );
         User user3 = new User(
+                5L,
                 "newUser3@example.com",
                 "User Name 3",
                 "pass3",

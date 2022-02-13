@@ -38,7 +38,7 @@ public class UserStorageAdapter implements UserRepository {
 
     @Override
     public User update(User user) {
-        Optional<UserEntity> entity = userRepository.findById(user.getEmail());
+        Optional<UserEntity> entity = userRepository.findById(user.getId());
         if (entity.isEmpty()) {
             throw new RecordNotFoundException("Task not found");
         }
@@ -49,7 +49,7 @@ public class UserStorageAdapter implements UserRepository {
 
     @Override
     public void remove(User user) {
-        Optional<UserEntity> entity = userRepository.findById(user.getEmail());
+        Optional<UserEntity> entity = userRepository.findById(user.getId());
         if(entity.isEmpty()) {
             throw new RecordNotFoundException("User not exist!");
         }
@@ -60,7 +60,7 @@ public class UserStorageAdapter implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        Optional<UserEntity> entity = userRepository.findById(email);
+        Optional<UserEntity> entity = userRepository.findByEmail(email);
         if (entity.isEmpty()) {
             throw new RecordNotFoundException("User not found");
         }

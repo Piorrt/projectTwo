@@ -14,6 +14,7 @@ public class UserEntityMapper {
 
     public UserEntity toEntity(User user){
         return new UserEntity(
+            user.getId(),
             user.getEmail(),
             user.getName(),
             user.getPassword(),
@@ -24,6 +25,7 @@ public class UserEntityMapper {
 
     public User toDomain(UserEntity entity) {
         return new User(
+            entity.getId(),
             entity.getEmail(),
             entity.getName(),
             entity.getPassword(),

@@ -14,18 +14,10 @@ import java.util.List;
 @Setter
 public class UserDto {
 
+    private Long id;
     private String email;
     private String name;
     private String password;
     private List<String> roles;
 
-
-    public static UserDto from(User user) {
-        return new UserDto(
-            user.getEmail(),
-            user.getName(),
-            user.getPassword(),
-            user.getRoles()
-        );
-    }
 }

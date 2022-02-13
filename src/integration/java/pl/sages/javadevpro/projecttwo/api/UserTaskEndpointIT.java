@@ -44,6 +44,7 @@ class UserTaskEndpointIT extends BaseIT {
     void user_should_not_be_able_to_assign_task() {
         //given
         User user = new User(
+                20L,
                 "newUser10@example.com",
                 "User Name",
                 "pass",
@@ -72,6 +73,7 @@ class UserTaskEndpointIT extends BaseIT {
     @Test
     void admin_should_be_able_to_assign_task_to_user() {
         User user = new User(
+                21L,
                 "newUser11@example.com",
                 "User Name 11",
                 "pass",
@@ -105,6 +107,7 @@ class UserTaskEndpointIT extends BaseIT {
     @Test
     void admin_should_get_conflict_response_when_trying_to_assign_the_same_task_twice(){
         User user = new User(
+                22L,
                 "newUser13@example.com",
                 "User Name 11",
                 "pass",
@@ -154,6 +157,7 @@ class UserTaskEndpointIT extends BaseIT {
     @Test
     void student_should_be_able_to_take_list_of_files_assigned_to_user_task() {
         User user = new User(
+                23L,
                 "newUser11@example.com",
                 "User Name 11",
                 "pass",

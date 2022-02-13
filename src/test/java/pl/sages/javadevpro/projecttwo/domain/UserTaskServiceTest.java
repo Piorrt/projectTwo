@@ -35,6 +35,7 @@ class UserTaskServiceTest {
     private UserTaskService userTaskService;
 
     private final User fakeUser = new User(
+            40L,
             "email@email.any",
             "user name",
             "pass",
