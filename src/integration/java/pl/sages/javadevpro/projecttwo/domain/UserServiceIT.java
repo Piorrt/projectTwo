@@ -28,9 +28,10 @@ public class UserServiceIT extends BaseIT {
         service.saveUser(user);
 
         //when
-        User readUser = service.getUser(user.getEmail());
+        User readUser = service.getUser(user.getId());
 
         //then
+        Assertions.assertEquals(user.getId(), readUser.getId());
         Assertions.assertEquals(user.getEmail(), readUser.getEmail());
         Assertions.assertEquals(user.getName(), readUser.getName());
         Assertions.assertEquals(user.getPassword(), readUser.getPassword());
@@ -69,9 +70,10 @@ public class UserServiceIT extends BaseIT {
         service.saveUser(user3);
 
         //when
-        User readUser = service.getUser(user2.getEmail());
+        User readUser = service.getUser(user2.getId());
 
         //then
+        Assertions.assertEquals(user2.getId(), readUser.getId());
         Assertions.assertEquals(user2.getEmail(), readUser.getEmail());
         Assertions.assertEquals(user2.getName(), readUser.getName());
         Assertions.assertEquals(user2.getPassword(), readUser.getPassword());

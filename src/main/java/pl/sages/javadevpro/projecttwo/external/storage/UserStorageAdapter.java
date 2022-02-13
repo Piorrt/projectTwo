@@ -61,16 +61,23 @@ public class UserStorageAdapter implements UserRepository {
     @Override
     public Optional<User> findByEmail(String email) {
         Optional<UserEntity> entity = userRepository.findByEmail(email);
-        if (entity.isEmpty()) {
+        if (entity.isPresent()) {
+            log.info("Found entity " + entity.map(Object::toString).orElse("none"));
+            return entity.map(mapper::toDomain);
+        } else {
             throw new RecordNotFoundException("User not found");
         }
-        log.info("Found entity " + entity.map(Object::toString).orElse("none"));
-        if (entity.isPresent()) {
-            return entity
-                .map(mapper::toDomain);
-        }
+    }
 
-        return Optional.empty();
+    @Override
+    public Optional<User> findById(Long id) {
+        Optional<UserEntity> entity = userRepository.findById(id);
+        if (entity.isPresent()) {
+            log.info("Found entity " + entity.map(Object::toString).orElse("none"));
+            return entity.map(mapper::toDomain);
+        } else {
+            throw new RecordNotFoundException("User not found");
+        }
     }
 
     @Override
