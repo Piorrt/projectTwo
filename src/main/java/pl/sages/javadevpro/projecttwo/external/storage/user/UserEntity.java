@@ -2,9 +2,9 @@ package pl.sages.javadevpro.projecttwo.external.storage.user;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 import pl.sages.javadevpro.projecttwo.external.storage.usertask.UserTaskEntity;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class UserEntity {
 
-    @Id
+    @MongoId
     private String id;
     private String email;
     private String name;

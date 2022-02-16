@@ -30,7 +30,7 @@ public class UserEntityMapper {
             entity.getName(),
             entity.getPassword(),
             entity.getRoles(),
-            toUserTask(entity.getTasks(), entity.getEmail())
+            toUserTask(entity.getTasks(), entity.getId())
         );
     }
 
@@ -49,7 +49,7 @@ public class UserEntityMapper {
         return Collections.emptyList();
     }
 
-    private List<UserTask> toUserTask(List<UserTaskEntity> tasks, String email) {
+    private List<UserTask> toUserTask(List<UserTaskEntity> tasks, String userId) {
         if(tasks !=  null) {
             return tasks.stream()
                     .map(userTaskEntity -> new UserTask(
@@ -58,7 +58,7 @@ public class UserEntityMapper {
                             userTaskEntity.getDescription(),
                             userTaskEntity.getUserTaskFolder(),
                             TaskStatus.valueOf(userTaskEntity.getTaskStatus()),
-                            email
+                            userId
                     )).collect(Collectors.toList());
         }
         return  Collections.emptyList();

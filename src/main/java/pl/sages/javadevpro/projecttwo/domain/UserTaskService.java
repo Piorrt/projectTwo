@@ -28,6 +28,7 @@ public class UserTaskService {
     public String exec(String userId, String taskId) {
         User user = userService.getUserById(userId);
         List<UserTask> tasks = user.getTasks();
+
         if (tasks == null) {
             throw new RecordNotFoundException("Task is not assigned to user");
         }
@@ -36,6 +37,7 @@ public class UserTaskService {
             .findFirst()
             .orElseThrow(() -> new RecordNotFoundException("Task is not assigned to user"));
             taskToSend.setTaskStatus(TaskStatus.SUBMITTED);
+
         updateUserTaskInDB(taskToSend, user);
         return userTaskExecutor.exec(taskToSend);
     }
@@ -45,7 +47,7 @@ public class UserTaskService {
         Task task = taskService.getTask(taskId);
 
         UserTask userTask;
-        userTask = createFromTask(task, user.getId());
+        userTask = createFromTask(task, userId);
 
         addUserTaskToDB(userTask, user);
         return userTask;
@@ -55,12 +57,12 @@ public class UserTaskService {
         return directoryService.readListOfAvailableFilesForUserTask(userId, taskId);
     }
 
-    public void uploadFileForUserTask(String userEmail, String taskId, String fileId, byte[] bytes) {
-        directoryService.uploadFileForUserTask(userEmail, taskId, fileId, bytes);
+    public void uploadFileForUserTask(String userId, String taskId, String fileId, byte[] bytes) {
+        directoryService.uploadFileForUserTask(userId, taskId, fileId, bytes);
     }
 
-    public File takeFileFromUserTask(String userEmail, String taskId, String fileId) {
-        return directoryService.takeFileFromUserTask(userEmail, taskId, fileId);
+    public File takeFileFromUserTask(String userId, String taskId, String fileId) {
+        return directoryService.takeFileFromUserTask(userId, taskId, fileId);
     }
 
     public void commitTask(String userId, String taskId) {

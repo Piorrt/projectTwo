@@ -14,30 +14,30 @@ public class ProjectTwoApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ProjectTwoApplication.class, args);
 
-		final UserRepository userRepository =
-				context.getBean(UserRepository.class);
+//		final UserRepository userRepository =
+//				context.getBean(UserRepository.class);
 
-		userRepository.save(
-			new User(
-				"98",
-				"jan@example.com",
-				"Jan Kowalski",
-				"MyPassword",
-				List.of("ADMIN"),
-				null
-			)
-		);
-
-		userRepository.save(
-			new User(
-				"99",
-				"stefan@example.com",
-				"Stefan Burczymucha",
-				"password",
-				List.of("STUDENT"),
-				null
-			)
-		);
+//		userRepository.save(
+//			new User(
+//				"98",
+//				"jan@example.com",
+//				"Jan Kowalski",
+//				"MyPassword",
+//				List.of("ADMIN"),
+//				null
+//			)
+//		);
+//
+//		userRepository.save(
+//			new User(
+//				"99",
+//				"stefan@example.com",
+//				"Stefan Burczymucha",
+//				"password",
+//				List.of("STUDENT"),
+//				null
+//			)
+//		);
 	}
 
 }
