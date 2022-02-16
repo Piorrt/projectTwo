@@ -26,7 +26,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_get_information_about_any_user() {
         //given
         User user = new User(
-            6L,
+            "6",
             "newUser1@example.com",
             "User Name",
             "pass",
@@ -37,15 +37,15 @@ class UserEndpointIT extends BaseIT {
         String token = getTokenForAdmin();
 
         //when
-        ResponseEntity<UserDto> response = callGetUser(user.getEmail(), token);
+        ResponseEntity<UserDto> response = callGetUser(user.getId(), token);
 
         //then
         UserDto body = response.getBody();
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
-        assertEquals(body.getEmail(), user.getEmail());
-        assertEquals(body.getName(), user.getName());
-        assertEquals(body.getPassword(), "######");
-        assertEquals(body.getRoles().toString(), user.getRoles().toString());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(user.getEmail(), body.getEmail());
+        assertEquals(user.getName(), body.getName());
+        assertEquals("######", body.getPassword());
+        assertEquals(user.getRoles().toString(), body.getRoles().toString());
     }
 
     @Test
@@ -64,7 +64,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_not_get_information_about_other_student() {
         //given
         User user1 = new User(
-                7L,
+                "7",
                 "newUser4@example.com",
                 "User Name",
                 "pass",
@@ -72,7 +72,7 @@ class UserEndpointIT extends BaseIT {
                 new ArrayList<>()
         );
         User user2 = new User(
-                8L,
+                "8",
                 "oldUser5@example.com",
                 "Old User Name",
                 "pass",
@@ -94,7 +94,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_get_response_code_conflict_when_user_is_in_db() {
         //given
         User user = new User(
-            9L,
+            "9",
             "newUser1@example.com",
             "User Name",
             "pass",
@@ -116,7 +116,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_be_able_to_save_new_user() {
         //given
         User user = new User(
-            10L,
+            "10",
             "newUser2@example.com",
             "User Name",
             "pass",
@@ -142,7 +142,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_get_information_about_himself() {
         //given
         User user = new User(
-                11L,
+                "11",
                 "newUser3@example.com",
                 "User Name",
                 "pass",
@@ -168,7 +168,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_be_able_to_update_user() {
         //given
         User user = new User(
-                12L,
+                "12",
                 "email@email.com",
                 "Person",
                 "password",
@@ -178,7 +178,7 @@ class UserEndpointIT extends BaseIT {
         userService.saveUser(user);
 
         User userToUpdate = new User(
-                12L,
+                "12",
                 "email@email.com",
                 "newPerson",
                 "newpassword",
@@ -217,7 +217,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_be_not_able_to_update_user() {
         //given
         User user = new User(
-                14L,
+                "14",
                 "newUser@example.com",
                 "Person",
                 "pass",
@@ -227,7 +227,7 @@ class UserEndpointIT extends BaseIT {
         userService.saveUser(user);
 
         User userToUpdate = new User(
-                15L,
+                "15",
                 "otherUser@email.com",
                 "Person",
                 "password",
@@ -247,7 +247,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_be_able_to_delete_user() {
         //given
         User user = new User(
-                16L,
+                "16",
                 "newUser@email.com",
                 "Person",
                 "pass",
@@ -268,7 +268,7 @@ class UserEndpointIT extends BaseIT {
     void admin_should_get_response_code_204_when_user_not_exits() {
         //given
         User user = new User(
-                17L,
+                "17",
                 "otherUser@email.com",
                 "Person",
                 "password",
@@ -288,7 +288,7 @@ class UserEndpointIT extends BaseIT {
     void student_should_not_be_able_to_delete_user() {
         //given
         User user = new User(
-                18L,
+                "18",
                 "newUser@example.com",
                 "Person",
                 "pass",
@@ -296,7 +296,7 @@ class UserEndpointIT extends BaseIT {
                 new ArrayList<>()
         );
         User otherUser = new User(
-                19L,
+                "19",
                 "otherUser@email.com",
                 "Person",
                 "password",
@@ -313,13 +313,13 @@ class UserEndpointIT extends BaseIT {
         assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
     }
 
-    private ResponseEntity<UserDto> callGetUser(String email, String token) {
+    private ResponseEntity<UserDto> callGetUser(String userId, String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         headers.add(HttpHeaders.ACCEPT, "application/json");
         headers.add(HttpHeaders.AUTHORIZATION, token);
         return restTemplate.exchange(
-            localUrl("/users/" + email),
+            localUrl("/users/" + userId),
             HttpMethod.GET,
             new HttpEntity(headers),
             UserDto.class

@@ -20,37 +20,35 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/usertasks")
+@RequestMapping(path = "/users/{userId}/tasks")
 public class UserTaskEndpoint {
 
     private final UserTaskService userTaskService;
-    private final UserTaskDtoMapper dtoMapper;
 
 
     @PostMapping(
-            path = "/assign",
             produces = "application/json",
             consumes = "application/json"
     )
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<MessageResponse> assignTaskToUser(@RequestBody UserTaskRequest userTaskRequest) {
-        userTaskService.assignTask(userTaskRequest.getUserEmail(), userTaskRequest.getTaskId());
+    public ResponseEntity<MessageResponse> assignTaskToUser(@PathVariable String userId, @RequestParam String taskId) {
+        userTaskService.assignTask(userId, taskId);
         return ResponseEntity.ok(new MessageResponse("OK", "Task assigned to user"));
     }
 
-    @PostMapping("/run")
-    @Secured("ROLE_STUDENT")
-    public ResponseEntity<String> post(@RequestBody RunSolutionRequest runSolutionRequest) {
-        String taskStatus = userTaskService
-                .exec(runSolutionRequest.getUserEmail(), runSolutionRequest.getTaskId());
 
+    //TODO endpoint ot be discussed
+    @PostMapping("/{taskId}/run")
+    @Secured("ROLE_STUDENT")
+    public ResponseEntity<String> post(@PathVariable String userId, @PathVariable String taskId) {
+        String taskStatus = userTaskService.exec(userId, taskId);
         return ResponseEntity.ok(taskStatus);
     }
 
     @GetMapping(
             produces = "application/json",
             consumes = "application/json",
-            path = "{userId}/{taskId}/files"
+            path = "/{taskId}/files"
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<ListOfFilesResponse>  getFilesAssignedToUserTask(
@@ -65,7 +63,7 @@ public class UserTaskEndpoint {
     }
 
     @GetMapping(
-            path = "{userId}/{taskId}/files/{fileId}"
+            path = "/{taskId}/files/{fileId}"
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<Object>  getFileAssignedToUserTask(
@@ -73,8 +71,7 @@ public class UserTaskEndpoint {
             @PathVariable String taskId,
             @PathVariable String fileId) {
 
-
-        InputStreamResource resource = null;
+        InputStreamResource resource;
         try {
             File file = userTaskService.takeFileFromUserTask(userId, taskId, fileId);
 
@@ -86,9 +83,7 @@ public class UserTaskEndpoint {
             headers.add("Pragma", "no-cache");
             headers.add("Expires", "0");
 
-            ResponseEntity<Object> responseEntity = ResponseEntity.ok().headers(headers).contentLength(file.length()).contentType(MediaType.parseMediaType("application/txt")).body(resource);
-
-            return responseEntity;
+            return ResponseEntity.ok().headers(headers).contentLength(file.length()).contentType(MediaType.parseMediaType("application/txt")).body(resource);
         } catch (FileNotFoundException e) {
             return new ResponseEntity<>("error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -97,7 +92,7 @@ public class UserTaskEndpoint {
 
     @PostMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
-            path = "{userId}/{taskId}/files/{fileId}"
+            path = "/{taskId}/files/{fileId}"
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<Object>  postFileAssignedToUserTask(
@@ -122,13 +117,13 @@ public class UserTaskEndpoint {
     }
 
     @GetMapping(
-            path = "/results",
+            path = "/{taskId}/results",
             produces = "application/json",
             consumes = "application/json"
     )
     @Secured("ROLE_STUDENT")
-    public ResponseEntity<String> getUserTaskResult(@RequestBody UserTaskRequest userTaskRequest){
-        String resultSummary = userTaskService.getUserTaskStatusSummary(userTaskRequest.getUserEmail(), userTaskRequest.getTaskId());
+    public ResponseEntity<String> getUserTaskResult(@PathVariable String userId, @PathVariable String taskId){
+        String resultSummary = userTaskService.getUserTaskStatusSummary(userId, taskId);
         return ResponseEntity.ok(resultSummary);
     }
 

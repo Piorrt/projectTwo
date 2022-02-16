@@ -14,6 +14,6 @@ public class UserTask {
     private String description;
     private String userTaskFolder;
     private TaskStatus taskStatus;
-    private String userEmail;
+    private String userId;
 
 }

@@ -28,8 +28,8 @@ public class LocalDirectoryService implements DirectoryService {
     }
 
     @Override
-    public String createDirectoryForUserTask(Task task, String userEmail) {
-        String path = getPathToUserTask(userEmail,task.getId());
+    public String createDirectoryForUserTask(Task task, String userId) {
+        String path = getPathToUserTask(userId,task.getId());
 
         Path folderPath = Path.of(path);
         Path absolutePath = folderPath.toAbsolutePath();
@@ -45,8 +45,8 @@ public class LocalDirectoryService implements DirectoryService {
     }
 
     @Override
-    public List<String> readListOfAvailableFilesForUserTask(String userEmail, String taskId) {
-        String path = getPathToUserTask(userEmail, taskId) + TASK_DEFINITION_FILE_PATH;
+    public List<String> readListOfAvailableFilesForUserTask(String userId, String taskId) {
+        String path = getPathToUserTask(userId, taskId) + TASK_DEFINITION_FILE_PATH;
 
         var mapper = new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
@@ -55,7 +55,7 @@ public class LocalDirectoryService implements DirectoryService {
         try {
             taskDefinition = mapper.readValue(new File(path), TaskDefinition.class);
         } catch (IOException e) {
-            throw new ResourceNotFoundException("Task " + taskId + " was not assigned to user " + userEmail);
+            throw new ResourceNotFoundException("Task " + taskId + " was not assigned to user " + userId);
         }
 
         return taskDefinition
@@ -66,8 +66,8 @@ public class LocalDirectoryService implements DirectoryService {
     }
 
     @Override
-    public void uploadFileForUserTask(String userEmail, String taskId, String fileId, byte[] bytes) {
-        File file = takeFileFromUserTask(userEmail, taskId, fileId);
+    public void uploadFileForUserTask(String userId, String taskId, String fileId, byte[] bytes) {
+        File file = takeFileFromUserTask(userId, taskId, fileId);
 
         try {
             file.createNewFile();
@@ -81,29 +81,28 @@ public class LocalDirectoryService implements DirectoryService {
     }
 
     @Override
-    public File takeFileFromUserTask(String userEmail, String taskId, String fileId) {
-        List<String> listOfAvailableFilesForUserTask = readListOfAvailableFilesForUserTask(userEmail, taskId);
+    public File takeFileFromUserTask(String userId, String taskId, String fileId) {
+        List<String> listOfAvailableFilesForUserTask = readListOfAvailableFilesForUserTask(userId, taskId);
 
         if (Integer.parseInt(fileId) > listOfAvailableFilesForUserTask.size()) {
-            throw new ResourceNotFoundException("File " + fileId + " was not assigned to " + taskId + " user task " + userEmail);
+            throw new ResourceNotFoundException("File " + fileId + " was not assigned to " + taskId + " user task " + userId);
         }
 
         String relatedPathToSelectedFile = listOfAvailableFilesForUserTask.get(Integer.parseInt(fileId) - 1);
 
-        String path = getPathToUserTask(userEmail, taskId) + "/" + relatedPathToSelectedFile;
+        String path = getPathToUserTask(userId, taskId) + "/" + relatedPathToSelectedFile;
 
         return new File(path);
     }
 
     @Override
-    public String getPathToUserTask(String userEmail, String taskId) {
-        String convertedEmail = userEmail.replace("@","").replace(".","");
-        return  baseLocalFolder + convertedEmail + "/" + taskId;
+    public String getPathToUserTask(String userId, String taskId) {
+        return  baseLocalFolder + userId + "/" + taskId;
     }
 
     @Override
-    public File getResultFile(String userEmail, String taskId) {
-        String path = getPathToUserTask(userEmail,taskId);
+    public File getResultFile(String userId, String taskId) {
+        String path = getPathToUserTask(userId,taskId);
         return new File(path + SUMMARY_RESULT_FILE_PATH);
     }
 

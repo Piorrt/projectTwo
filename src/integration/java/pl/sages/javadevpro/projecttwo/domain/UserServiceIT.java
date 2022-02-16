@@ -18,7 +18,7 @@ public class UserServiceIT extends BaseIT {
     public void add_user_test() {
         //given
         User user = new User(
-                2L,
+                "2",
                 "newUser@example.com",
                 "User Name",
                 "pass",
@@ -28,7 +28,7 @@ public class UserServiceIT extends BaseIT {
         service.saveUser(user);
 
         //when
-        User readUser = service.getUser(user.getId());
+        User readUser = service.getUserById(user.getId());
 
         //then
         Assertions.assertEquals(user.getId(), readUser.getId());
@@ -42,7 +42,7 @@ public class UserServiceIT extends BaseIT {
     public void get_email_should_return_correct_user() {
         //given
         User user1 = new User(
-                3L,
+                "3",
                 "newUser1@example.com",
                 "User Name 1",
                 "pass1",
@@ -50,7 +50,7 @@ public class UserServiceIT extends BaseIT {
                 new ArrayList<>()
         );
         User user2 = new User(
-                4L,
+                "3",
                 "newUser2@example.com",
                 "User Name 2",
                 "pass2",
@@ -58,7 +58,7 @@ public class UserServiceIT extends BaseIT {
                 new ArrayList<>()
         );
         User user3 = new User(
-                5L,
+                "5",
                 "newUser3@example.com",
                 "User Name 3",
                 "pass3",
@@ -70,7 +70,7 @@ public class UserServiceIT extends BaseIT {
         service.saveUser(user3);
 
         //when
-        User readUser = service.getUser(user2.getId());
+        User readUser = service.getUserById(user2.getId());
 
         //then
         Assertions.assertEquals(user2.getId(), readUser.getId());

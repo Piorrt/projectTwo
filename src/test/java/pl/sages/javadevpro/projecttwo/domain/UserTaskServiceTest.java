@@ -35,7 +35,7 @@ class UserTaskServiceTest {
     private UserTaskService userTaskService;
 
     private final User fakeUser = new User(
-            40L,
+            "40",
             "email@email.any",
             "user name",
             "pass",
@@ -51,7 +51,7 @@ class UserTaskServiceTest {
     @BeforeEach
     void prepareMocks() {
         when(directoryService.createDirectoryForUserTask(Mockito.any(),Mockito.anyString())).thenReturn(TEST_DIRECTORY);
-        when(userService.getUser(Mockito.anyString())).thenReturn(fakeUser);
+        when(userService.getUserById(Mockito.anyString())).thenReturn(fakeUser);
         when(taskService.getTask(Mockito.anyString())).thenReturn(fakeTask);
         when(userService.updateUser(Mockito.any())).thenReturn(fakeUser);
     }
@@ -71,7 +71,7 @@ class UserTaskServiceTest {
         Assertions.assertEquals(fakeTask.getId(),userTask.getId());
         Assertions.assertEquals(fakeTask.getName(),userTask.getName());
         Assertions.assertEquals(fakeTask.getDescription(),userTask.getDescription());
-        Assertions.assertEquals(fakeUser.getEmail(), userTask.getUserEmail());
+        Assertions.assertEquals(fakeUser.getId(), userTask.getUserId());
         Assertions.assertEquals(TEST_DIRECTORY,userTask.getUserTaskFolder());
         Assertions.assertEquals(TaskStatus.NOT_STARTED,userTask.getTaskStatus());
     }

@@ -19,7 +19,7 @@ public class ProjectTwoApplication {
 
 		userRepository.save(
 			new User(
-				98L,
+				"98",
 				"jan@example.com",
 				"Jan Kowalski",
 				"MyPassword",
@@ -30,7 +30,7 @@ public class ProjectTwoApplication {
 
 		userRepository.save(
 			new User(
-				99L,
+				"99",
 				"stefan@example.com",
 				"Stefan Burczymucha",
 				"password",

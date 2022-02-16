@@ -16,7 +16,7 @@ import java.util.List;
 public class UserEntity {
 
     @Id
-    private Long id;
+    private String id;
     private String email;
     private String name;
     private String password;

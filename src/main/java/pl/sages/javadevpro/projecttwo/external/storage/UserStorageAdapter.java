@@ -70,7 +70,7 @@ public class UserStorageAdapter implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<User> findById(String id) {
         Optional<UserEntity> entity = userRepository.findById(id);
         if (entity.isPresent()) {
             log.info("Found entity " + entity.map(Object::toString).orElse("none"));

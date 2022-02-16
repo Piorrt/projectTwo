@@ -25,8 +25,8 @@ public class UserTaskService {
     private final TaskService taskService;
     private final UserTaskExecutor userTaskExecutor;
 
-    public String exec(String userEmail, String taskId) {
-        User user = userService.getUser(userEmail);
+    public String exec(String userId, String taskId) {
+        User user = userService.getUserById(userId);
         List<UserTask> tasks = user.getTasks();
         if (tasks == null) {
             throw new RecordNotFoundException("Task is not assigned to user");
@@ -40,8 +40,8 @@ public class UserTaskService {
         return userTaskExecutor.exec(taskToSend);
     }
 
-    public UserTask assignTask(String userEmail, String taskId) {
-        User user = userService.getUser(userEmail);
+    public UserTask assignTask(String userId, String taskId) {
+        User user = userService.getUserById(userId);
         Task task = taskService.getTask(taskId);
 
         UserTask userTask;
@@ -51,8 +51,8 @@ public class UserTaskService {
         return userTask;
     }
 
-    public List<String> readListOfAvailableFilesForUserTask (String userEmail, String taskId) {
-        return directoryService.readListOfAvailableFilesForUserTask(userEmail, taskId);
+    public List<String> readListOfAvailableFilesForUserTask (String userId, String taskId) {
+        return directoryService.readListOfAvailableFilesForUserTask(userId, taskId);
     }
 
     public void uploadFileForUserTask(String userEmail, String taskId, String fileId, byte[] bytes) {
@@ -63,12 +63,12 @@ public class UserTaskService {
         return directoryService.takeFileFromUserTask(userEmail, taskId, fileId);
     }
 
-    public void commitTask(String userEmail, String taskId) {
-        gitService.commitTask(directoryService.getPathToUserTask(userEmail, taskId));
+    public void commitTask(String userId, String taskId) {
+        gitService.commitTask(directoryService.getPathToUserTask(userId, taskId));
     }
 
-    public String getUserTaskStatusSummary(String userEmail, String taskId) {
-        File resultFile = directoryService.getResultFile(userEmail, taskId);
+    public String getUserTaskStatusSummary(String userId, String taskId) {
+        File resultFile = directoryService.getResultFile(userId, taskId);
         try {
             return Files.readAllLines(resultFile.toPath()).stream().collect(Collectors.joining("\n"));
         } catch (IOException e) {
@@ -87,14 +87,14 @@ public class UserTaskService {
         userService.updateUser(user);
     }
 
-    private UserTask createFromTask(Task task, String userEmail) {
+    private UserTask createFromTask(Task task, String userId) {
         UserTask userTask = new UserTask();
-        userTask.setUserTaskFolder(copyRepositoryToUserFolder(task, userEmail));
+        userTask.setUserTaskFolder(copyRepositoryToUserFolder(task, userId));
         userTask.setId(task.getId());
         userTask.setName(task.getName());
         userTask.setDescription(task.getDescription());
         userTask.setTaskStatus(TaskStatus.NOT_STARTED);
-        userTask.setUserEmail(userEmail);
+        userTask.setUserId(userId);
         return userTask;
     }
 
@@ -106,8 +106,8 @@ public class UserTaskService {
         userService.updateUser(user);
     }
 
-    private String copyRepositoryToUserFolder(Task task, String userEmail) {
-        String destinationFolderPath = directoryService.createDirectoryForUserTask(task, userEmail);
+    private String copyRepositoryToUserFolder(Task task, String userId) {
+        String destinationFolderPath = directoryService.createDirectoryForUserTask(task, userId);
         gitService.cloneTask(task.getRepositoryPath(), destinationFolderPath);
         return destinationFolderPath;
     }

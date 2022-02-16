@@ -22,13 +22,13 @@ public class UserEndpoint {
     private final UserDtoMapper dtoMapper;
 
     @GetMapping(
-        path = "/{email}",
+        path = "/{id}",
         produces = "application/json",
         consumes = "application/json"
     )
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<UserDto> getUser(@PathVariable(name = "email") String email) {
-        User user = userService.getUser(email);
+    public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") String id) {
+        User user = userService.getUserById(id);
 
         return ResponseEntity
             .ok(dtoMapper.toDto(user));
@@ -40,7 +40,7 @@ public class UserEndpoint {
     )
     @Secured("ROLE_ADMIN")
     public ResponseEntity<List<UserDto>> getUsers() {
-        List<UserDto> userList = userService.getUser().stream()
+        List<UserDto> userList = userService.getAllUsers().stream()
             .map(dtoMapper::toDto)
             .collect(Collectors.toList());
 
@@ -87,7 +87,7 @@ public class UserEndpoint {
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<UserDto> aboutMe(Authentication authentication) {
-        User user = userService.getUser((String) authentication.getPrincipal());
+        User user = userService.getUserByEmail((String) authentication.getPrincipal());
         return ResponseEntity
             .ok(dtoMapper.toDto(user));
     }

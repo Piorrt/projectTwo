@@ -23,15 +23,15 @@ public class UserService {
         userRepository.remove(user);
     }
 
-    public User getUser(String email) {
+    public User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
 
-    public User getUser(Long id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public List<User> getUser() {
+    public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 }

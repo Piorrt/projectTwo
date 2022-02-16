@@ -13,7 +13,7 @@ public interface UserRepository {
 
     Optional<User> findByEmail(String user);
 
-    Optional<User> findById(Long id);
+    Optional<User> findById(String id);
 
     List<User> getAllUsers();
 }

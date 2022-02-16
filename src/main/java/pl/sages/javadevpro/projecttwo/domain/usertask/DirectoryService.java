@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface DirectoryService {
 
-    String createDirectoryForUserTask(Task task, String userEmail);
+    String createDirectoryForUserTask(Task task, String userId);
 
-    List<String> readListOfAvailableFilesForUserTask(String userEmail, String taskId);
+    List<String> readListOfAvailableFilesForUserTask(String Id, String taskId);
 
-    void uploadFileForUserTask(String userEmail, String taskId, String fileId, byte[] bytes);
+    void uploadFileForUserTask(String userId, String taskId, String fileId, byte[] bytes);
 
-    File takeFileFromUserTask(String userEmail, String taskId, String fileId);
+    File takeFileFromUserTask(String userId, String taskId, String fileId);
 
-    String getPathToUserTask(String userEmail, String taskId);
+    String getPathToUserTask(String userId, String taskId);
 
-    File getResultFile(String userEmail, String taskId);
+    File getResultFile(String userId, String taskId);
 }

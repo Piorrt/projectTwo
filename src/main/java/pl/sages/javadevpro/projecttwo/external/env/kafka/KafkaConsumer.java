@@ -28,7 +28,7 @@ public class KafkaConsumer {
     public void consumeJson(UserTaskEnv userTaskEnv) {
         log.info("Consumed JSON Task: " + userTaskEnv);
         UserTask userTaskFromEnv = userTaskEnvMapper.toDomain(userTaskEnv);
-        User user = userService.getUser(userTaskEnv.getUserEmail());
+        User user = userService.getUserByEmail(userTaskEnv.getUserEmail());
         List<UserTask> tasks = user.getTasks();
         UserTask taskToStatusUpdate = tasks.stream()
                 .filter(task -> task.getId().equals(userTaskFromEnv.getId()))
