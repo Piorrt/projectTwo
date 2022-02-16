@@ -90,7 +90,6 @@ public class UserTaskEndpoint {
 
     }
 
-    // TODO - discuss PUT method instead of POST
     @PostMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
             path = "/{taskId}/files/{fileId}"
