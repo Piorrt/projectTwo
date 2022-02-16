@@ -18,8 +18,8 @@ import java.nio.file.Path;
 class LocalDirectoryServiceTest {
 
     private final LocalDirectoryService localDirectoryService = new LocalDirectoryService("testRepo/");
-    private final static String TEST_DIRECTORY = Path.of("testRepo/sampleemailcom/1").toAbsolutePath().toString();
-    private final static String USER_EMAIL = "sample@email.com";
+    private final static String TEST_DIRECTORY = Path.of("testRepo/60T/1").toAbsolutePath().toString();
+    private final static String USER_ID = "60T";
 
     @Mock
     private Task task;
@@ -29,10 +29,10 @@ class LocalDirectoryServiceTest {
         Mockito.when(task.getId()).thenReturn("1");
     }
 
-    @DisplayName("should create new directory basing on user email and task id")
+    @DisplayName("should create new directory basing on user id and task id")
     @Test
     void shouldCreateNewDirectory() {
-        String directoryPath = localDirectoryService.createDirectoryForUserTask(task,USER_EMAIL);
+        String directoryPath = localDirectoryService.createDirectoryForUserTask(task, USER_ID);
 
         File directory = new File(directoryPath);
 

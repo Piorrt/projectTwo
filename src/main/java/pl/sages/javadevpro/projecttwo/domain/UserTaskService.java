@@ -45,7 +45,7 @@ public class UserTaskService {
         Task task = taskService.getTask(taskId);
 
         UserTask userTask;
-        userTask = createFromTask(task, user.getEmail());
+        userTask = createFromTask(task, user.getId());
 
         addUserTaskToDB(userTask, user);
         return userTask;

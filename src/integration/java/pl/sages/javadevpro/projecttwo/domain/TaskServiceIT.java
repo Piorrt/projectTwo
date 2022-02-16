@@ -34,7 +34,7 @@ public class TaskServiceIT extends BaseIT {
     }
 
     @Test
-    public void get_email_should_return_correct_user() {
+    public void get_id_should_return_correct_task() {
         //given
         Task task1 = new Task(
                 "2",

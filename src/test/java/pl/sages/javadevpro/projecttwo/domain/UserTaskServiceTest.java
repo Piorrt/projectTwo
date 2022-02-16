@@ -35,7 +35,7 @@ class UserTaskServiceTest {
     private UserTaskService userTaskService;
 
     private final User fakeUser = new User(
-            "40",
+            "40T",
             "email@email.any",
             "user name",
             "pass",
@@ -60,11 +60,11 @@ class UserTaskServiceTest {
     @DisplayName("Should create new UserTask")
     @Test
     void shouldCreateNewUserTask() {
-        String userEmail = fakeUser.getEmail();
+        String userId = fakeUser.getId();
         String taskId = fakeTask.getId();
 
         //when
-        UserTask userTask = userTaskService.assignTask(userEmail, taskId);
+        UserTask userTask = userTaskService.assignTask(userId, taskId);
 
         //then
         Assertions.assertNotNull(userTask);

@@ -16,6 +16,7 @@ public class UserEntityMapperTest {
 
     private final UserEntityMapper userEntityMapper = new UserEntityMapper();
 
+    private final static String USER_ID = "61T";
     private final static String USER_NAME = "User1";
     private final static String USER_EMAIL = "user1@email.com";
     private final static String USER_PASSWORD = "password";
@@ -28,6 +29,7 @@ public class UserEntityMapperTest {
     @Test
     void user_entity_values_should_be_mapped_directly_to_domain(){
         UserEntity entity = UserEntity.builder()
+                .id(USER_ID)
                 .name(USER_NAME)
                 .email(USER_EMAIL)
                 .password(USER_PASSWORD)
@@ -36,6 +38,7 @@ public class UserEntityMapperTest {
                 .build();
         User domain = userEntityMapper.toDomain(entity);
 
+        assertEquals(USER_ID, domain.getId());
         assertEquals(USER_NAME, domain.getName());
         assertEquals(USER_EMAIL, domain.getEmail());
         assertEquals(USER_PASSWORD, domain.getPassword());
@@ -48,6 +51,7 @@ public class UserEntityMapperTest {
     void user_domain_values_should_be_mapped_directly_to_entity(){
 
         User domain = new User();
+        domain.setId(USER_ID);
         domain.setName(USER_NAME);
         domain.setPassword(USER_PASSWORD);
         domain.setEmail(USER_EMAIL);
@@ -56,6 +60,7 @@ public class UserEntityMapperTest {
 
         UserEntity entity = userEntityMapper.toEntity(domain);
 
+        assertEquals(USER_ID, entity.getId());
         assertEquals(USER_NAME, entity.getName());
         assertEquals(USER_EMAIL, entity.getEmail());
         assertEquals(USER_PASSWORD, entity.getPassword());

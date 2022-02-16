@@ -14,7 +14,7 @@ public class UserTaskEnv {
     private String description;
     private String userTaskFolder;
     private UserTaskStatusEnv taskStatus;
-    private String userEmail;
+    private String userId;
 
 }
 
