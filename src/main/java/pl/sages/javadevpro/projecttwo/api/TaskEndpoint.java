@@ -43,13 +43,14 @@ public class TaskEndpoint {
     }
 
     @DeleteMapping(
+            path = "/{id}",
             produces = "application/json",
             consumes = "application/json"
     )
     @Secured("ROLE_ADMIN")
-    public ResponseEntity removeTask(@RequestBody TaskDto dto){
-        taskService.removeTask(dtoMapper.toDomain(dto));
-        return ResponseEntity.ok(dto);
+    public ResponseEntity removeTask(@PathVariable String id){
+        taskService.removeTask(id);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping(

@@ -1,16 +1,17 @@
-### get user by email
-GET http://localhost:8080/users/jan@example.com
+### get user by id
+GET http://localhost:8080/users/1
 Accept: application/json
 Content-Type: application/json
 Authorization: {{auth_token}}
 
-###
+### add new user
 POST http://localhost:8080/users
 Accept: application/json
 Content-Type: application/json
 Authorization: {{auth_token}}
 
 {
+  "id": "2TEST",
   "email": "rafal@gmail.com",
   "name": "Rafal Nowak",
   "password": "userPass",
@@ -18,7 +19,7 @@ Authorization: {{auth_token}}
 }
 
 ### get user by email
-GET http://localhost:8080/users/2zdenek@gmail.com
+GET http://localhost:8080/users/2TEST
 Accept: application/json
 Content-Type: application/json
 Authorization: {{auth_token}}

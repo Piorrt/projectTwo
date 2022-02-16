@@ -188,7 +188,7 @@ public class TaskEndpointIT extends BaseIT {
         String adminAccessToken = getTokenForAdmin();
         Task savedTask = taskService.saveTask(task6);
         //when
-        callDeleteTask(taskDtoMapper.toDto(savedTask), adminAccessToken);
+        callDeleteTask(savedTask.getId(), adminAccessToken);
         //then
         Exception exception = assertThrows(RecordNotFoundException.class, () -> taskService.getTask(task6.getId()));
         // FIXME
@@ -217,7 +217,7 @@ public class TaskEndpointIT extends BaseIT {
         Task savedTask = taskService.saveTask(task6);
 
         //when
-        ResponseEntity<TaskDto> response = callDeleteTask(taskDtoMapper.toDto(savedTask), token);
+        ResponseEntity<TaskDto> response = callDeleteTask(savedTask.getId(), token);
 
         //then
         Assertions.assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
@@ -297,14 +297,14 @@ public class TaskEndpointIT extends BaseIT {
         );
     }
 
-    private ResponseEntity<TaskDto> callDeleteTask(TaskDto body, String accessToken) {
+    private ResponseEntity<TaskDto> callDeleteTask(String taskId, String accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         headers.add(HttpHeaders.AUTHORIZATION, accessToken);
         return restTemplate.exchange(
-                localUrl("/tasks"),
+                localUrl("/tasks/" + taskId),
                 HttpMethod.DELETE,
-                new HttpEntity(body, headers),
+                new HttpEntity(headers),
                 TaskDto.class
         );
     }

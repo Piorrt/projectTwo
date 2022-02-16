@@ -71,13 +71,14 @@ public class UserEndpoint {
     }
 
     @DeleteMapping(
+            path = "/{id}",
             produces = "application/json",
             consumes = "application/json"
     )
     @Secured("ROLE_ADMIN")
-    public ResponseEntity removeUser(@RequestBody UserDto dto){
-        userService.removeUser(dtoMapper.toDomain(dto));
-        return ResponseEntity.ok(dto);
+    public ResponseEntity removeUser(@PathVariable String id){
+        userService.removeUser(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping(

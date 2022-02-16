@@ -43,12 +43,11 @@ public class TaskStorageAdapter implements TaskRepository {
     }
 
     @Override
-    public void remove(Task task) {
-        Optional<TaskEntity> entity = taskRepository.findById(task.getId());
-        TaskEntity entityTask = mapper.toEntity(task);
-        if(entity.isPresent()) {
-            log.info("Removing task " + entityTask.toString());
-            taskRepository.delete(entityTask);
+    public void remove(String taskId) {
+        Optional<Task> task = findById(taskId);
+        if(task.isPresent()) {
+            log.info("Removing task " + task);
+            taskRepository.deleteById(taskId);
         }
     }
 

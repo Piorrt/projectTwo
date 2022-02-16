@@ -48,14 +48,13 @@ public class UserStorageAdapter implements UserRepository {
     }
 
     @Override
-    public void remove(User user) {
-        Optional<UserEntity> entity = userRepository.findById(user.getId());
+    public void remove(String userId) {
+        Optional<UserEntity> entity = userRepository.findById(userId);
         if(entity.isEmpty()) {
-            throw new RecordNotFoundException("User not exist!");
+            throw new RecordNotFoundException("User does not exist!");
         }
-        UserEntity userEntity = mapper.toEntity(user);
-        log.info("Removing user " + userEntity.toString());
-        userRepository.delete(userEntity);
+        log.info("Removing user " + entity);
+        userRepository.deleteById(userId);
     }
 
     @Deprecated //searching by email can only be used for authentication, for all other purpose use id

@@ -24,12 +24,7 @@ Content-Type: application/json
 Authorization: {{auth_token}}
 
 ### assign task to user
-POST http://localhost:8080/usertasks/assign
+POST http://localhost:8080/users/1/tasks?taskId=1
 Accept: application/json
 Content-Type: application/json
 Authorization: {{auth_token}}
-
-{
-  "userEmail": "jan@example.com",
-  "taskId": "1"
-}

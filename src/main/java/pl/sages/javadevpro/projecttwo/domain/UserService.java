@@ -19,8 +19,8 @@ public class UserService {
         return userRepository.update(user);
     }
 
-    public void removeUser(User user) {
-        userRepository.remove(user);
+    public void removeUser(String userId) {
+        userRepository.remove(userId);
     }
 
     public User getUserByEmail(String email) {

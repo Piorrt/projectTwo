@@ -258,7 +258,7 @@ class UserEndpointIT extends BaseIT {
         userService.saveUser(user);
 
         //when
-        ResponseEntity<UserDto> response = callDeleteUser(user, adminAccessToken);
+        ResponseEntity<UserDto> response = callDeleteUser(user.getId(), adminAccessToken);
 
         //then
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -278,7 +278,7 @@ class UserEndpointIT extends BaseIT {
         String token = getTokenForAdmin();
 
         //when
-        ResponseEntity<UserDto> response = callDeleteUser(user, token);
+        ResponseEntity<UserDto> response = callDeleteUser(user.getId(), token);
 
         //then
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
@@ -307,7 +307,7 @@ class UserEndpointIT extends BaseIT {
         String token = getAccessTokenForUser(user.getEmail(), user.getPassword());
 
         //when
-        ResponseEntity<UserDto> response = callDeleteUser(otherUser, token);
+        ResponseEntity<UserDto> response = callDeleteUser(otherUser.getId(), token);
 
         //then
         assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
@@ -363,14 +363,14 @@ class UserEndpointIT extends BaseIT {
         );
     }
 
-    private ResponseEntity<UserDto> callDeleteUser(User body, String accessToken) {
+    private ResponseEntity<UserDto> callDeleteUser(String userId, String accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         headers.add(HttpHeaders.AUTHORIZATION, accessToken);
         return restTemplate.exchange(
-                localUrl("/users"),
+                localUrl("/users/" + userId),
                 HttpMethod.DELETE,
-                new HttpEntity(body, headers),
+                new HttpEntity(headers),
                 UserDto.class
         );
     }
