@@ -37,7 +37,7 @@ public class UserTaskEndpoint {
     }
 
 
-    //TODO endpoint ot be discussed
+    //TODO endpoint ot be discussed (AS)
     @PostMapping("/{taskId}/run")
     @Secured("ROLE_STUDENT")
     public ResponseEntity<String> post(@PathVariable String userId, @PathVariable String taskId) {

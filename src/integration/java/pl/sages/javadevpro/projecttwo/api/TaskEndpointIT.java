@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import pl.sages.javadevpro.projecttwo.BaseIT;
 import pl.sages.javadevpro.projecttwo.api.task.TaskDto;
+import pl.sages.javadevpro.projecttwo.api.task.TaskDtoMapper;
 import pl.sages.javadevpro.projecttwo.domain.TaskService;
 import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.exception.RecordNotFoundException;
@@ -28,6 +29,9 @@ public class TaskEndpointIT extends BaseIT {
     UserService userService;
     @Autowired
     TaskService taskService;
+    @Autowired
+    TaskDtoMapper taskDtoMapper;
+
 
     @Test
     void should_get_information_about_task() {
@@ -182,14 +186,12 @@ public class TaskEndpointIT extends BaseIT {
                 "/repo/path"
         );
         String adminAccessToken = getTokenForAdmin();
-        taskService.saveTask(task6);
+        Task savedTask = taskService.saveTask(task6);
         //when
-        callDeleteTask(task6, adminAccessToken);
+        callDeleteTask(taskDtoMapper.toDto(savedTask), adminAccessToken);
         //then
-        Exception exception = assertThrows(RecordNotFoundException.class, () -> {
-            taskService.getTask(task6.getId());
-        });
-        // fixme
+        Exception exception = assertThrows(RecordNotFoundException.class, () -> taskService.getTask(task6.getId()));
+        // FIXME
         Assertions.assertEquals("Task not found",exception.getMessage());
     }
 
@@ -212,13 +214,13 @@ public class TaskEndpointIT extends BaseIT {
         );
         userService.saveUser(user);
         String token = getAccessTokenForUser(user.getEmail(), user.getPassword());
-        taskService.saveTask(task6);
+        Task savedTask = taskService.saveTask(task6);
 
         //when
-        ResponseEntity<TaskDto> response = callDeleteTask(task6, token);
+        ResponseEntity<TaskDto> response = callDeleteTask(taskDtoMapper.toDto(savedTask), token);
 
         //then
-        Assertions.assertEquals(response.getStatusCode(),HttpStatus.FORBIDDEN);
+        Assertions.assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
     }
 
     @Test
@@ -295,7 +297,7 @@ public class TaskEndpointIT extends BaseIT {
         );
     }
 
-    private ResponseEntity<TaskDto> callDeleteTask(Task body, String accessToken) {
+    private ResponseEntity<TaskDto> callDeleteTask(TaskDto body, String accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         headers.add(HttpHeaders.AUTHORIZATION, accessToken);

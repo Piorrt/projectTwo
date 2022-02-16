@@ -44,7 +44,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                     return new UsernamePasswordAuthenticationToken(username, null, authorities);
                 }
             } catch (Exception exception) {
-                // FIXME
+                // FIXME empty catch clause
             }
         }
 
@@ -61,7 +61,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         } else {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
-            return;
         }
     }
 }

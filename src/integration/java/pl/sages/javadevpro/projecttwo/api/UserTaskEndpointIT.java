@@ -39,7 +39,7 @@ class UserTaskEndpointIT extends BaseIT {
     void user_should_not_be_able_to_assign_task() {
         //given
         User user = new User(
-                "20",
+                "20T",
                 "newUser10@example.com",
                 "User Name",
                 "pass",
@@ -67,7 +67,7 @@ class UserTaskEndpointIT extends BaseIT {
     @Test
     void admin_should_be_able_to_assign_task_to_user() {
         User user = new User(
-                "21",
+                "21T",
                 "newUser11@example.com",
                 "User Name 11",
                 "pass",
@@ -100,7 +100,7 @@ class UserTaskEndpointIT extends BaseIT {
     @Test
     void admin_should_get_conflict_response_when_trying_to_assign_the_same_task_twice(){
         User user = new User(
-                "22",
+                "22T",
                 "newUser13@example.com",
                 "User Name 11",
                 "pass",
@@ -149,7 +149,7 @@ class UserTaskEndpointIT extends BaseIT {
     @Test
     void student_should_be_able_to_take_list_of_files_assigned_to_user_task() {
         User user = new User(
-                "23",
+                "23T",
                 "newUser11@example.com",
                 "User Name 11",
                 "pass",
@@ -191,7 +191,7 @@ class UserTaskEndpointIT extends BaseIT {
     }
 
     private ResponseEntity<ListOfFilesResponse> callGetFilesAssignedToUserTask (String userId, String taskId, String accessToken) {
-        String url = "/users/" + userId + "/" + taskId + "/files";
+        String url = "/users/" + userId + "/tasks/" + taskId + "/files";
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         headers.add(HttpHeaders.AUTHORIZATION, accessToken);
@@ -209,9 +209,9 @@ class UserTaskEndpointIT extends BaseIT {
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         headers.add(HttpHeaders.AUTHORIZATION, accessToken);
         return restTemplate.exchange(
-                localUrl("/users/" + userId + "/tasks"),
+                localUrl("/users/" + userId + "/tasks?taskId=" + taskId),
                 HttpMethod.POST,
-                new HttpEntity(taskId, headers),
+                new HttpEntity("{}",headers),
                 MessageResponse.class
         );
     }
