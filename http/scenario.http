@@ -1,0 +1,62 @@
+### login as admin
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "jan@example.com",
+  "password": "MyPassword"
+}
+
+> {% client.global.set("auth_token", response.headers.valueOf("Authorization")); %}
+
+### add new user
+POST http://localhost:8080/users
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+{
+  "id": "2TEST",
+  "email": "rafal@gmail.com",
+  "name": "Rafal Nowak",
+  "password": "userPass",
+  "roles": ["STUDENT"]
+}
+
+### add task
+POST http://localhost:8080/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+{
+  "id": "1",
+  "name": "Python_1",
+  "description": "Description...",
+  "repositoryPath": "https://github.com/rafal-nowak/task1.git"
+}
+
+### assign task 1 to user 2TEST
+POST http://localhost:8080/users/2TEST/tasks?taskId=1
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}
+
+### login as student
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "rafal@gmail.com",
+  "password": "userPass"
+}
+
+> {% client.global.set("auth_token", response.headers.valueOf("Authorization")); %}
+
+### get all student's tasks
+GET http://localhost:8080/users/2TEST/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: {{auth_token}}

@@ -10,6 +10,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sages.javadevpro.projecttwo.api.usertask.*;
+import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.UserTaskService;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,7 +26,8 @@ import java.util.List;
 public class UserTaskEndpoint {
 
     private final UserTaskService userTaskService;
-
+    private final UserService userService;
+    private final UserTaskDtoMapper userTaskDtoMapper;
 
     @PostMapping(
             produces = "application/json",
@@ -37,7 +40,6 @@ public class UserTaskEndpoint {
     }
 
 
-    //TODO endpoint ot be discussed (AS)
     @PostMapping("/{taskId}/run")
     @Secured("ROLE_STUDENT")
     public ResponseEntity<String> post(@PathVariable String userId, @PathVariable String taskId) {
@@ -125,6 +127,16 @@ public class UserTaskEndpoint {
     public ResponseEntity<String> getUserTaskResult(@PathVariable String userId, @PathVariable String taskId){
         String resultSummary = userTaskService.getUserTaskStatusSummary(userId, taskId);
         return ResponseEntity.ok(resultSummary);
+    }
+
+    @GetMapping(
+            produces = "application/json",
+            consumes = "application/json"
+    )
+    public List<UserTaskDto> getUsersTasks(@PathVariable String userId) {
+        return userService.getUserById(userId).getTasks().stream()
+                .map(userTaskDtoMapper::toDto)
+                .collect(Collectors.toList());
     }
 
 }
