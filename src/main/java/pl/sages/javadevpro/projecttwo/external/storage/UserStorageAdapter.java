@@ -57,7 +57,6 @@ public class UserStorageAdapter implements UserRepository {
         userRepository.deleteById(userId);
     }
 
-    @Deprecated //searching by email can only be used for authentication, for all other purpose use id
     @Override
     public Optional<User> findByEmail(String email) {
         Optional<UserEntity> entity = userRepository.findByEmail(email);
