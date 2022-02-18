@@ -7,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sages.javadevpro.projecttwo.api.usertask.*;
 import pl.sages.javadevpro.projecttwo.domain.UserService;
 import pl.sages.javadevpro.projecttwo.domain.UserTaskService;
+import pl.sages.javadevpro.projecttwo.domain.user.User;
+import pl.sages.javadevpro.projecttwo.domain.usertask.UserTaskRequest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +25,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/users/{userId}/tasks")
+@RequestMapping(path = "/usertasks")
 public class UserTaskEndpoint {
 
     private final UserTaskService userTaskService;
@@ -34,16 +37,17 @@ public class UserTaskEndpoint {
             consumes = "application/json"
     )
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<MessageResponse> assignTaskToUser(@PathVariable String userId, @RequestParam String taskId) {
-        userTaskService.assignTask(userId, taskId);
+    public ResponseEntity<MessageResponse> assignTaskToUser(UserTaskRequest userTaskRequest) {
+        userTaskService.assignTask(userTaskRequest.getUserEmail(), userTaskRequest.getTaskId());
         return ResponseEntity.ok(new MessageResponse("OK", "Task assigned to user"));
     }
 
 
     @PostMapping("/{taskId}/run")
     @Secured("ROLE_STUDENT")
-    public ResponseEntity<String> post(@PathVariable String userId, @PathVariable String taskId) {
-        String taskStatus = userTaskService.exec(userId, taskId);
+    public ResponseEntity<String> post(Authentication authentication, @PathVariable String taskId) {
+        User loggedUser = getLoggedUser(authentication);
+        String taskStatus = userTaskService.exec(loggedUser, taskId);
         return ResponseEntity.ok(taskStatus);
     }
 
@@ -54,10 +58,10 @@ public class UserTaskEndpoint {
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<ListOfFilesResponse>  getFilesAssignedToUserTask(
-            @PathVariable String userId,
+            Authentication authentication,
             @PathVariable String taskId) {
-
-        List<String> listOfFiles = userTaskService.readListOfAvailableFilesForUserTask(userId, taskId);
+        User loggedUser = getLoggedUser(authentication);
+        List<String> listOfFiles = userTaskService.readListOfAvailableFilesForUserTask(loggedUser, taskId);
 
         return ResponseEntity.ok(new ListOfFilesResponse(
                 "OK",
@@ -69,13 +73,14 @@ public class UserTaskEndpoint {
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<Object>  getFileAssignedToUserTask(
-            @PathVariable String userId,
+            Authentication authentication,
             @PathVariable String taskId,
             @PathVariable String fileId) {
 
+        User loggedUser = getLoggedUser(authentication);
         InputStreamResource resource;
         try {
-            File file = userTaskService.takeFileFromUserTask(userId, taskId, fileId);
+            File file = userTaskService.takeFileFromUserTask(loggedUser, taskId, fileId);
 
             resource = new InputStreamResource(new FileInputStream(file));
 
@@ -98,18 +103,19 @@ public class UserTaskEndpoint {
     )
     @Secured("ROLE_STUDENT")
     public ResponseEntity<Object>  postFileAssignedToUserTask(
+            Authentication authentication,
             @RequestParam("file") MultipartFile file,
-            @PathVariable String userId,
             @PathVariable String taskId,
             @PathVariable String fileId
             ) {
 
+        User loggedUser = getLoggedUser(authentication);
         try {
             byte[] bytes = file.getBytes();
 
-            userTaskService.uploadFileForUserTask(userId, taskId, fileId, bytes);
+            userTaskService.uploadFileForUserTask(loggedUser, taskId, fileId, bytes);
 
-            userTaskService.commitTask(userId, taskId);
+            userTaskService.commitTask(loggedUser, taskId);
 
         } catch (IOException e) {
             return new ResponseEntity<>("The File Upload Failed", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -124,8 +130,9 @@ public class UserTaskEndpoint {
             consumes = "application/json"
     )
     @Secured("ROLE_STUDENT")
-    public ResponseEntity<String> getUserTaskResult(@PathVariable String userId, @PathVariable String taskId){
-        String resultSummary = userTaskService.getUserTaskStatusSummary(userId, taskId);
+    public ResponseEntity<String> getUserTaskResult(Authentication authentication, @PathVariable String taskId){
+        User loggedUser = getLoggedUser(authentication);
+        String resultSummary = userTaskService.getUserTaskStatusSummary(loggedUser, taskId);
         return ResponseEntity.ok(resultSummary);
     }
 
@@ -133,10 +140,17 @@ public class UserTaskEndpoint {
             produces = "application/json",
             consumes = "application/json"
     )
-    public List<UserTaskDto> getUsersTasks(@PathVariable String userId) {
-        return userService.getUserById(userId).getTasks().stream()
+    @Secured("ROLE_STUDENT")
+    public List<UserTaskDto> getUsersTasks(Authentication authentication) {
+        User loggedUser = getLoggedUser(authentication);
+        return loggedUser.getTasks().stream()
                 .map(userTaskDtoMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    private User getLoggedUser(Authentication authentication) {
+        String loggedUserEmail = (String) authentication.getPrincipal();
+        return userService.getUserByEmail(loggedUserEmail);
     }
 
 }

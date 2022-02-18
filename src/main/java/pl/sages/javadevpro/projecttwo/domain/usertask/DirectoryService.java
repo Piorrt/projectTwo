@@ -9,7 +9,7 @@ public interface DirectoryService {
 
     String createDirectoryForUserTask(Task task, String userId);
 
-    List<String> readListOfAvailableFilesForUserTask(String Id, String taskId);
+    List<String> readListOfAvailableFilesForUserTask(String id, String taskId);
 
     void uploadFileForUserTask(String userId, String taskId, String fileId, byte[] bytes);
 

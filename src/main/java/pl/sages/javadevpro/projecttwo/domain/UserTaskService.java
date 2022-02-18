@@ -25,8 +25,7 @@ public class UserTaskService {
     private final TaskService taskService;
     private final UserTaskExecutor userTaskExecutor;
 
-    public String exec(String userId, String taskId) {
-        User user = userService.getUserById(userId);
+    public String exec(User user, String taskId) {
         List<UserTask> tasks = user.getTasks();
 
         if (tasks == null) {
@@ -53,24 +52,24 @@ public class UserTaskService {
         return userTask;
     }
 
-    public List<String> readListOfAvailableFilesForUserTask (String userId, String taskId) {
-        return directoryService.readListOfAvailableFilesForUserTask(userId, taskId);
+    public List<String> readListOfAvailableFilesForUserTask (User user, String taskId) {
+        return directoryService.readListOfAvailableFilesForUserTask(user.getId(), taskId);
     }
 
-    public void uploadFileForUserTask(String userId, String taskId, String fileId, byte[] bytes) {
-        directoryService.uploadFileForUserTask(userId, taskId, fileId, bytes);
+    public void uploadFileForUserTask(User user, String taskId, String fileId, byte[] bytes) {
+        directoryService.uploadFileForUserTask(user.getId(), taskId, fileId, bytes);
     }
 
-    public File takeFileFromUserTask(String userId, String taskId, String fileId) {
-        return directoryService.takeFileFromUserTask(userId, taskId, fileId);
+    public File takeFileFromUserTask(User user, String taskId, String fileId) {
+        return directoryService.takeFileFromUserTask(user.getId(), taskId, fileId);
     }
 
-    public void commitTask(String userId, String taskId) {
-        gitService.commitTask(directoryService.getPathToUserTask(userId, taskId));
+    public void commitTask(User user, String taskId) {
+        gitService.commitTask(directoryService.getPathToUserTask(user.getId(), taskId));
     }
 
-    public String getUserTaskStatusSummary(String userId, String taskId) {
-        File resultFile = directoryService.getResultFile(userId, taskId);
+    public String getUserTaskStatusSummary(User user, String taskId) {
+        File resultFile = directoryService.getResultFile(user.getId(), taskId);
         try {
             return Files.readAllLines(resultFile.toPath()).stream().collect(Collectors.joining("\n"));
         } catch (IOException e) {
