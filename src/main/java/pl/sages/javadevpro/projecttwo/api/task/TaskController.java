@@ -5,10 +5,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sages.javadevpro.projecttwo.api.task.dto.CommandName;
 import pl.sages.javadevpro.projecttwo.api.task.dto.TaskControllerCommand;
+import pl.sages.javadevpro.projecttwo.api.task.verification.VerifyTaskAuthorization;
 import pl.sages.javadevpro.projecttwo.api.usertask.ListOfFilesResponse;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
@@ -41,7 +43,11 @@ public class TaskController {
             consumes = "application/json",
             path = "{taskId}/files"
     )
-    public ResponseEntity<ListOfFilesResponse> getFilesAssignedToUserTask(@PathVariable String taskId) {
+    @VerifyTaskAuthorization(taskIdParamName = "taskId", authenticationParamName = "authentication")
+    public ResponseEntity<ListOfFilesResponse> getFilesAssignedToUserTask(
+            @PathVariable String taskId,
+            Authentication authentication
+    ) {
         List<String> listOfFiles = taskService.getTaskFilesList(taskId);
         return ResponseEntity.ok(new ListOfFilesResponse(
                 "OK",
