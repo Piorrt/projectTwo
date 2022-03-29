@@ -3,7 +3,6 @@ package pl.sages.javadevpro.projecttwo.domain.user;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class UserService {
@@ -20,28 +19,27 @@ public class UserService {
     }
 
     public User update(User user) {
-        Optional<User> updated = userRepository.update(user);
-        return updated.orElseThrow(() -> new UserNotFoundException("User not found"));
+        return userRepository.update(user)
+            .orElseThrow(UserNotFoundException::new);
     }
 
     public User removeById(String id) {
-        Optional<User> removed = userRepository.remove(id);
-        return removed.orElseThrow(() -> new UserNotFoundException("User not found"));
+        return userRepository.remove(id)
+            .orElseThrow(UserNotFoundException::new);
     }
 
     public User findByEmail(String email) {
-        Optional<User> founded = userRepository.findByEmail(email);
-        return founded.orElseThrow(() -> new UserNotFoundException("User not found"));
+        return userRepository.findByEmail(email)
+            .orElseThrow(UserNotFoundException::new);
     }
 
     public User findById(String id) {
-        Optional<User> founded = userRepository.findById(id);
-        return founded.orElseThrow(() -> new UserNotFoundException("User not found"));
+        return userRepository.findById(id)
+            .orElseThrow(UserNotFoundException::new);
     }
 
-
+    //todo - pageowanie
     public List<User> findAll() {
         return userRepository.findAll();
     }
-
 }
