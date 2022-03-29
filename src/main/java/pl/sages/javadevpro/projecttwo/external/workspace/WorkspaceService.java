@@ -64,7 +64,7 @@ public class WorkspaceService implements Workspace {
         try {
             Files.write(Paths.get(fullPath), bytes);
         } catch (IOException e) {
-            throw new FileWasNotFoundException("File Was Not Found");
+            throw new FileWasNotFoundException();
         }
     }
 
@@ -73,9 +73,9 @@ public class WorkspaceService implements Workspace {
         String fullPath = java.nio.file.Paths.get(rootPathUrl, path).toString();
 
         try {
-          return Files.readAllBytes(Paths.get(fullPath));
+            return Files.readAllBytes(Paths.get(fullPath));
         } catch (IOException e) {
-            throw new FileWasNotFoundException("File Was Not Found");
+            throw new FileWasNotFoundException();
         }
     }
 
