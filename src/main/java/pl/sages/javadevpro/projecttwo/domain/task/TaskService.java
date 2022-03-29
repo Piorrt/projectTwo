@@ -16,40 +16,35 @@ public class TaskService {
     private final String resultFilePath;
 
     public String execute(String taskId) {
-        updateTaskStatus(taskId, SUBMITTED);
-        Task task = taskRepository.findById(taskId)
-                .orElseThrow(TaskNotFoundException::new);
+        Task task = updateTaskStatus(taskId, SUBMITTED);
         taskExecutor.exec(task);
-        return task.getStatus().toString();
+        return task.getStatus().name();
     }
 
     public List<String> getTaskFilesList(String taskId) {
-        var workspacePath = getWorkspacePath(taskId);
-        return taskWorkspace.getFilesList(workspacePath);
+        return taskWorkspace.getFilesList(getWorkspacePath(taskId));
     }
 
     public void writeTaskFile(String taskId, String filePath, byte[] bytes) {
-        var workspacePath = getWorkspacePath(taskId);
-        taskWorkspace.writeFile(workspacePath, filePath, bytes);
+        taskWorkspace.writeFile(getWorkspacePath(taskId), filePath, bytes);
     }
 
     public byte[] readTaskFile(String taskId, String filePath) {
-        var workspacePath = getWorkspacePath(taskId);
-        return taskWorkspace.readFile(workspacePath, filePath);
+        return taskWorkspace.readFile(getWorkspacePath(taskId), filePath);
     }
 
     public void commitTaskChanges(String taskId) {
-        var workspacePath = getWorkspacePath(taskId);
-        taskWorkspace.commitChanges(workspacePath);
+        taskWorkspace.commitChanges(getWorkspacePath(taskId));
     }
 
     public byte[] readTaskResults(String taskId) {
         return readTaskFile(taskId, resultFilePath);
     }
 
-    public void updateTaskStatus(String taskId, TaskStatus newStatus) {
+    public Task updateTaskStatus(String taskId, TaskStatus newStatus) {
         var task = findTaskById(taskId).withStatus(newStatus);
         taskRepository.update(task);
+        return task;
     }
 
     public Task createTask(String blueprintId) {
@@ -65,8 +60,7 @@ public class TaskService {
     }
 
     public TaskStatus getTaskStatus(String taskId) {
-        Task task = findTaskById(taskId);
-        return task.getStatus();
+        return findTaskById(taskId).getStatus();
     }
 
     private Task findTaskById(String taskId) {
