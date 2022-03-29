@@ -11,6 +11,7 @@ public class User {
     String email;
     String name;
     String password;
+    //todo set zamiast List
     List<UserRole> roles;
 
     public User withPassword(String newPassword) {

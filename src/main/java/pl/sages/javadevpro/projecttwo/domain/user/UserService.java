@@ -8,7 +8,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoding encoder;
+    private final EncodingService encoder;
 
     public User save(User user) {
         return userRepository.save(
