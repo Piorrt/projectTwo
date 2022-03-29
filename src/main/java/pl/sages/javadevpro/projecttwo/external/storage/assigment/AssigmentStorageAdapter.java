@@ -23,7 +23,7 @@ public class AssigmentStorageAdapter implements AssigmentRepository {
             return mapper.toDomain(saved);
         }catch (DuplicateKeyException ex){
             log.warning("Assigment " +  assigment.getId() + " already exits");
-            throw new AssigmentAlreadyExistsException("Assigment already exists");
+            throw new AssigmentAlreadyExistsException();
         }
     }
 

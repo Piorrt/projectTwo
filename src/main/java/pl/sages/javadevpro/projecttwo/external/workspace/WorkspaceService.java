@@ -120,7 +120,7 @@ public class WorkspaceService implements Workspace {
                     .setDirectory(repo)
                     .call();
         } catch (JGitInternalException | GitAPIException e) {
-            throw new RepositoryAlreadyResidesInDestinationFolderException("Repository already resides in destination folder.", e);
+            throw new RepositoryAlreadyResidesInDestinationFolderException(e);
         }
         unlinkRemotes(git);
         git.close();

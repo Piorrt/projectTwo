@@ -1,14 +1,8 @@
 package pl.sages.javadevpro.projecttwo.external.workspace;
 
-
 public class RepositoryAlreadyResidesInDestinationFolderException extends RuntimeException{
 
-    public RepositoryAlreadyResidesInDestinationFolderException(String message) {
-        super(message);
+    public RepositoryAlreadyResidesInDestinationFolderException(Throwable ex) {
+        super(ex);
     }
-
-    public RepositoryAlreadyResidesInDestinationFolderException(String message, Throwable ex) {
-        super(message, ex);
-    }
-
 }

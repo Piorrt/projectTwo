@@ -6,8 +6,7 @@ import pl.sages.javadevpro.projecttwo.domain.task.Task;
 @Mapper
 public interface UserTaskEntityMapper {
 
-    Task toDomain(UserTaskEntity userTaskEntity);
+    Task toDomain(UserTaskEntity entity);
 
-    UserTaskEntity toEntity(Task task);
-
+    UserTaskEntity toEntity(Task domain);
 }

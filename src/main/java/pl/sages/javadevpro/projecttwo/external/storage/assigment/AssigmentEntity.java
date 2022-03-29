@@ -9,6 +9,9 @@ import lombok.Setter;
 @Getter
 public class AssigmentEntity {
 
+
+    //todo do sprawdzenie dlaczego to nie jest entity
+    //todo analogicznie do tego co jest UserEntity
     private String id;
     private String userId;
     private String taskId;
