@@ -17,7 +17,6 @@ public class UserStorageAdapter implements UserRepository {
     private final MongoUserRepository userRepository;
     private final UserEntityMapper mapper;
 
-
     @Override
     public User save(User user) {
         try {
@@ -26,7 +25,7 @@ public class UserStorageAdapter implements UserRepository {
             return mapper.toDomain(saved);
         } catch (DuplicateKeyException ex) {
             log.warning("User " +  user.getEmail() + " already exits in db");
-            throw new UserAlreadyExistsException("User already exists");
+            throw new UserAlreadyExistsException();
         }
     }
 
@@ -68,5 +67,4 @@ public class UserStorageAdapter implements UserRepository {
             .map(mapper::toDomain)
             .collect(Collectors.toList());
     }
-
 }

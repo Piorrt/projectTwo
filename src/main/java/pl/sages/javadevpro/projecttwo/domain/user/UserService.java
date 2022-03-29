@@ -18,11 +18,13 @@ public class UserService {
         );
     }
 
+    //todo nic nie zwraca usera
     public User update(User user) {
         return userRepository.update(user)
             .orElseThrow(UserNotFoundException::new);
     }
 
+    //todo nic nie zwraca
     public User removeById(String id) {
         return userRepository.remove(id)
             .orElseThrow(UserNotFoundException::new);

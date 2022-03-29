@@ -46,7 +46,7 @@ class UserServiceTest {
 
     @Test
     void save_method_should_throw_user_already_exist_exception_when_user_exist() {
-        Mockito.when(userRepository.save(fakeUser)).thenThrow(new UserAlreadyExistsException("User already exists"));
+        Mockito.when(userRepository.save(fakeUser)).thenThrow(new UserAlreadyExistsException());
 
         //when
         //then

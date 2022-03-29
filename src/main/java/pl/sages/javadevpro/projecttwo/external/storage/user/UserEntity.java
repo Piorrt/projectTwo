@@ -10,11 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@TypeAlias("Users")
+@TypeAlias("Users")//todo - do sprawdzenie czy nie jest zbędne - @Document.value = Users
 @Document(value = "UserEntity")
 @Builder
 public class UserEntity {
 
+    //todo equals hashCode własna implemntacja oparta (equals - oparte o id)
     @Id
     private String id;
     @Indexed(unique = true)

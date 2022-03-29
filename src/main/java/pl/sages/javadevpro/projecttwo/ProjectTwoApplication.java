@@ -10,7 +10,4 @@ public class ProjectTwoApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ProjectTwoApplication.class, args);
 	}
-
-	// TODO co chcemy zwrocic przy remove i update
-
 }
