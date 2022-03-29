@@ -10,6 +10,6 @@ public interface TaskBlueprintRepository {
 
     void remove(TaskBlueprint taskBlueprint);
 
-    void  update(TaskBlueprint taskBlueprint);
+    void update(TaskBlueprint taskBlueprint);
 
 }
