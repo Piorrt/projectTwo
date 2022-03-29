@@ -23,7 +23,7 @@ public class TaskEntityStorageAdapter implements TaskRepository {
             return mapper.toDomain(saved);
         }catch (DuplicateKeyException ex){
             log.warning("Task " +  task.getName() + " already exits");
-            throw new TaskAlreadyExistsException("Task already exists");
+            throw new TaskAlreadyExistsException();
         }
     }
 

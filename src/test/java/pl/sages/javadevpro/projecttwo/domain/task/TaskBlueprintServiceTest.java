@@ -46,7 +46,7 @@ class TaskBlueprintServiceTest {
 
     @Test
     void save_method_should_throw_task_blueprint_already_exist_exception_when_task_blueprint_exist() {
-        Mockito.when(taskBlueprintRepository.save(fakeTaskBlueprint)).thenThrow(new TaskBlueprintAlreadyExistsException("Task blueprint already exists"));
+        Mockito.when(taskBlueprintRepository.save(fakeTaskBlueprint)).thenThrow(new TaskBlueprintAlreadyExistsException());
 
         //when
         //then

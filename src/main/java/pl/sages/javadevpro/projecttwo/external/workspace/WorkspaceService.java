@@ -47,7 +47,7 @@ public class WorkspaceService implements Workspace {
         try {
             taskDefinition = mapper.readValue(new File(path), TaskDefinition.class);
         } catch (IOException e) {
-            throw new TaskWasNotCreatedProperlyException("Task was not created properly");
+            throw new TaskWasNotCreatedProperlyException();
         }
 
         return taskDefinition
@@ -91,7 +91,7 @@ public class WorkspaceService implements Workspace {
             commit.setMessage("update commit").call();
         } catch (IOException | GitAPIException e) {
             e.printStackTrace();
-            throw new RepositoryWasNotFoundException("Repository Was Not Found");
+            throw new RepositoryWasNotFoundException();
         }
     }
 

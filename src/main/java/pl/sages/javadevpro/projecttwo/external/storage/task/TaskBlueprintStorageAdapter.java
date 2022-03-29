@@ -22,7 +22,7 @@ public class TaskBlueprintStorageAdapter implements TaskBlueprintRepository {
             return mapper.toDomain(saved);
         }catch (DuplicateKeyException ex){
             log.warning("Task blueprint " +  taskBlueprint.getName() + " already exits");
-            throw new TaskBlueprintAlreadyExistsException("Task blueprint already exists");
+            throw new TaskBlueprintAlreadyExistsException();
         }
     }
 

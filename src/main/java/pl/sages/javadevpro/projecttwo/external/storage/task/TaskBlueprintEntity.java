@@ -6,7 +6,7 @@ import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@TypeAlias("TaskBlueprints")
+@TypeAlias("TaskBlueprints")//todo analogicznie do tego co jest UserEntity
 @Document(value = "TaskBlueprintEntity")
 public class TaskBlueprintEntity {
 
