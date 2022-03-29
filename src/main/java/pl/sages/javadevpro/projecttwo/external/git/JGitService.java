@@ -7,7 +7,6 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.springframework.stereotype.Component;
-import pl.sages.javadevpro.projecttwo.domain.exception.DuplicateRecordException;
 
 import java.io.File;
 import java.util.Set;

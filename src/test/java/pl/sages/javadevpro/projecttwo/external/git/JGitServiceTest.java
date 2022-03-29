@@ -5,7 +5,6 @@ import org.eclipse.jgit.api.errors.InvalidRemoteException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.jupiter.api.*;
-import pl.sages.javadevpro.projecttwo.domain.exception.DuplicateRecordException;
 
 import java.io.File;
 import java.io.IOException;
