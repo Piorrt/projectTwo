@@ -3,6 +3,7 @@ package pl.sages.javadevpro.projecttwo.api.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
@@ -61,6 +62,7 @@ public class UserController {
 
     @GetMapping("me")
     public ResponseEntity<UserDto> aboutMe(Authentication authentication) {
+        //todo klasa ze statyczna metodą getPrincipal np: Security.getPrincipal()
         User user = userService.findByEmail(((UserPrincipal) authentication.getPrincipal()).getUsername());
         return ResponseEntity
             .ok(dtoMapper.toDto(user));
