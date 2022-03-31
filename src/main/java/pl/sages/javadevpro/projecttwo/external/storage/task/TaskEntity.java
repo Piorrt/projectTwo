@@ -11,7 +11,7 @@ import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
 @Getter
 public class TaskEntity {
 
-    //todo do sprawdzenie dlaczego to nie jest entity
+    //todo 17. do sprawdzenie dlaczego to nie jest entity
     //todo analogicznie do tego co jest UserEntity//todo analogicznie do tego co jest UserEntity
     @Id
     String id;

@@ -18,13 +18,13 @@ public class UserService {
         );
     }
 
-    //todo nic nie zwraca usera
+    //todo 10. nic nie zwraca usera
     public User update(User user) {
         return userRepository.update(user)
             .orElseThrow(UserNotFoundException::new);
     }
 
-    //todo nic nie zwraca
+    //todo 11. nic nie zwraca
     public User removeById(String id) {
         return userRepository.remove(id)
             .orElseThrow(UserNotFoundException::new);
@@ -40,7 +40,7 @@ public class UserService {
             .orElseThrow(UserNotFoundException::new);
     }
 
-    //todo - pageowanie
+    //todo 12. pageowanie
     public List<User> findAll() {
         return userRepository.findAll();
     }

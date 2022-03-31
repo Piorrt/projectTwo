@@ -61,7 +61,7 @@ public class TaskController {
             @PathVariable String taskId,
             @PathVariable int fileId
     ) {
-        //todo metoda pomocnicza do osobnej funkcji/klasy
+        //todo 2. metoda pomocnicza do osobnej funkcji/klasy
         String filePath = taskService.getTaskFilesList(taskId).get(fileId);
         String fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
         byte[] file = taskService.readTaskFile(taskId, filePath);
@@ -88,10 +88,10 @@ public class TaskController {
             String filePath = taskService.getTaskFilesList(taskId).get(fileId);
             taskService.writeTaskFile(taskId, filePath, bytes);
             taskService.commitTaskChanges(taskId);
-        } catch (IOException e) {//todo niestosować niskopoziomowego wyjątku w controlerze
+        } catch (IOException e) {//todo 3. niestosować niskopoziomowego wyjątku w controlerze
             return new ResponseEntity<>("The File Upload Failed", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        //todo MessageResponse/ErrorResponse do użycia
+        //todo 4. MessageResponse/ErrorResponse do użycia
         return new ResponseEntity<>("The File Uploaded Successfully", HttpStatus.OK);
     }
 
@@ -102,7 +102,7 @@ public class TaskController {
     public ResponseEntity<Object> getUserTaskResult(
             @PathVariable String taskId
     ) {
-        //todo nazwa przenieść do properties/yaml dodać przez @Value jako parametr metody albo zmienna w kontrolerze
+        //todo 5.nazwa przenieść do properties/yaml dodać przez @Value jako parametr metody albo zmienna w kontrolerze
         String fileName = "task_results.txt";
         byte[] file = taskService.readTaskResults(taskId);
         HttpHeaders headers = prepareHttpHeadersForFileResponse(fileName);

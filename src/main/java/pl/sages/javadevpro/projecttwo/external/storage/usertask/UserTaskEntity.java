@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 public class UserTaskEntity {
 
-    //todo do sprawdzenie dlaczego to nie jest entity
+    //todo 18. do sprawdzenie dlaczego to nie jest entity
     //todo analogicznie do tego co jest UserEntity
     private String id;
     private String name;

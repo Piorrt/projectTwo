@@ -10,7 +10,7 @@ import lombok.Setter;
 public class AssigmentEntity {
 
 
-    //todo do sprawdzenie dlaczego to nie jest entity
+    //todo 15. do sprawdzenie dlaczego to nie jest entity
     //todo analogicznie do tego co jest UserEntity
     private String id;
     private String userId;

@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class UserEntity {
 
-    //todo equals hashCode własna implemntacja oparta (equals - oparte o id)
+    //todo 18. equals hashCode własna implemntacja oparta (equals - oparte o id)
     @Id
     private String id;
     @Indexed(unique = true)

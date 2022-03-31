@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers() {
-        List<UserDto> userList = userService.findAll().stream()  // TODO dadac do mappera
+        List<UserDto> userList = userService.findAll().stream()  // TODO 7. dadac do mappera
             .map(dtoMapper::toDto)
             .collect(Collectors.toList());
 
@@ -62,7 +62,7 @@ public class UserController {
 
     @GetMapping("me")
     public ResponseEntity<UserDto> aboutMe(Authentication authentication) {
-        //todo klasa ze statyczna metodą getPrincipal np: Security.getPrincipal()
+        //todo 6. klasa ze statyczna metodą getPrincipal np: Security.getPrincipal()
         User user = userService.findByEmail(((UserPrincipal) authentication.getPrincipal()).getUsername());
         return ResponseEntity
             .ok(dtoMapper.toDto(user));
