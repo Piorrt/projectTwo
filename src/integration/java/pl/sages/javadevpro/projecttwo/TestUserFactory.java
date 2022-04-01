@@ -3,7 +3,7 @@ package pl.sages.javadevpro.projecttwo;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
 
-import java.util.List;
+import java.util.Set;
 
 public class TestUserFactory {
 
@@ -16,7 +16,7 @@ public class TestUserFactory {
                 "newUser" + userSequence + "@example.com",
                 "User Name " + userSequence,
                 "password",
-                List.of(UserRole.STUDENT)
+                Set.of(UserRole.STUDENT)
                 );
     }
 
@@ -27,7 +27,7 @@ public class TestUserFactory {
             "newUser" + userSequence + "@example.com",
             "User Name " + userSequence,
             "password",
-            List.of(UserRole.ADMIN)
+            Set.of(UserRole.ADMIN)
         );
     }
 }

@@ -9,8 +9,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sages.javadevpro.projecttwo.external.storage.user.UserAlreadyExistsException;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -26,7 +26,7 @@ class UserServiceTest {
             "email@email.any",
             "user name",
             "pass",
-            List.of(UserRole.STUDENT)
+            Set.of(UserRole.STUDENT)
     );
 
     @Test

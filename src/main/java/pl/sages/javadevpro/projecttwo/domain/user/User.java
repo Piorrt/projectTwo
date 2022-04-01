@@ -1,8 +1,8 @@
 package pl.sages.javadevpro.projecttwo.domain.user;
 
-import lombok.*;
+import lombok.Value;
 
-import java.util.List;
+import java.util.Set;
 
 @Value
 public class User {
@@ -11,8 +11,7 @@ public class User {
     String email;
     String name;
     String password;
-    //todo 9. set zamiast List
-    List<UserRole> roles;
+    Set<UserRole> roles;
 
     public User withPassword(String newPassword) {
         return new User(id, email, name, newPassword, roles);

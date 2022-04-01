@@ -5,7 +5,7 @@ import org.mapstruct.factory.Mappers;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,7 @@ public class UserEntityMapperTest {
     private final static String USER_NAME = "User1";
     private final static String USER_EMAIL = "user1@email.com";
     private final static String USER_PASSWORD = "password";
-    private final static List<UserRole> USER_ROLES = List.of(UserRole.STUDENT, UserRole.ADMIN);
+    private final static Set<UserRole> USER_ROLES = Set.of(UserRole.STUDENT, UserRole.ADMIN);
 
     @Test
     void user_entity_values_should_be_mapped_directly_to_domain() {
@@ -27,7 +27,7 @@ public class UserEntityMapperTest {
                 .name(USER_NAME)
                 .email(USER_EMAIL)
                 .password(USER_PASSWORD)
-                .roles(USER_ROLES.stream().map(Enum::name).collect(Collectors.toList()))
+                .roles(USER_ROLES.stream().map(Enum::name).collect(Collectors.toSet()))
                 .build();
         User domain = userEntityMapper.toDomain(entity);
 

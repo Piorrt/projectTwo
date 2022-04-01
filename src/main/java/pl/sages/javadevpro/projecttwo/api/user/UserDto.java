@@ -2,7 +2,7 @@ package pl.sages.javadevpro.projecttwo.api.user;
 
 import lombok.Value;
 
-import java.util.List;
+import java.util.Set;
 
 @Value
 public class UserDto {
@@ -11,6 +11,5 @@ public class UserDto {
     String email;
     String name;
     String password;
-    List<String> roles;
-
+    Set<String> roles;
 }

@@ -12,7 +12,7 @@ import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -163,7 +163,7 @@ class UserControllerIT extends BaseIT {
                 "email@email.com",
                 "newPerson",
                 "newpassword",
-                List.of(UserRole.STUDENT)
+                Set.of(UserRole.STUDENT)
         );
         String adminAccessToken = getTokenForAdmin();
 
@@ -213,7 +213,7 @@ class UserControllerIT extends BaseIT {
                 "otherUser@email.com",
                 "Person",
                 "password",
-                List.of(UserRole.STUDENT)
+                Set.of(UserRole.STUDENT)
         );
         String token = getAccessTokenForUser(user.getEmail(), user.getPassword());
 

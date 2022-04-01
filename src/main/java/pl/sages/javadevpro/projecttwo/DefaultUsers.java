@@ -6,7 +6,7 @@ import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
-import java.util.List;
+import java.util.Set;
 
 @Component
 public class DefaultUsers implements CommandLineRunner {
@@ -22,7 +22,7 @@ public class DefaultUsers implements CommandLineRunner {
         "jan@example.com",
         "Jan Kowalski",
         "MyPassword",
-        List.of(UserRole.ADMIN)
+        Set.of(UserRole.ADMIN)
     );
 
     private final User studentUser = new User(
@@ -30,7 +30,7 @@ public class DefaultUsers implements CommandLineRunner {
         "stefan@example.com",
         "Stefan Burczymucha",
         "password",
-        List.of(UserRole.STUDENT)
+        Set.of(UserRole.STUDENT)
     );
 
     @Override

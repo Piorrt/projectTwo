@@ -21,6 +21,7 @@ import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 
 @ActiveProfiles("it")
 @AutoConfigureDataMongo
@@ -57,7 +58,7 @@ public class BaseIT {
             "admin@example.pl",
             "Stefan Burczymucha",
             passwordEncoder.encode("password"),
-            List.of(UserRole.ADMIN)
+            Set.of(UserRole.ADMIN)
         );
 
     protected String localUrl(String endpoint) {
