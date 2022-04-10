@@ -31,7 +31,7 @@ public class TaskController {
             @PathVariable String taskId,
             @RequestBody TaskControllerCommand taskControllerCommand
     ) {
-        if (taskControllerCommand.getCommandName().equals(CommandName.EXECUTE)) {
+        if (taskControllerCommand.hasName(CommandName.EXECUTE)) {
             String taskStatus = taskService.execute(taskId);
             return new ResponseEntity<>("Task " + taskId + " executed, status: " + taskStatus, HttpStatus.OK);
         }

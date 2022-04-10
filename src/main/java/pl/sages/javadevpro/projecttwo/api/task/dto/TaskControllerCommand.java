@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TaskControllerCommand {
     CommandName commandName;
-
-    //todo 1. (Mariusz/Rafal) dodać metodę hasName
+    public Boolean hasName(CommandName commandName) {
+       return this.commandName.equals(commandName);
+    }
 }
