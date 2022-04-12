@@ -1,6 +1,8 @@
 package pl.sages.javadevpro.projecttwo.api.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,8 +33,12 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getUsers() {
-        List<UserDto> userList = userService.findAll().stream()  // TODO 7. dadac do mappera
+    public ResponseEntity<List<UserDto>> getUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size
+    ) {
+        Pageable pagging = PageRequest.of(page, size);
+        List<UserDto> userList = userService.findAll(pagging).stream()  // TODO 7. dadac do mappera
             .map(dtoMapper::toDto)
             .collect(Collectors.toList());
 

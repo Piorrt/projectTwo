@@ -1,8 +1,8 @@
 package pl.sages.javadevpro.projecttwo.domain.user;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RequiredArgsConstructor
 public class UserService {
@@ -12,9 +12,9 @@ public class UserService {
 
     public User save(User user) {
         return userRepository.save(
-            user.withPassword(
-                encoder.encode(user.getPassword())
-            )
+                user.withPassword(
+                        encoder.encode(user.getPassword())
+                )
         );
     }
 
@@ -28,16 +28,15 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email)
-            .orElseThrow(UserNotFoundException::new);
+                .orElseThrow(UserNotFoundException::new);
     }
 
     public User findById(String id) {
         return userRepository.findById(id)
-            .orElseThrow(UserNotFoundException::new);
+                .orElseThrow(UserNotFoundException::new);
     }
 
-    //todo 12. (Rafal) pageowanie
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }

@@ -3,6 +3,9 @@ package pl.sages.javadevpro.projecttwo.external.storage.user;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRepository;
 
@@ -24,7 +27,7 @@ public class UserStorageAdapter implements UserRepository {
             log.info("Saved entity " + saved);
             return mapper.toDomain(saved);
         } catch (DuplicateKeyException ex) {
-            log.warning("User " +  user.getEmail() + " already exits in db");
+            log.warning("User " + user.getEmail() + " already exits in db");
             throw new UserAlreadyExistsException();
         }
     }
@@ -50,9 +53,10 @@ public class UserStorageAdapter implements UserRepository {
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll().stream()
-            .map(mapper::toDomain)
-            .collect(Collectors.toList());
+    public Page<User> findAll(Pageable pageable) {
+        List<User> allItems = userRepository.findAll(pageable).stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+        return new PageImpl<>(allItems);
     }
 }

@@ -14,7 +14,7 @@ Content-Type: application/json
 Authorization: Basic amFuQGV4YW1wbGUuY29tOk15UGFzc3dvcmQ=
 
 {
-  "email": "rafal@gmail.com",
+  "email": "rafal5@gmail.com",
   "name": "Rafal Nowak",
   "password": "userPass",
   "roles": ["STUDENT"]
@@ -27,3 +27,14 @@ Content-Type: application/json
 Authorization: Basic amFuQGV4YW1wbGUuY29tOk15UGFzc3dvcmQ=
 ###Authorization: {{auth_token}}
 
+### get all users
+GET http://localhost:8080/users/
+Accept: application/json
+Content-Type: application/json
+Authorization: Basic amFuQGV4YW1wbGUuY29tOk15UGFzc3dvcmQ=
+
+### get all users
+GET http://localhost:8080/users?page=1&size=3
+Accept: application/json
+Content-Type: application/json
+Authorization: Basic amFuQGV4YW1wbGUuY29tOk15UGFzc3dvcmQ=
