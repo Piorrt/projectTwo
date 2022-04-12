@@ -54,9 +54,10 @@ public class UserStorageAdapter implements UserRepository {
 
     @Override
     public Page<User> findAll(Pageable pageable) {
-        List<User> allItems = userRepository.findAll(pageable).stream()
+        Page<UserEntity> pageOfUsersEntity = userRepository.findAll(pageable);
+        List<User> usersOnCurrentPage = pageOfUsersEntity.getContent().stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
-        return new PageImpl<>(allItems);
+        return new PageImpl<>(usersOnCurrentPage, pageable, pageOfUsersEntity.getTotalElements());
     }
 }

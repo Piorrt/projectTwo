@@ -43,7 +43,11 @@ public class UserController {
     ) {
         Pageable pageable = PageRequest.of(page, size);
         Page<User> pageUsers= userService.findAll(pageable);
-        List<UserDto> userList = pageUsers.stream()  // TODO 7. dadac do mappera
+//        List<UserDto> userList = pageUsers.stream()  // TODO 7. dadac do mappera
+//                .map(dtoMapper::toDto)
+//                .collect(Collectors.toList());
+
+        List<UserDto> userList = pageUsers.getContent().stream()  // TODO 7. dadac do mappera
                 .map(dtoMapper::toDto)
                 .collect(Collectors.toList());
 
