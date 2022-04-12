@@ -11,8 +11,6 @@ import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
 @Getter
 public class TaskEntity {
 
-    //todo 17. do sprawdzenie dlaczego to nie jest entity
-    //todo analogicznie do tego co jest UserEntity//todo analogicznie do tego co jest UserEntity
     @Id
     String id;
     String name;
@@ -20,4 +18,16 @@ public class TaskEntity {
     String workspaceUrl;
     TaskStatus status;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TaskEntity that = (TaskEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

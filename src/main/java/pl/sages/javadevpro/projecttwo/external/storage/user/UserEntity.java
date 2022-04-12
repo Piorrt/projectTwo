@@ -15,12 +15,25 @@ import java.util.Set;
 @Builder
 public class UserEntity {
 
-    //todo 18. equals hashCode własna implemntacja oparta (equals - oparte o id)
     @Id
     private String id;
+
     @Indexed(unique = true)
     private String email;
+
     private String name;
     private String password;
     private Set<String> roles;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

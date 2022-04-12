@@ -9,12 +9,21 @@ import lombok.Setter;
 @Getter
 public class AssigmentEntity {
 
-
-    //todo 15. do sprawdzenie dlaczego to nie jest entity
-    //todo analogicznie do tego co jest UserEntity
     private String id;
     private String userId;
     private String taskId;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AssigmentEntity that = (AssigmentEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
 
