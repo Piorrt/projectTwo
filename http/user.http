@@ -34,7 +34,7 @@ Content-Type: application/json
 Authorization: Basic amFuQGV4YW1wbGUuY29tOk15UGFzc3dvcmQ=
 
 ### get all users
-GET http://localhost:8080/users?page=1&size=3
+GET http://localhost:8080/users?page=3&size=3
 Accept: application/json
 Content-Type: application/json
 Authorization: Basic amFuQGV4YW1wbGUuY29tOk15UGFzc3dvcmQ=

@@ -1,8 +1,10 @@
 package pl.sages.javadevpro.projecttwo.api.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,7 +13,9 @@ import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 import pl.sages.javadevpro.projecttwo.security.UserPrincipal;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -33,17 +37,24 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getUsers(
+    public ResponseEntity<Map<String, Object>> getUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size
     ) {
-        Pageable pagging = PageRequest.of(page, size);
-        List<UserDto> userList = userService.findAll(pagging).stream()  // TODO 7. dadac do mappera
-            .map(dtoMapper::toDto)
-            .collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(page, size);
+        Page<User> pageUsers= userService.findAll(pageable);
+        List<UserDto> userList = pageUsers.stream()  // TODO 7. dadac do mappera
+                .map(dtoMapper::toDto)
+                .collect(Collectors.toList());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("users", userList);
+        response.put("currentPage", pageUsers.getNumber());
+        response.put("totalItems", pageUsers.getTotalElements());
+        response.put("totalPages", pageUsers.getTotalPages());
 
         return ResponseEntity
-            .ok(userList);
+                .ok(response);
     }
 
     @PostMapping
