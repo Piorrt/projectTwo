@@ -7,9 +7,9 @@ public interface UserRepository {
 
     User save(User user);
 
-    Optional<User> update(User user);
+    void update(User user);
 
-    Optional<User> remove(String id);
+    void remove(String id);
 
     Optional<User> findByEmail(String email);
 

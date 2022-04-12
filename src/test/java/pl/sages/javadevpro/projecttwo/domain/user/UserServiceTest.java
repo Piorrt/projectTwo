@@ -18,6 +18,9 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private EncodingService encoder;
+
     @InjectMocks
     private UserService userService;
 
@@ -31,7 +34,11 @@ class UserServiceTest {
 
     @Test
     void save_method_should_return_saved_user_when_user_does_not_exist() {
-        Mockito.when(userRepository.save(fakeUser)).thenReturn(fakeUser);
+        Mockito.when(userRepository.save(
+                fakeUser.withPassword(
+                        encoder.encode(fakeUser.getPassword())
+                )
+        )).thenReturn(fakeUser);
 
         //when
         User savedUser = userService.save(fakeUser);
@@ -46,62 +53,15 @@ class UserServiceTest {
 
     @Test
     void save_method_should_throw_user_already_exist_exception_when_user_exist() {
-        Mockito.when(userRepository.save(fakeUser)).thenThrow(new UserAlreadyExistsException());
-
+        Mockito.when(userRepository.save(
+                fakeUser.withPassword(
+                        encoder.encode(fakeUser.getPassword())
+                )
+        )).thenThrow(new UserAlreadyExistsException());
         //when
         //then
         Assertions.assertThrows(UserAlreadyExistsException.class,
                 ()-> userService.save(fakeUser));
-    }
-
-    @Test
-    void update_method_should_return_updates_user_when_user_exist() {
-        Mockito.when(userRepository.update(fakeUser)).thenReturn(Optional.of(fakeUser));
-
-        //when
-        User updatedUser = userService.update(fakeUser);
-
-        //then
-        Assertions.assertNotNull(updatedUser);
-        Assertions.assertEquals(fakeUser.getId(), updatedUser.getId());
-        Assertions.assertEquals(fakeUser.getEmail(), updatedUser.getEmail());
-        Assertions.assertEquals(fakeUser.getName(), updatedUser.getName());
-        Assertions.assertEquals(fakeUser.getPassword(), updatedUser.getPassword());
-    }
-
-    @Test
-    void update_method_should_throw_user_not_found_exception_when_user_does_not_exist() {
-        Mockito.when(userRepository.update(fakeUser)).thenReturn(Optional.empty());
-
-        //when
-        //then
-        Assertions.assertThrows(UserNotFoundException.class,
-                ()-> userService.update(fakeUser));
-    }
-
-    @Test
-    void remove_by_id_method_should_return_removed_user_when_user_exist() {
-        Mockito.when(userRepository.remove(fakeUser.getId())).thenReturn(Optional.of(fakeUser));
-
-        //when
-        User removedUser = userService.removeById(fakeUser.getId());
-
-        //then
-        Assertions.assertNotNull(removedUser);
-        Assertions.assertEquals(fakeUser.getId(), removedUser.getId());
-        Assertions.assertEquals(fakeUser.getEmail(), removedUser.getEmail());
-        Assertions.assertEquals(fakeUser.getName(), removedUser.getName());
-        Assertions.assertEquals(fakeUser.getPassword(), removedUser.getPassword());
-    }
-
-    @Test
-    void remove_by_id_method_should_throw_user_not_found_exception_when_user_does_not_exist() {
-        Mockito.when(userRepository.remove(fakeUser.getId())).thenReturn(Optional.empty());
-
-        //when
-        //then
-        Assertions.assertThrows(UserNotFoundException.class,
-                ()-> userService.removeById(fakeUser.getId()));
     }
 
     @Test

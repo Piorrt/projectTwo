@@ -30,25 +30,13 @@ public class UserStorageAdapter implements UserRepository {
     }
 
     @Override
-    public Optional<User> update(User user) {
-        Optional<UserEntity> entity = userRepository.findById(user.getId());
-        if (entity.isEmpty()) {
-            return Optional.empty();
-        }
-        UserEntity updated = userRepository.save(mapper.toEntity(user));
-        log.info("Updating task "+ updated);
-        return Optional.of(mapper.toDomain(updated));
+    public void update(User user) {
+        userRepository.findById(user.getId()).ifPresent(userEntity -> userRepository.save(mapper.toEntity(user)));
     }
 
     @Override
-    public Optional<User> remove(String id) {
-        Optional<UserEntity> entity = userRepository.findById(id);
-        if(entity.isEmpty()) {
-            return Optional.empty();
-        }
-        userRepository.deleteById(id);
-        log.info("Removing user " + entity);
-        return Optional.of(mapper.toDomain(entity.get()));
+    public void remove(String id) {
+        userRepository.findById(id).ifPresent(userEntity -> userRepository.deleteById(id));
     }
 
     @Override

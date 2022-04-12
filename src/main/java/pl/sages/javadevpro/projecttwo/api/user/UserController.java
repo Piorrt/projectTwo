@@ -48,10 +48,10 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto dto) {
-        User user = userService.update(dtoMapper.toDomain(dto));
-        return ResponseEntity
-                .ok(dtoMapper.toDto(user));
+    public ResponseEntity<Void> updateUser(@RequestBody UserDto dto) {
+        userService.update(dtoMapper.toDomain(dto));
+
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")

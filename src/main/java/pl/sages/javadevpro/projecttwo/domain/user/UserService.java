@@ -18,16 +18,12 @@ public class UserService {
         );
     }
 
-    //todo 10. (Rafal) nic nie zwraca usera
-    public User update(User user) {
-        return userRepository.update(user)
-            .orElseThrow(UserNotFoundException::new);
+    public void update(User user) {
+        userRepository.update(user);
     }
 
-    //todo 11. (Rafal) nic nie zwraca
-    public User removeById(String id) {
-        return userRepository.remove(id)
-            .orElseThrow(UserNotFoundException::new);
+    public void removeById(String id) {
+        userRepository.remove(id);
     }
 
     public User findByEmail(String email) {
