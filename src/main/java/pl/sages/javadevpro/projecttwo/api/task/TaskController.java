@@ -61,12 +61,7 @@ public class TaskController {
             @PathVariable String taskId,
             @PathVariable int fileId
     ) {
-        //todo 2. (Mariusz) metoda pomocnicza do osobnej funkcji/klasy
-        String filePath = taskService.getTaskFilesList(taskId).get(fileId);
-        String fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
-        byte[] file = taskService.readTaskFile(taskId, filePath);
-        HttpHeaders headers = prepareHttpHeadersForFileResponse(fileName);
-        return ResponseEntity.ok().headers(headers).contentLength(file.length).contentType(MediaType.parseMediaType("application/txt")).body(file);
+        return createResponseEntityForFileAssignedToUserTask(taskId, fileId);
     }
 
     @PostMapping(
@@ -93,6 +88,14 @@ public class TaskController {
         }
         //todo 4. MessageResponse/ErrorResponse do użycia
         return new ResponseEntity<>("The File Uploaded Successfully", HttpStatus.OK);
+    }
+
+    private ResponseEntity<Object> createResponseEntityForFileAssignedToUserTask(String taskId, int fileId) {
+        String filePath = taskService.getTaskFilesList(taskId).get(fileId);
+        String fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
+        byte[] file = taskService.readTaskFile(taskId, filePath);
+        HttpHeaders headers = prepareHttpHeadersForFileResponse(fileName);
+        return ResponseEntity.ok().headers(headers).contentLength(file.length).contentType(MediaType.parseMediaType("application/txt")).body(file);
     }
 
     @GetMapping(
