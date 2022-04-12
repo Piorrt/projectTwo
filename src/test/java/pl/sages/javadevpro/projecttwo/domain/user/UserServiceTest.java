@@ -33,6 +33,18 @@ class UserServiceTest {
     );
 
     @Test
+    void update_method_should_not_throw_exception() {
+        // Expect
+        Assertions.assertDoesNotThrow(() -> userService.update(fakeUser));
+    }
+
+    @Test
+    void delete_method_should_not_throw_exception() {
+        // Expect
+        Assertions.assertDoesNotThrow(() -> userService.removeById(fakeUser.getId()));
+    }
+
+    @Test
     void save_method_should_return_saved_user_when_user_does_not_exist() {
         Mockito.when(userRepository.save(
                 fakeUser.withPassword(
