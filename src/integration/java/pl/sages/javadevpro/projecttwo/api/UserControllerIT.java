@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import pl.sages.javadevpro.projecttwo.BaseIT;
 import pl.sages.javadevpro.projecttwo.TestUserFactory;
 import pl.sages.javadevpro.projecttwo.api.user.UserDto;
-import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
+import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
@@ -58,7 +58,7 @@ class UserControllerIT extends BaseIT {
                 "/users/fakeId",
                 token,
                 null,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND);
@@ -78,7 +78,7 @@ class UserControllerIT extends BaseIT {
                 "/users/" + user2.getId(),
                 accessToken,
                 null,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         assertEquals(response.getStatusCode(), HttpStatus.FORBIDDEN);
@@ -96,7 +96,7 @@ class UserControllerIT extends BaseIT {
                 "/users",
                 adminToken,
                 user,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
@@ -176,18 +176,10 @@ class UserControllerIT extends BaseIT {
 
         //then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        //and
-        UserDto body = response.getBody();
-        assertNotNull(body);
-        assertEquals(user.getId(), body.getId());
-        assertEquals(toUpdate.getEmail(), body.getEmail());
-        assertEquals(toUpdate.getName(), body.getName());
-        assertEquals("######", body.getPassword());
-        assertEquals(toUpdate.getRoles().stream().map(UserRole::getValue).collect(Collectors.toList()), body.getRoles());
     }
 
     @Test
-    void admin_should_be_get_response_code_404_when_update_user_not_exits() {
+    void admin_should_be_get_response_code_200_when_update_user_not_exits() {
         //given
         String token = getTokenForAdmin();
         User fakeUser = TestUserFactory.createStudent();
@@ -197,10 +189,10 @@ class UserControllerIT extends BaseIT {
                 "/users",
                 token,
                 fakeUser,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
@@ -222,7 +214,7 @@ class UserControllerIT extends BaseIT {
                 "/users",
                 token,
                 userToUpdate,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
@@ -248,7 +240,7 @@ class UserControllerIT extends BaseIT {
     }
 
     @Test
-    void admin_should_get_response_code_404_when_user_not_exits() {
+    void admin_should_get_response_code_204_when_user_not_exits() {
         //given
         User user = TestUserFactory.createStudent();
         String token = getTokenForAdmin();
@@ -259,10 +251,10 @@ class UserControllerIT extends BaseIT {
                 "/users/" + user.getId(),
                 token,
                 null,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     @Test
@@ -280,7 +272,7 @@ class UserControllerIT extends BaseIT {
                 "/users/" + secondUser.getId(),
                 token,
                 null,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());

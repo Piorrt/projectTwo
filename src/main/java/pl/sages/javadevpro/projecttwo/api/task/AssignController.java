@@ -24,7 +24,7 @@ public class AssignController {
     )
     public ResponseEntity<MessageResponse> assignTaskToUser(@RequestBody AssigmentRequest assigmentRequest) {
         assigmentService.assignNewTask(assigmentRequest.getUserId(), assigmentRequest.getTaskId());
-        return ResponseEntity.ok(new MessageResponse("OK", "Task assigned to user"));
+        return ResponseEntity.ok(new MessageResponse("Task assigned to user"));
     }
 
 }

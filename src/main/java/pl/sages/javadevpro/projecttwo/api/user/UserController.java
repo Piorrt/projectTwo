@@ -72,7 +72,7 @@ public class UserController {
     public ResponseEntity<Void> updateUser(@RequestBody UserDto dto) {
         userService.update(dtoMapper.toDomain(dto));
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("{id}")

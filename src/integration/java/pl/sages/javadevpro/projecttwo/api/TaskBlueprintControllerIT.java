@@ -10,7 +10,7 @@ import pl.sages.javadevpro.projecttwo.TestTaskBlueprintFactory;
 import pl.sages.javadevpro.projecttwo.TestUserFactory;
 import pl.sages.javadevpro.projecttwo.api.task.blueprint.TaskBlueprintDto;
 import pl.sages.javadevpro.projecttwo.api.task.blueprint.TaskBlueprintDtoMapper;
-import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
+import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprint;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
@@ -120,7 +120,7 @@ public class TaskBlueprintControllerIT extends BaseIT {
                 "/task-blueprints",
                 token,
                 taskBlueprint,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.FORBIDDEN);
@@ -137,7 +137,7 @@ public class TaskBlueprintControllerIT extends BaseIT {
                 "/task-blueprints",
                 adminAccessToken,
                 taskBlueprint,
-                MessageResponse.class);
+                ErrorResponse.class);
         //then
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.CONFLICT);
     }
@@ -173,7 +173,7 @@ public class TaskBlueprintControllerIT extends BaseIT {
             "/task-blueprints",
             token,
             taskBlueprint,
-            MessageResponse.class
+            ErrorResponse.class
         );
 
         //then
@@ -218,7 +218,7 @@ public class TaskBlueprintControllerIT extends BaseIT {
                 "/task-blueprints/1",
                 token,
                 null,
-                MessageResponse.class);
+                ErrorResponse.class);
 
         //then
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND);
