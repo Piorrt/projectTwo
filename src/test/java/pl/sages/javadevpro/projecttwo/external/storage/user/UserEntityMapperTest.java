@@ -1,5 +1,6 @@
 package pl.sages.javadevpro.projecttwo.external.storage.user;
 
+import org.apache.kafka.common.utils.CollectionUtils;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
@@ -8,7 +9,9 @@ import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserEntityMapperTest {
 
@@ -50,7 +53,7 @@ public class UserEntityMapperTest {
         assertEquals(USER_NAME, entity.getName());
         assertEquals(USER_EMAIL, entity.getEmail());
         assertEquals(USER_PASSWORD, entity.getPassword());
-        //assertEquals(USER_ROLES, entity.getRoles());  //fixme (Rafał)
+        assertEquals(USER_ROLES.stream().map(Enum::name).collect(Collectors.toSet()), entity.getRoles());
 
     }
 }
