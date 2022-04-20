@@ -30,3 +30,6 @@ local:
   files:
     taskDefinition: /task_definition.yml
     taskSummaryResult: /test_results/test_summary.txt
+
+message:
+  testResultFileName: task_results.txt

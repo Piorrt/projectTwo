@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import pl.sages.javadevpro.projecttwo.api.task.verification.UserIsNotAuthorizedToThisTaskException;
 import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
+import pl.sages.javadevpro.projecttwo.domain.task.CommitTaskException;
+import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintNotFoundException;
 import pl.sages.javadevpro.projecttwo.domain.user.UserNotFoundException;
 import pl.sages.javadevpro.projecttwo.external.storage.task.TaskBlueprintAlreadyExistsException;
@@ -46,9 +48,21 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponse(ex, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
+    @ExceptionHandler(CommitTaskException.class)
+    public final ResponseEntity<ErrorResponse> handleCommitTaskException(RepositoryWasNotFoundException ex) {
+        return buildResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(IncorrectTaskStatusException.class)
+    public final ResponseEntity<ErrorResponse> handleIncorrectTaskStatusException(RepositoryWasNotFoundException ex) {
+        return buildResponse(ex, HttpStatus.METHOD_NOT_ALLOWED);
+    }
+
     private <E extends RuntimeException> ResponseEntity<ErrorResponse> buildResponse(E exception, HttpStatus status) {
         return ResponseEntity
                 .status(status)
                 .body(new ErrorResponse(exception.getMessage()));
     }
+
+
 }

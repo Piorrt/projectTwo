@@ -1,6 +1,7 @@
 package pl.sages.javadevpro.projecttwo.api.task;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,6 +12,8 @@ import pl.sages.javadevpro.projecttwo.api.task.dto.CommandName;
 import pl.sages.javadevpro.projecttwo.api.task.dto.TaskControllerCommand;
 import pl.sages.javadevpro.projecttwo.api.task.verification.VerifyTaskAuthorization;
 import pl.sages.javadevpro.projecttwo.api.usertask.ListOfFilesResponse;
+import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
+import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
 
@@ -69,25 +72,16 @@ public class TaskController {
             path = "{taskId}/files/{fileId}"
     )
     @VerifyTaskAuthorization
-    public ResponseEntity<Object> postFileAssignedToUserTask(
+    public ResponseEntity<MessageResponse> postFileAssignedToUserTask(
             @PathVariable String taskId,
             @PathVariable int fileId,
             @RequestParam("file") MultipartFile file
     ) {
         if (taskService.getTaskStatus(taskId).equals(TaskStatus.SUBMITTED)) {
-            return new ResponseEntity<>("The File Upload Failed. The Task was sent to ENV.", HttpStatus.METHOD_NOT_ALLOWED);
+            throw new IncorrectTaskStatusException();
         }
-
-        try {
-            byte[] bytes = file.getBytes();
-            String filePath = taskService.getTaskFilesList(taskId).get(fileId);
-            taskService.writeTaskFile(taskId, filePath, bytes);
-            taskService.commitTaskChanges(taskId);
-        } catch (IOException e) {//todo 3. (Mariusz) niestosować niskopoziomowego wyjątku w controlerze
-            return new ResponseEntity<>("The File Upload Failed", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        //todo 4. (Mariusz) MessageResponse/ErrorResponse do użycia
-        return new ResponseEntity<>("The File Uploaded Successfully", HttpStatus.OK);
+        taskService.writeAndCommitTask(taskId, fileId, file);
+        return ResponseEntity.ok(new MessageResponse("The File Uploaded Successfully"));
     }
 
     private ResponseEntity<Object> createResponseEntityForFileAssignedToUserTask(String taskId, int fileId) {
@@ -103,10 +97,9 @@ public class TaskController {
     )
     @VerifyTaskAuthorization
     public ResponseEntity<Object> getUserTaskResult(
-            @PathVariable String taskId
+            @PathVariable String taskId,
+            @Value("${message.testResultFileName}") String fileName
     ) {
-        //todo 5. (Mariusz) nazwa przenieść do properties/yaml dodać przez @Value jako parametr metody albo zmienna w kontrolerze
-        String fileName = "task_results.txt";
         byte[] file = taskService.readTaskResults(taskId);
         HttpHeaders headers = prepareHttpHeadersForFileResponse(fileName);
         return ResponseEntity.ok().headers(headers).contentLength(file.length).contentType(MediaType.parseMediaType("application/txt")).body(file);
