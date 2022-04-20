@@ -8,6 +8,7 @@ import org.eclipse.jgit.api.CommitCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
+import org.springframework.web.multipart.MultipartFile;
 import pl.sages.javadevpro.projecttwo.domain.task.Workspace;
 import pl.sages.javadevpro.projecttwo.external.directory.task.FileToBeDeliveredToUser;
 import pl.sages.javadevpro.projecttwo.external.directory.task.TaskDefinition;
@@ -58,11 +59,11 @@ public class WorkspaceService implements Workspace {
     }
 
     @Override
-    public void writeFile(String rootPathUrl, String path, byte[] bytes) {
+    public void writeFile(String rootPathUrl, String path, MultipartFile file) {
         String fullPath = java.nio.file.Paths.get(rootPathUrl, path).toString();
 
         try {
-            Files.write(Paths.get(fullPath), bytes);
+            Files.write(Paths.get(fullPath), file.getBytes());
         } catch (IOException e) {
             throw new FileWasNotFoundException();
         }

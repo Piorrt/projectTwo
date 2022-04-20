@@ -3,7 +3,6 @@ package pl.sages.javadevpro.projecttwo.domain.task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 import static pl.sages.javadevpro.projecttwo.domain.task.TaskStatus.NOT_STARTED;
@@ -26,10 +25,6 @@ public class TaskService {
 
     public List<String> getTaskFilesList(String taskId) {
         return taskWorkspace.getFilesList(getWorkspacePath(taskId));
-    }
-
-    public void writeTaskFile(String taskId, String filePath, byte[] bytes) {
-        taskWorkspace.writeFile(getWorkspacePath(taskId), filePath, bytes);
     }
 
     public byte[] readTaskFile(String taskId, String filePath) {
@@ -76,13 +71,16 @@ public class TaskService {
     }
 
     public void writeAndCommitTask(String taskId, int fileId, MultipartFile file) {
-        try {
-            byte[] bytes = file.getBytes();
-            String filePath = getTaskFilesList(taskId).get(fileId);
-            writeTaskFile(taskId, filePath, bytes);
+       // try {
+        String filePath = getTaskFilesList(taskId).get(fileId);
+            taskWorkspace.writeFile(getWorkspacePath(taskId), filePath, file);
             commitTaskChanges(taskId);
-        } catch (IOException e) {
-            throw new CommitTaskException();
-        }
+        //} catch (IOException e) {
+           // throw new CommitTaskException();
+       // }
+    }
+
+    private void writeTaskFile(String taskId, String filePath, MultipartFile file) {
+
     }
 }
