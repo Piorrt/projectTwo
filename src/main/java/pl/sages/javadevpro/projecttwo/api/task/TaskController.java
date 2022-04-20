@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import pl.sages.javadevpro.projecttwo.api.task.dto.CommandName;
 import pl.sages.javadevpro.projecttwo.api.task.dto.TaskControllerCommand;
 import pl.sages.javadevpro.projecttwo.api.task.verification.VerifyTaskAuthorization;
@@ -17,7 +16,6 @@ import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
 
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -75,12 +73,12 @@ public class TaskController {
     public ResponseEntity<MessageResponse> postFileAssignedToUserTask(
             @PathVariable String taskId,
             @PathVariable int fileId,
-            @RequestParam("file") MultipartFile file
+            @RequestParam("bytes") byte[] bytes
     ) {
         if (taskService.getTaskStatus(taskId).equals(TaskStatus.SUBMITTED)) {
             throw new IncorrectTaskStatusException();
         }
-        taskService.writeAndCommitTask(taskId, fileId, file);
+        taskService.writeAndCommitTask(taskId, fileId, bytes);
         return ResponseEntity.ok(new MessageResponse("The File Uploaded Successfully"));
     }
 

@@ -10,7 +10,7 @@ public interface Workspace {
 
     List<String> getFilesList(String rootPathUrl);
 
-    void writeFile(String rootPathUrl, String path, MultipartFile file);
+    void writeFile(String rootPathUrl, String path, byte[] bytes);
 
     byte[] readFile(String rootPathUrl, String path);
 

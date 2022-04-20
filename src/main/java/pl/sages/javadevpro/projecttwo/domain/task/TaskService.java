@@ -70,17 +70,9 @@ public class TaskService {
         return findTaskById(taskId).getWorkspaceUrl();
     }
 
-    public void writeAndCommitTask(String taskId, int fileId, MultipartFile file) {
-       // try {
+    public void writeAndCommitTask(String taskId, int fileId, byte[] bytes) {
         String filePath = getTaskFilesList(taskId).get(fileId);
-            taskWorkspace.writeFile(getWorkspacePath(taskId), filePath, file);
-            commitTaskChanges(taskId);
-        //} catch (IOException e) {
-           // throw new CommitTaskException();
-       // }
-    }
-
-    private void writeTaskFile(String taskId, String filePath, MultipartFile file) {
-
+        taskWorkspace.writeFile(getWorkspacePath(taskId), filePath, bytes);
+        commitTaskChanges(taskId);
     }
 }

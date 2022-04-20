@@ -59,11 +59,11 @@ public class WorkspaceService implements Workspace {
     }
 
     @Override
-    public void writeFile(String rootPathUrl, String path, MultipartFile file) {
+    public void writeFile(String rootPathUrl, String path, byte[] bytes) {
         String fullPath = java.nio.file.Paths.get(rootPathUrl, path).toString();
 
         try {
-            Files.write(Paths.get(fullPath), file.getBytes());
+            Files.write(Paths.get(fullPath), bytes);
         } catch (IOException e) {
             throw new FileWasNotFoundException();
         }
