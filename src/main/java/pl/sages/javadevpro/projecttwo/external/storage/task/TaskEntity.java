@@ -1,14 +1,23 @@
 package pl.sages.javadevpro.projecttwo.external.storage.task;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
 
+
+@Document("Tasks")
+@TypeAlias("TaskEntity")
+@Builder
 @AllArgsConstructor
-@Setter
+@NoArgsConstructor
 @Getter
+@Setter
 public class TaskEntity {
 
     @Id
@@ -17,6 +26,13 @@ public class TaskEntity {
     String description;
     String workspaceUrl;
     TaskStatus status;
+
+    public TaskEntity(String name, String description, String workspaceUrl, TaskStatus status) {
+        this.name = name;
+        this.description = description;
+        this.workspaceUrl = workspaceUrl;
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {

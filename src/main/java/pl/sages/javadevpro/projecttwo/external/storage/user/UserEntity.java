@@ -1,7 +1,11 @@
 package pl.sages.javadevpro.projecttwo.external.storage.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -9,10 +13,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
 
-@Data
-@TypeAlias("Users")//todo (Rafał) - do sprawdzenie czy nie jest zbędne - @Document.value = Users
-@Document(value = "UserEntity")
+@Document("Users")
+@TypeAlias("UserEntity")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class UserEntity {
 
     @Id
@@ -24,6 +31,14 @@ public class UserEntity {
     private String name;
     private String password;
     private Set<String> roles;
+
+    public UserEntity(String email, String name, String password, Set<String> roles) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
