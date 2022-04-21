@@ -72,6 +72,5 @@ public class TaskControllerIT extends BaseIT {
         //then
         Assertions.assertEquals(HttpStatus.METHOD_NOT_ALLOWED, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-//        Assertions.assertEquals("ERROR", response.getBody().getStatus());
     }
 }
