@@ -4,19 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
-import pl.sages.javadevpro.projecttwo.security.UserPrincipal;
+import pl.sages.javadevpro.projecttwo.security.Security;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -28,6 +24,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserDtoMapper dtoMapper;
+    private final Security security;
 
     @GetMapping( path = "/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable String id) {
@@ -76,9 +73,9 @@ public class UserController {
     }
 
     @GetMapping("me")
-    public ResponseEntity<UserDto> aboutMe(Authentication authentication) {
-        //todo 6. (Piotrek) klasa ze statyczna metodą getPrincipal np: Security.getPrincipal()
-        User user = userService.findByEmail(((UserPrincipal) authentication.getPrincipal()).getUsername());
+    public ResponseEntity<UserDto> aboutMe() {
+        User user = security.getPrincipal();
+
         return ResponseEntity
             .ok(dtoMapper.toDto(user));
     }
