@@ -1,11 +1,12 @@
 package pl.sages.javadevpro.projecttwo.domain.assigment;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskService;
 
 
-// TODO final + required args constructor
-@AllArgsConstructor
+// TODO final + required args constructor - done
+@RequiredArgsConstructor
 public class AssigmentService {
 
     private final AssigmentRepository assigmentRepository;

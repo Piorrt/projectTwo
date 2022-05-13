@@ -17,7 +17,14 @@ public class TaskService {
     private final TaskExecutor taskExecutor;
     private final String resultFilePath;
 
-    public String execute(String taskId) {
+    public String executeCommand(TaskCommand taskCommand, String taskId) {
+        if (taskCommand.equals(TaskCommand.EXECUTE)) {
+            return execute(taskId);
+        }
+        throw new CommandNotSupportedException();
+    }
+
+    private String execute(String taskId) {
         Task task = updateTaskStatus(taskId, SUBMITTED);
         taskExecutor.exec(task);
         return task.getStatus().name();

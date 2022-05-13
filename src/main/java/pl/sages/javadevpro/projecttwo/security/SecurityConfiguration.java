@@ -1,6 +1,7 @@
 package pl.sages.javadevpro.projecttwo.security;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
@@ -18,14 +19,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.annotation.PostConstruct;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    // TODO final + required args constructor
-    private UserPrincipalDetailsService userPrincipalDetailsService;
+    // TODO final + required args constructor - done
+    private final UserPrincipalDetailsService userPrincipalDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // TODO zdefiniować PasswordEncoder
+        // TODO zdefiniować PasswordEncoder - done
         auth.userDetailsService(userPrincipalDetailsService).passwordEncoder(passwordEncoder());
     }
 

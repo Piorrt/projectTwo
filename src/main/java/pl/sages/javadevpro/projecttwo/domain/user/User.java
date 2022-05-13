@@ -2,10 +2,11 @@ package pl.sages.javadevpro.projecttwo.domain.user;
 
 import lombok.Value;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Value
-public class User {
+public class User implements Serializable {
 
     String id;
     String email;

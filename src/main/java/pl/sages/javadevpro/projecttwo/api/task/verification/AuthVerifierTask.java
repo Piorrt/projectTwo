@@ -18,17 +18,17 @@ import java.util.Arrays;
 @Component
 @Aspect
 @RequiredArgsConstructor
-// TODO zastanowić się nad nazwą
-class TaskAuthorizationVerifier {
+// TODO zastanowić się nad nazwą - done
+class AuthVerifierTask {
 
     private final UserService userService;
     private final AssigmentService assigmentService;
 
 
-    @Before(value = "@annotation(verifyTaskAuthorization)")
-    public void userIsOwnerOfTask(JoinPoint joinPoint, VerifyTaskAuthorization verifyTaskAuthorization) {
+    @Before(value = "@annotation(authVerifyTask)")
+    public void userIsOwnerOfTask(JoinPoint joinPoint, AuthVerifyTask authVerifyTask) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String taskId = (String) getParameterByName(joinPoint, verifyTaskAuthorization.taskIdParamName());
+        String taskId = (String) getParameterByName(joinPoint, authVerifyTask.taskIdParamName());
 
         User user = userService.findByEmail(((UserPrincipal) authentication.getPrincipal()).getUsername());
         boolean authorizationConfirmed = assigmentService.isTaskAssignedToUser(user.getId(), taskId);

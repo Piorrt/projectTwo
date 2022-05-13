@@ -7,8 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-// TODO zastanowić się nad nazwą
-public @interface VerifyTaskAuthorization {
+// TODO zastanowić się nad nazwą - done
+public @interface AuthVerifyTask {
 
     String taskIdParamName() default "taskId";
 

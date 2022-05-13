@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sages.javadevpro.projecttwo.api.task.dto.CommandName;
 import pl.sages.javadevpro.projecttwo.api.task.dto.TaskControllerCommand;
-import pl.sages.javadevpro.projecttwo.api.task.verification.VerifyTaskAuthorization;
+import pl.sages.javadevpro.projecttwo.api.task.verification.AuthVerifyTask;
 import pl.sages.javadevpro.projecttwo.api.usertask.ListOfFilesResponse;
 import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
 import pl.sages.javadevpro.projecttwo.domain.task.CommitTaskException;
 import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
+import pl.sages.javadevpro.projecttwo.domain.task.TaskCommand;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskStatus;
 
@@ -30,17 +31,20 @@ public class TaskController {
 
 
     @PostMapping(path = "{taskId}/commands")
-    @VerifyTaskAuthorization
-    public ResponseEntity<Object> taskCommand(
+    @AuthVerifyTask
+    public ResponseEntity<MessageResponse> taskCommand(
             @PathVariable String taskId,
             @RequestBody TaskControllerCommand taskControllerCommand
     ) {
-        // TODO ta logika powinna być niżej
-        if (taskControllerCommand.hasName(CommandName.EXECUTE)) {
-            String taskStatus = taskService.execute(taskId);
-            return new ResponseEntity<>("Task " + taskId + " executed, status: " + taskStatus, HttpStatus.OK);
-        }
-        return new ResponseEntity<>("ERROR", HttpStatus.NOT_FOUND);
+        // TODO ta logika powinna być niżej - done
+        //TODO do zrobienia test integracyjny
+        String taskStatus = taskService.executeCommand(
+                TaskCommand.valueOf(taskControllerCommand.getCommandName().name()),
+                taskId
+        );
+        return ResponseEntity.ok(
+                new MessageResponse("Task " + taskId + " executed, status: " + taskStatus)
+        );
     }
 
     @GetMapping(
@@ -48,7 +52,7 @@ public class TaskController {
             consumes = "application/json",
             path = "{taskId}/files"
     )
-    @VerifyTaskAuthorization
+    @AuthVerifyTask
     public ResponseEntity<ListOfFilesResponse> getFilesAssignedToUserTask(
             @PathVariable String taskId
     ) {
@@ -61,7 +65,7 @@ public class TaskController {
     @GetMapping(
             path = "{taskId}/files/{fileId}"
     )
-    @VerifyTaskAuthorization
+    @AuthVerifyTask
     public ResponseEntity<Object> getFileAssignedToUserTask(
             @PathVariable String taskId,
             @PathVariable int fileId
@@ -73,21 +77,19 @@ public class TaskController {
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
             path = "{taskId}/files/{fileId}"
     )
-    @VerifyTaskAuthorization
+    @AuthVerifyTask
     public ResponseEntity<MessageResponse> postFileAssignedToUserTask(
             @PathVariable String taskId,
             @PathVariable int fileId,
             @RequestParam("file") MultipartFile file
-    ) {
+    ) throws IOException {
         if (taskService.getTaskStatus(taskId).equals(TaskStatus.SUBMITTED)) {
             throw new IncorrectTaskStatusException();
         }
-        try {
-            // TODO przenieść do handlera
-            taskService.writeAndCommitTask(taskId, fileId, file.getBytes());
-        } catch (IOException e) {
-            throw new CommitTaskException();
-        }
+
+        // TODO przenieść do handlera - done
+        taskService.writeAndCommitTask(taskId, fileId, file.getBytes());
+
         return ResponseEntity.ok(new MessageResponse("The File Uploaded Successfully"));
     }
 
@@ -102,7 +104,7 @@ public class TaskController {
     @GetMapping(
             path = "{taskId}/results"
     )
-    @VerifyTaskAuthorization
+    @AuthVerifyTask
     public ResponseEntity<Object> getUserTaskResult(
             @PathVariable String taskId,
             @Value("${message.testResultFileName}") String fileName

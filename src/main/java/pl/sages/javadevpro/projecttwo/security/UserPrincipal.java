@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class UserPrincipal implements UserDetails {
 
     private static final String ROLE_PREFIX = "ROLE_";
-    // TODO User powinien być serializable
+    // TODO User powinien być serializable - done
     private final User user;
 
     public UserPrincipal(User user){

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import pl.sages.javadevpro.projecttwo.api.task.verification.UserIsNotAuthorizedToThisTaskException;
 import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
+import pl.sages.javadevpro.projecttwo.domain.task.CommandNotSupportedException;
 import pl.sages.javadevpro.projecttwo.domain.task.CommitTaskException;
 import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintNotFoundException;
@@ -14,6 +15,8 @@ import pl.sages.javadevpro.projecttwo.domain.user.UserNotFoundException;
 import pl.sages.javadevpro.projecttwo.external.storage.task.TaskBlueprintAlreadyExistsException;
 import pl.sages.javadevpro.projecttwo.external.storage.user.UserAlreadyExistsException;
 import pl.sages.javadevpro.projecttwo.external.workspace.RepositoryWasNotFoundException;
+
+import java.io.IOException;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
@@ -49,13 +52,25 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(CommitTaskException.class)
-    public final ResponseEntity<ErrorResponse> handleCommitTaskException(RepositoryWasNotFoundException ex) {
+    public final ResponseEntity<ErrorResponse> handleCommitTaskException(CommitTaskException ex) {
         return buildResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(IncorrectTaskStatusException.class)
-    public final ResponseEntity<ErrorResponse> handleIncorrectTaskStatusException(RepositoryWasNotFoundException ex) {
+    public final ResponseEntity<ErrorResponse> handleIncorrectTaskStatusException(IncorrectTaskStatusException ex) {
         return buildResponse(ex, HttpStatus.METHOD_NOT_ALLOWED);
+    }
+
+    @ExceptionHandler(CommandNotSupportedException.class)
+    public final ResponseEntity<ErrorResponse> handleCommandNotSupportedException(CommandNotSupportedException ex) {
+        return buildResponse(ex, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(IOException.class)
+    public final ResponseEntity<ErrorResponse> handleCommandNotSupportedException(IOException ex) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse(ex.getMessage()));
     }
 
     private <E extends RuntimeException> ResponseEntity<ErrorResponse> buildResponse(E exception, HttpStatus status) {

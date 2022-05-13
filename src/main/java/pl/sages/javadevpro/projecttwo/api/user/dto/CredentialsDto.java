@@ -1,8 +1,8 @@
-package pl.sages.javadevpro.projecttwo.config;
+package pl.sages.javadevpro.projecttwo.api.user.dto;
 
 
-// TODO czy to leży w dobrym pakiecie
-public class CredentialsDTO {
+// TODO czy to leży w dobrym pakiecie - done
+public class CredentialsDto {
     private String email;
     private String password;
 

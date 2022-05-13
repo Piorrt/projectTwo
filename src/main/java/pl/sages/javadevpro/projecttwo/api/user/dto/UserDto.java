@@ -1,4 +1,4 @@
-package pl.sages.javadevpro.projecttwo.api.user;
+package pl.sages.javadevpro.projecttwo.api.user.dto;
 
 import lombok.Value;
 
