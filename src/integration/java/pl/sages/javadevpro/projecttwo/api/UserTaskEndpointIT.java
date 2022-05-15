@@ -1,29 +1,9 @@
 package pl.sages.javadevpro.projecttwo.api;
 
-import lombok.SneakyThrows;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import pl.sages.javadevpro.projecttwo.BaseIT;
-import pl.sages.javadevpro.projecttwo.TestTaskBlueprintFactory;
-import pl.sages.javadevpro.projecttwo.TestUserFactory;
-import pl.sages.javadevpro.projecttwo.api.task.blueprint.TaskBlueprintDtoMapper;
-import pl.sages.javadevpro.projecttwo.api.usertask.ListOfFilesResponse;
-import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
 //import pl.sages.javadevpro.projecttwo.api.usertask.UserTaskRequest;
 //import pl.sages.javadevpro.projecttwo.domain.UserTaskService;
-import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprint;
-import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
-import java.io.File;
-import java.util.ArrayList;
 
 class UserTaskEndpointIT extends BaseIT {
 

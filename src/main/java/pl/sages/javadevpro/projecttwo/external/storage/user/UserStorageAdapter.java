@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserRepository;
+import pl.sages.javadevpro.projecttwo.domain.user.model.PageUser;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,11 +53,16 @@ public class UserStorageAdapter implements UserRepository {
     }
 
     @Override
-    public Page<User> findAll(Pageable pageable) {
+    public PageUser findAll(Pageable pageable) {
         Page<UserEntity> pageOfUsersEntity = userRepository.findAll(pageable);
         List<User> usersOnCurrentPage = pageOfUsersEntity.getContent().stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
-        return new PageImpl<>(usersOnCurrentPage, pageable, pageOfUsersEntity.getTotalElements());
+        return new PageUser(
+                usersOnCurrentPage,
+                pageable.getPageNumber() + 1,
+                pageOfUsersEntity.getTotalPages(),
+                pageOfUsersEntity.getTotalElements()
+        );
     }
 }

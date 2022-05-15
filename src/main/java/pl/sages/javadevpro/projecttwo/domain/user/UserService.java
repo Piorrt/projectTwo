@@ -1,8 +1,10 @@
 package pl.sages.javadevpro.projecttwo.domain.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import pl.sages.javadevpro.projecttwo.domain.user.exception.UserNotFoundException;
+import pl.sages.javadevpro.projecttwo.domain.user.model.PageUser;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 
 @RequiredArgsConstructor
 public class UserService {
@@ -36,7 +38,7 @@ public class UserService {
                 .orElseThrow(UserNotFoundException::new);
     }
 
-    public Page<User> findAll(Pageable pageable) {
+    public PageUser findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 }

@@ -1,27 +1,11 @@
 package pl.sages.javadevpro.projecttwo.domain;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprint;
-import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
-import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 //import pl.sages.javadevpro.projecttwo.domain.usertask.DirectoryService;
 //import pl.sages.javadevpro.projecttwo.domain.usertask.GitService;
-import pl.sages.javadevpro.projecttwo.domain.task.Task;
 //import pl.sages.javadevpro.projecttwo.domain.usertask.UserTaskService;
 
-import java.util.List;
-
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserTaskServiceTestBlueprint {

@@ -7,6 +7,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pl.sages.javadevpro.projecttwo.domain.user.exception.UserNotFoundException;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.UserRole;
 import pl.sages.javadevpro.projecttwo.external.storage.user.UserAlreadyExistsException;
 
 import java.util.Optional;

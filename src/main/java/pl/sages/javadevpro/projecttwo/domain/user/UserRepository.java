@@ -1,9 +1,9 @@
 package pl.sages.javadevpro.projecttwo.domain.user;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import pl.sages.javadevpro.projecttwo.domain.user.model.PageUser;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
@@ -18,6 +18,6 @@ public interface UserRepository {
 
     Optional<User> findById(String id);
 
-    Page<User> findAll(Pageable pageable);
+    PageUser findAll(Pageable pageable);
 
 }

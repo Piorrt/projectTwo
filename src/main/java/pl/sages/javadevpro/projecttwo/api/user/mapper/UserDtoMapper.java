@@ -1,11 +1,9 @@
-package pl.sages.javadevpro.projecttwo.api.user;
+package pl.sages.javadevpro.projecttwo.api.user.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import pl.sages.javadevpro.projecttwo.api.user.dto.UserDto;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-
-import java.util.List;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 
 @Mapper(componentModel = "spring")
 public interface UserDtoMapper {
@@ -14,7 +12,4 @@ public interface UserDtoMapper {
     UserDto toDto(User domain);
 
     User toDomain(UserDto dto);
-
-    List<UserDto> toListDto(List<User> users);
-
 }

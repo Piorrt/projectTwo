@@ -1,4 +1,4 @@
-package pl.sages.javadevpro.projecttwo.domain.user;
+package pl.sages.javadevpro.projecttwo.domain.user.model;
 
 public enum UserRole {
 

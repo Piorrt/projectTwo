@@ -1,7 +1,7 @@
 package pl.sages.javadevpro.projecttwo;
 
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.UserRole;
 
 import java.util.Set;
 

@@ -6,16 +6,16 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import pl.sages.javadevpro.projecttwo.BaseIT;
 import pl.sages.javadevpro.projecttwo.TestUserFactory;
+import pl.sages.javadevpro.projecttwo.api.user.dto.PageUserDto;
 import pl.sages.javadevpro.projecttwo.api.user.dto.UserDto;
 import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.UserRole;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerIT extends BaseIT {
 
@@ -277,5 +277,35 @@ class UserControllerIT extends BaseIT {
         assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
     }
 
+    @Test
+    void admin_should_get_pageable_list_of_users() {
+        //give
+        User user = TestUserFactory.createStudent();
+        String adminAccessToken = getTokenForAdmin();
+        userService.save(user);
 
+        //when
+        var response = callHttpMethod(
+                HttpMethod.GET,
+                "/users",
+                adminAccessToken,
+                null,
+                PageUserDto.class
+        );
+
+        //then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        PageUserDto body = response.getBody();
+        //and
+        assertNotNull(body);
+        assertEquals(body.getUsers().size(), 2);
+        assertEquals(body.getTotalElements(), 2L);
+        assertEquals(body.getTotalPages(), 1);
+        assertEquals(body.getCurrentPage(), 1);
+        //and users passwords should be hashed
+        assertTrue(
+                body.getUsers().stream()
+                        .allMatch(userDto -> userDto.getPassword().equals("######"))
+        );
+    }
 }

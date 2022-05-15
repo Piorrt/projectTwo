@@ -11,7 +11,7 @@ import pl.sages.javadevpro.projecttwo.domain.task.CommandNotSupportedException;
 import pl.sages.javadevpro.projecttwo.domain.task.CommitTaskException;
 import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintNotFoundException;
-import pl.sages.javadevpro.projecttwo.domain.user.UserNotFoundException;
+import pl.sages.javadevpro.projecttwo.domain.user.exception.UserNotFoundException;
 import pl.sages.javadevpro.projecttwo.external.storage.task.TaskBlueprintAlreadyExistsException;
 import pl.sages.javadevpro.projecttwo.external.storage.user.UserAlreadyExistsException;
 import pl.sages.javadevpro.projecttwo.external.workspace.RepositoryWasNotFoundException;

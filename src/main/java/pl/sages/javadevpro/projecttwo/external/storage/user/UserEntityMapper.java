@@ -1,7 +1,7 @@
 package pl.sages.javadevpro.projecttwo.external.storage.user;
 
 import org.mapstruct.Mapper;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 
 @Mapper(componentModel = "spring")
 public interface UserEntityMapper {

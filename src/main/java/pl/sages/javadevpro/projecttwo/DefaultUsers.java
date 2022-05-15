@@ -1,11 +1,10 @@
 package pl.sages.javadevpro.projecttwo;
 
 import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.UserRole;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
 import java.util.Set;

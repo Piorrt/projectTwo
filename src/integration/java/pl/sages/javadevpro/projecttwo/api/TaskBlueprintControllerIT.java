@@ -13,7 +13,7 @@ import pl.sages.javadevpro.projecttwo.api.task.blueprint.TaskBlueprintDtoMapper;
 import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprint;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
 

@@ -3,7 +3,7 @@ package pl.sages.javadevpro.projecttwo.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

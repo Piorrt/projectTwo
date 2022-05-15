@@ -1,10 +1,9 @@
 package pl.sages.javadevpro.projecttwo.external.storage.user;
 
-import org.apache.kafka.common.utils.CollectionUtils;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import pl.sages.javadevpro.projecttwo.domain.user.User;
-import pl.sages.javadevpro.projecttwo.domain.user.UserRole;
+import pl.sages.javadevpro.projecttwo.domain.user.model.User;
+import pl.sages.javadevpro.projecttwo.domain.user.model.UserRole;
 
 import java.util.Set;
 import java.util.stream.Collectors;
