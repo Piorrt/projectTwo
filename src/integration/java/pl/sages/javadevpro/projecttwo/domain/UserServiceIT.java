@@ -9,7 +9,7 @@ import pl.sages.javadevpro.projecttwo.TestUserFactory;
 import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
-public class UserServiceIT extends BaseIT {
+class UserServiceIT extends BaseIT {
 
     @Autowired
     UserService service;
@@ -18,7 +18,7 @@ public class UserServiceIT extends BaseIT {
     PasswordEncoder passwordEncoder;
 
     @Test
-    public void add_user_test() {
+    void add_user_test() {
         //given
         User user = TestUserFactory.createStudent();
         service.save(user);
@@ -33,7 +33,7 @@ public class UserServiceIT extends BaseIT {
     }
 
     @Test
-    public void get_id_should_return_correct_user() {
+    void get_id_should_return_correct_user() {
         //given
         User user1 = TestUserFactory.createStudent();
         User user2 = TestUserFactory.createStudent();
@@ -50,5 +50,4 @@ public class UserServiceIT extends BaseIT {
         Assertions.assertEquals(user2.getName(), readUser.getName());
         Assertions.assertTrue(passwordEncoder.matches(user2.getPassword(), readUser.getPassword()));
     }
-
 }

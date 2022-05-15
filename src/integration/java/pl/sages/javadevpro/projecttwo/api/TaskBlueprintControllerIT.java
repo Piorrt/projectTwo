@@ -16,8 +16,7 @@ import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
 import pl.sages.javadevpro.projecttwo.domain.user.model.User;
 import pl.sages.javadevpro.projecttwo.domain.user.UserService;
 
-
-public class TaskBlueprintControllerIT extends BaseIT {
+class TaskBlueprintControllerIT extends BaseIT {
 
     @Autowired
     UserService userService;

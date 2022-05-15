@@ -8,13 +8,13 @@ import pl.sages.javadevpro.projecttwo.TestTaskBlueprintFactory;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprint;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
 
-public class TaskBlueprintServiceIT extends BaseIT {
+class TaskBlueprintServiceIT extends BaseIT {
 
     @Autowired
     TaskBlueprintService service;
 
     @Test
-    public void add_task_test() {
+    void add_task_test() {
         //given
         TaskBlueprint taskBlueprint = TestTaskBlueprintFactory.createRandom();
         service.save(taskBlueprint);
@@ -31,7 +31,7 @@ public class TaskBlueprintServiceIT extends BaseIT {
     }
 
     @Test
-    public void get_id_should_return_correct_user() {
+    void get_id_should_return_correct_user() {
         //given
         TaskBlueprint taskBlueprint1 = TestTaskBlueprintFactory.createRandom();
         TaskBlueprint taskBlueprint2 = TestTaskBlueprintFactory.createRandom();
