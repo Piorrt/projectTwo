@@ -3,17 +3,20 @@ package pl.sages.javadevpro.projecttwo.api.task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import pl.sages.javadevpro.projecttwo.api.task.dto.CommandName;
 import pl.sages.javadevpro.projecttwo.api.task.dto.TaskControllerCommand;
 import pl.sages.javadevpro.projecttwo.api.task.verification.AuthVerifyTask;
 import pl.sages.javadevpro.projecttwo.api.usertask.ListOfFilesResponse;
 import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
-import pl.sages.javadevpro.projecttwo.domain.task.CommitTaskException;
 import pl.sages.javadevpro.projecttwo.domain.task.IncorrectTaskStatusException;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskCommand;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskService;
@@ -37,7 +40,7 @@ public class TaskController {
             @RequestBody TaskControllerCommand taskControllerCommand
     ) {
         // TODO ta logika powinna być niżej - done
-        //TODO do zrobienia test integracyjny
+        //TODO do zrobienia test integracyjny - done
         String taskStatus = taskService.executeCommand(
                 TaskCommand.valueOf(taskControllerCommand.getCommandName().name()),
                 taskId

@@ -1,7 +1,6 @@
 package pl.sages.javadevpro.projecttwo.domain.task;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

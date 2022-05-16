@@ -1,6 +1,5 @@
 package pl.sages.javadevpro.projecttwo.api;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,20 @@ import org.springframework.http.HttpStatus;
 import pl.sages.javadevpro.projecttwo.BaseIT;
 import pl.sages.javadevpro.projecttwo.TestTaskBlueprintFactory;
 import pl.sages.javadevpro.projecttwo.TestUserFactory;
+import pl.sages.javadevpro.projecttwo.api.task.dto.CommandName;
+import pl.sages.javadevpro.projecttwo.api.task.dto.TaskControllerCommand;
 import pl.sages.javadevpro.projecttwo.api.usertask.ErrorResponse;
 import pl.sages.javadevpro.projecttwo.api.usertask.ListOfFilesResponse;
+import pl.sages.javadevpro.projecttwo.api.usertask.MessageResponse;
 import pl.sages.javadevpro.projecttwo.domain.assigment.Assigment;
 import pl.sages.javadevpro.projecttwo.domain.assigment.AssigmentService;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprint;
 import pl.sages.javadevpro.projecttwo.domain.task.TaskBlueprintService;
 import pl.sages.javadevpro.projecttwo.domain.user.model.User;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 class TaskControllerIT extends BaseIT {
 
     @Autowired
@@ -47,10 +53,9 @@ class TaskControllerIT extends BaseIT {
                 null,
                 ListOfFilesResponse.class
         );
-
         //then
-        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-        Assertions.assertNotNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
     }
 
     @Test
@@ -66,9 +71,30 @@ class TaskControllerIT extends BaseIT {
                 ErrorResponse.class
         );
 
+        //then
+        assertEquals(HttpStatus.METHOD_NOT_ALLOWED, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
+
+    @Test
+    void user_should_be_able_to_send_task_to_env() {
+        //given
+        TaskControllerCommand body = new TaskControllerCommand(CommandName.EXECUTE);
+        Assigment assigment = assigmentService.assignNewTask(user.getId(), taskBlueprintOne.getId());
+        String userToken = getAccessTokenForUser(user.getEmail(), user.getPassword());
+        String taskId =  assigment.getTaskId();
+
+        //when
+        var response = callHttpMethod(
+                HttpMethod.POST,
+                "/tasks/" + taskId + "/commands",
+                userToken,
+                body,
+                MessageResponse.class
+        );
 
         //then
-        Assertions.assertEquals(HttpStatus.METHOD_NOT_ALLOWED, response.getStatusCode());
-        Assertions.assertNotNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Task " + taskId + " executed, status: SUBMITTED", response.getBody().getMessage());
     }
 }
